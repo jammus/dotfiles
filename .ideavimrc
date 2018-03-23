@@ -1,0 +1,23 @@
+let mapleader = ","
+
+syntax on                           " Switch syntax highlighting on, when the terminal has colors
+
+set incsearch		                " Incremental searching
+set ignorecase                      " Case insenstive search if search string is all lowercase
+set smartcase
+set hlsearch                        " Switch on highlighting the last used search pattern.
+set showmatch
+
+" Show the cursor position all the time
+set ruler
+set number
+set relativenumber
+
+" clear highlights
+nnoremap <leader><space> :noh<cr>
+
+" use tab to match bracket pairs
+nnoremap <tab> %
+vnoremap <tab> %
+
+set surround                        " Surround ideavim plugin (cs, ds, etc)
