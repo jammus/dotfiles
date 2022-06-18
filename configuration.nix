@@ -91,6 +91,7 @@
     isNormalUser = true;
     description = "James Scott";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
