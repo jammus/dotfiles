@@ -8,6 +8,7 @@ in {
     config = {
       modifier = mod;
       fonts =  ["Fira Code"];
+      terminal = "alacritty";
     };
   };
 }
