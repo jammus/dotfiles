@@ -5,6 +5,7 @@
       env.TERM = "xterm-256color";
       font = {
         normal.family = "Fira Code";
+        normal.style = "Regular";
         size = 13;
       };
     };
