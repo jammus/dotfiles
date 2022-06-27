@@ -32,8 +32,6 @@ in
     shell = pkgs.zsh;
   };
 
-  services.tailscale.enable = true;
-
   # Enable nix flakes
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = ''
