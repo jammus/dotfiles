@@ -16,7 +16,7 @@ in
   wsl = {
     enable = true;
     automountPath = "/mnt";
-    defaultUser = "nixos";
+    defaultUser = "jammus";
     startMenuLaunchers = true;
     wslConf.network.hostname = "nixos-wsl";
 
