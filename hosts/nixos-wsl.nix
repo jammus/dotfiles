@@ -32,4 +32,6 @@ in
   '';
 
   environment.systemPackages = with pkgs; [ git vim ];
+
+  system.stateVersion = "22.05";
 }
