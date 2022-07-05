@@ -7,6 +7,7 @@ in
 {
   imports = [
     "${modulesPath}/profiles/minimal.nix"
+    ../common/users.nix
 
     nixos-wsl.nixosModules.wsl
   ];
@@ -22,14 +23,6 @@ in
 
     # Enable integration with Docker Desktop (needs to be installed)
     # docker.enable = true;
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jammus = {
-    isNormalUser = true;
-    description = "James Scott";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
   };
 
   # Enable nix flakes

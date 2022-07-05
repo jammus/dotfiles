@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./playground-hardware-configuration.nix
+      ../common/users.nix
       ../common/fonts.nix
     ];
 
@@ -84,14 +85,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jammus = {
-    isNormalUser = true;
-    description = "James Scott";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
