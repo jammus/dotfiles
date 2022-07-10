@@ -18,11 +18,18 @@
       set number
       set relativenumber
 
+      set textwidth=80
+
       nnoremap <leader><space> :noh<cr>
 
       " use tab to match bracket pairs
       nnoremap <tab> %
       vnoremap <tab> %
+
+      augroup WrapLineInMarkdownFile
+        autocmd!
+        autocmd FileType md setlocal wrap
+      augroup END
     '';
   };
 }
