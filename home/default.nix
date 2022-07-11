@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./direnv.nix
     ./zsh.nix
     ./starship.nix
     ./neovim.nix
