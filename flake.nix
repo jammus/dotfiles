@@ -38,5 +38,19 @@
         } 
       ];
     };
+    nixosConfigurations.moosebird = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./hosts/moosebird/configuration.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useUserPackages = true;
+          home-manager.users.jammus = {
+            imports = [
+              ./home/default.nix
+            ];
+          };
+        } 
+      ];
+    };
   };
 }
