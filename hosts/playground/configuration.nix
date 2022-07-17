@@ -7,9 +7,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./playground-hardware-configuration.nix
-      ../common/users.nix
-      ../common/fonts.nix
+      ./hardware-configuration.nix
+      ../../common/users.nix
+      ../../common/fonts.nix
     ];
 
   # Enable nix flakes

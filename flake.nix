@@ -12,7 +12,7 @@
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./hosts/playground.nix
+        ./hosts/playground/configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.users.jammus = {
@@ -27,7 +27,7 @@
     nixosConfigurations.nixos-wsl = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./hosts/nixos-wsl.nix
+        ./hosts/nixos-wsl/configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.users.jammus = {
