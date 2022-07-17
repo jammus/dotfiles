@@ -9,9 +9,13 @@
     ./taskwarrior.nix
   ];
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     htop
     ack
+    _1password
   ];
 
   home.stateVersion = "22.05";
