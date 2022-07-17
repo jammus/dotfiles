@@ -13,6 +13,7 @@
       system = "x86_64-linux";
       modules = [
         ./hosts/playground/configuration.nix
+        ./common/desktop.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.users.jammus = {
@@ -42,11 +43,13 @@
       system = "x86_64-linux";
       modules = [
         ./hosts/moosebird/configuration.nix
+        ./common/desktop.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
+              ./home/gui.nix
             ];
           };
         } 
