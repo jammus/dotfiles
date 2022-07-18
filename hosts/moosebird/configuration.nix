@@ -22,6 +22,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+  # Prevent small EFI partiion from filling up
+  boot.loader.grub.configurationLimit = 10;
+
   boot.kernelParams = [ "nouveau.modeset=0" ];
 
   networking.hostName = "moosebird"; # Define your hostname.
@@ -68,6 +71,9 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  # This will save you money and possibly your life!
+  services.thermald.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
