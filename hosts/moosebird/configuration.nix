@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nvidia.nix
       ../../common/users.nix
     ];
 
@@ -25,7 +26,7 @@
   # Prevent small EFI partiion from filling up
   boot.loader.grub.configurationLimit = 10;
 
-  boot.kernelParams = [ "nouveau.modeset=0" ];
+  # boot.kernelParams = [ "nouveau.modeset=0" ];
 
   networking.hostName = "moosebird"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
