@@ -23,5 +23,6 @@
 
   home.sessionVariables = {
     EDITOR = "vim";
+    TMUX_TMPDIR = "/tmp";
   };
 }
