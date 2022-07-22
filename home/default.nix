@@ -4,6 +4,7 @@
     ./direnv.nix
     ./zsh.nix
     ./starship.nix
+    ./tmux.nix
     ./neovim.nix
     ./git.nix
     ./taskwarrior.nix
