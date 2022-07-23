@@ -15,11 +15,16 @@ in
   services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
   environment.systemPackages = [ nvidia-offload ];
 
-  hardware.nvidia.prime = {
-    offload.enable = lib.mkDefault true;
-    # Hardware should specify the bus ID for intel/nvidia devices
+  hardware.nvidia = {
+    modesetting.enable = true;
+    prime = {
+      sync.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 
+  hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     vaapiVdpau
   ];
