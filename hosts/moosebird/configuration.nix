@@ -48,7 +48,12 @@
   services.xserver = {
     layout = "us";
     xkbVariant = "";
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      touchpad = {
+        naturalScrolling = true;
+      };
+    };
   };
 
   # Allow unfree packages
