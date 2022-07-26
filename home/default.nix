@@ -17,6 +17,7 @@
     htop
     ack
     _1password
+    wget
   ];
 
   home.stateVersion = "22.05";

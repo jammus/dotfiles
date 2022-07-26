@@ -55,5 +55,19 @@
         } 
       ];
     };
+    nixosConfigurations.pistachio = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        ./hosts/pistachio/configuration.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useUserPackages = true;
+          home-manager.users.jammus = {
+            imports = [
+              ./home/default.nix
+            ];
+          };
+        } 
+      ];
+    };
   };
 }
