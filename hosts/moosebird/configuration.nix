@@ -48,6 +48,7 @@
   services.xserver = {
     layout = "us";
     xkbVariant = "";
+    libinput.enable = true;
   };
 
   # Allow unfree packages
