@@ -38,9 +38,16 @@
     # "your public key here"
   # ];
 
+  # Set your time zone.
+  time.timeZone = "Asia/Singapore";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_SG.utf8";
+
   # packages can be searched at https://search.nixos.org/packages
   environment.systemPackages = [
     pkgs.vim
+    pkgs.libraspberrypi
   ];
 
   system.stateVersion = "22.05";

@@ -6,7 +6,10 @@
   users.users.jammus = {
     isNormalUser = true;
     description = "James Scott";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
 }
