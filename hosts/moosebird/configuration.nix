@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./nvidia.nix
       ../../common/users.nix
+      ../../common/networking.nix
     ];
 
   # Enable nix flakes
@@ -29,14 +30,6 @@
   # boot.kernelParams = [ "nouveau.modeset=0" ];
 
   networking.hostName = "moosebird"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
@@ -85,8 +78,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  services.tailscale.enable = true;
-
   # This will save you money and possibly your life!
   services.thermald.enable = true;
 
@@ -97,5 +88,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
 }

@@ -5,6 +5,7 @@
   imports =
     [
       ../../common/users.nix
+      ../../common/networking.nix
     ];
 
   # NixOS wants to enable GRUB by default
@@ -32,17 +33,6 @@
 
   # ssh access
   services.openssh.enable = true;
-
-  services.avahi = {
-    enable = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      workstation = true;
-    };
-  };
-
-  services.tailscale.enable = true;
 
   # users.users.root.openssh.authorizedKeys.keys = [
     # "your public key here"
