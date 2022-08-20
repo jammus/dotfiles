@@ -44,6 +44,18 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_SG.utf8";
 
+  services.syncthing = {
+     enable = true;
+     dataDir = "/home/jammus/ssync";
+     openDefaultPorts = true;
+     configDir = "/home/jammus/.config/syncthing";
+     user = "jammus";
+     group = "users";
+     guiAddress = "0.0.0.0:8384";
+     overrideDevices = true;
+     overrideFolders = true;
+  };
+
   # packages can be searched at https://search.nixos.org/packages
   environment.systemPackages = [
     pkgs.vim
