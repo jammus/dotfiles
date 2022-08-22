@@ -35,6 +35,7 @@
 
       lua require("nvim-tree").setup()
       nnoremap <leader>f :NvimTreeFocus<cr>
+      nnoremap <leader>F :NvimTreeToggle<cr>
     '';
   };
 }
