@@ -8,6 +8,8 @@
     plugins = with pkgs; [
       vimPlugins.vim-nix
       vimPlugins.vim-surround
+      vimPlugins.nvim-tree-lua
+      vimPlugins.nvim-web-devicons
     ];
     extraConfig = ''
       let mapleader = ","
@@ -30,6 +32,9 @@
         autocmd!
         autocmd FileType md setlocal wrap
       augroup END
+
+      lua require("nvim-tree").setup()
+      nnoremap <leader>f :NvimTreeFocus<cr>
     '';
   };
 }
