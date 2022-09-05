@@ -2,6 +2,10 @@
   description = "NixOS configuration and home-manager configurations";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { home-manager, nixpkgs, hyprland, ...}:
+  outputs = { home-manager, nixpkgs, hyprland, darwin, ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -77,6 +81,20 @@
             ];
           };
         } 
+      ];
+    };
+    darwinConfigurations.chuckd = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        ./hosts/chuckd/configuration.nix
+        home-manager.darwinModules.home-manager {
+          home-manager.useUserPackages = true;
+          home-manager.users."james.scott" = {
+            imports = [
+              ./home/default.nix
+            ];
+          };
+        }
       ];
     };
   };

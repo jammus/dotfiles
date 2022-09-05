@@ -1,5 +1,6 @@
 # Installation
 
 ```
-nixos-rebuild switch --upgrade --flake '.#playground' --use-remote-sudo
+nixos-rebuild switch --flake '.#' --use-remote-sudo  # linux
+darwin-rebuild switch --flake '.#' # mac
 ```
