@@ -4,6 +4,7 @@
 {
   imports =
     [
+      ../../common/base.nix
       ../../common/users.nix
       ../../common/networking.nix
       ./taskserver.nix

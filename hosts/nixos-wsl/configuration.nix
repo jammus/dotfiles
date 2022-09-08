@@ -6,8 +6,9 @@ let
 in
 {
   imports = [
-    "${modulesPath}/profiles/minimal.nix"
+    ../../common/base.nix
     ../../common/users.nix
+    "${modulesPath}/profiles/minimal.nix"
 
     nixos-wsl.nixosModules.wsl
   ];
@@ -24,12 +25,6 @@ in
     # Enable integration with Docker Desktop (needs to be installed)
     # docker.enable = true;
   };
-
-  # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
 
   environment.systemPackages = with pkgs; [ git vim ];
 

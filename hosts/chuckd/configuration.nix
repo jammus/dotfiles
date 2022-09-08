@@ -2,6 +2,7 @@
 {
   imports =
     [
+      ../../common/base.nix
       ../../common/brew.nix
     ];
 

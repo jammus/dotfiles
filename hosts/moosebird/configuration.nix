@@ -9,15 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia.nix
+      ../../common/base.nix
       ../../common/users.nix
       ../../common/networking.nix
     ];
-
-  # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -48,9 +43,6 @@
       };
     };
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
