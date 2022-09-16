@@ -12,5 +12,6 @@
   home.packages = with pkgs; [
     firefox
     _1password-gui
+    krita
   ];
 }
