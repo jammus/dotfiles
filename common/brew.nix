@@ -4,6 +4,7 @@
     enable = true;
     casks = [
       "amethyst"
+      "scroll-reverser"
     ];
   };
 }
