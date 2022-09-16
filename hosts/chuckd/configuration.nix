@@ -3,6 +3,7 @@
   imports =
     [
       ../../common/base.nix
+      ../../common/darwin.nix
       ../../common/brew.nix
     ];
 
