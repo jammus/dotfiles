@@ -5,11 +5,12 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
-    plugins = with pkgs; [
-      vimPlugins.vim-nix
-      vimPlugins.vim-surround
-      vimPlugins.nvim-tree-lua
-      vimPlugins.nvim-web-devicons
+    plugins = with pkgs.vimPlugins; [
+      vim-nix
+      vim-surround
+      nvim-tree-lua
+      nvim-web-devicons
+      (nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
     ];
     extraConfig = ''
       let mapleader = ","
@@ -36,6 +37,15 @@
       lua require("nvim-tree").setup()
       nnoremap <leader>f :NvimTreeFocus<cr>
       nnoremap <leader>F :NvimTreeToggle<cr>
+
+      lua << EOF
+      require('nvim-treesitter.configs').setup {
+          highlight = {
+              enable = true,
+              additional_vim_regex_highlighting = false,
+          },
+      }
+      EOF
     '';
   };
 }
