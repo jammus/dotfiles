@@ -13,5 +13,6 @@
     firefox
     _1password-gui
     krita
+    (ranger.override { imagePreviewSupport = true; })
   ];
 }
