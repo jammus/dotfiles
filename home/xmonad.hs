@@ -8,7 +8,7 @@ appLauncher = "rofi -modi drun,ssh,window -show drun -show-icons"
 main :: IO()
 main = xmonad $ def
   { modMask = mod4Mask,
-    terminal = "alacritty"
+    terminal = "kitty"
   }
   `additionalKeysP`
   [ ("M-d", spawn appLauncher )
