@@ -27,7 +27,7 @@
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
-              ./home/gui.nix
+              ./home/linux-desktop.nix
             ];
           };
         } 
@@ -63,7 +63,7 @@
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
-              ./home/gui.nix
+              ./home/linux-desktop.nix
             ];
           };
         } 
@@ -92,6 +92,7 @@
           home-manager.users."james.scott" = {
             imports = [
               ./home/default.nix
+              ./home/darwin-desktop.nix
             ];
           };
         }
