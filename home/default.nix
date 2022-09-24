@@ -15,9 +15,11 @@
 
   home.packages = with pkgs; [
     htop
+    btop
     ack
     _1password
     wget
+    tree
   ];
 
   home.stateVersion = "22.05";

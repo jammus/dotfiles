@@ -14,5 +14,6 @@
     krita
     (ranger.override { imagePreviewSupport = true; })
     jetbrains.idea-ultimate
+    viu
   ];
 }
