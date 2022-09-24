@@ -79,7 +79,7 @@
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
-              ./home/gui.nix
+              ./home/linux-desktop.nix
             ];
           };
         } 
