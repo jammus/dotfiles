@@ -1,10 +1,11 @@
 import XMonad
 
-import XMonad.Util.EZConfig
-import XMonad.Util.Ungrab
+import XMonad.Actions.UpdatePointer
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
+import XMonad.Util.EZConfig
+import XMonad.Util.Ungrab
 
 appLauncher = "rofi -modi drun,ssh,window -show drun -show-icons"
 lockScreen = "betterlockscreen --wall --blur -l"
@@ -13,7 +14,9 @@ main :: IO()
 main = xmonad $ ewmh def {
     modMask = mod4Mask,
     terminal = "kitty",
-    layoutHook = avoidStruts $ spacing 4 (layoutHook defaultConfig)
+    layoutHook = avoidStruts $ spacing 4 (layoutHook defaultConfig),
+    focusFollowsMouse = False,
+    logHook = updatePointer (0.5, 0.5) (0, 0)
   }
   `additionalKeysP`
   [
