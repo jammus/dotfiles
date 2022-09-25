@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = true;
-    theme = "Gruvbox Dark Soft";
+    theme = "Gruvbox Dark Hard";
     font = {
       name = "monospace";
       size = 14;
