@@ -9,6 +9,7 @@
     extraConfig = ''
       draw_minimal_borders no
       hide_window_decorations titlebar-only
+      enable_audio_bell yes
     '';
   };
 }
