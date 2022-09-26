@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-  ];
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    ];
+  };
 }

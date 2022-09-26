@@ -1,5 +1,10 @@
 { config, pkgs, ...}:
 {
+  imports =
+    [
+      ./fonts.nix
+    ];
+
   system.defaults.trackpad.Clicking = true;
   system.defaults.trackpad.TrackpadRightClick = true;
 
