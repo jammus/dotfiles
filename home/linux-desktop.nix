@@ -3,7 +3,7 @@
   imports = [
     ./alacritty.nix
     ./kitty.nix
-    ./rofi.nix
+    ./rofi
     ./xmonad.nix
     ./hyprland.nix
   ];

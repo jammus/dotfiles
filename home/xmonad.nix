@@ -10,7 +10,7 @@
     enable = true;
 
     activeOpacity = 1.0;
-    inactiveOpacity = 0.95;
+    inactiveOpacity = 0.98;
 
     settings = {
       blur = {
@@ -23,7 +23,7 @@
     experimentalBackends = true;
 
     opacityRules = [
-      "100:class_g *?= 'Rofi'"
+      "90:class_g *?= 'Rofi'"
       "100:class_g *?= 'Firefox'"
     ];
   };
