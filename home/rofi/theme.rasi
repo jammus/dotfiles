@@ -40,6 +40,9 @@ window {
 
 mainbox {
     background-color: @background;
+    border: 1px solid;
+    border-color: #333333;
+    border-radius: 10px;
 }
 
 inputbar {
@@ -55,6 +58,7 @@ prompt, entry, element-icon, element-text {
 
 prompt {
     text-color: @accent-color;
+    enabled: false;
 }
 
 textbox {
