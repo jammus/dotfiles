@@ -16,4 +16,13 @@
   system.defaults.spaces.spans-displays = false;
   system.defaults.dock.mru-spaces = false;
   system.defaults.dock.expose-animation-duration = 0.1;
+
+  services.skhd = {
+    enable = true;
+
+    skhdConfig = ''
+      # Open terminal
+      shift + alt - return : kitty -1
+    '';
+  };
 }
