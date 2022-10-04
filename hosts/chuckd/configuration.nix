@@ -7,6 +7,13 @@
       ../../common/brew.nix
     ];
 
+  users.users."james.scott" = {
+    shell = pkgs.zsh;
+    name = "james.scott";
+    description = "James Scott";
+    home = "/Users/james.scott";
+  };
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
