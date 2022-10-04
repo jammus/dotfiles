@@ -20,7 +20,10 @@
     _1password
     wget
     tree
+    gopass
+    p7zip
   ];
+
 
   home.stateVersion = "22.05";
 
@@ -28,4 +31,6 @@
     EDITOR = "vim";
     TMUX_TMPDIR = "/tmp";
   };
+
+  programs.gpg.enable = true;
 }
