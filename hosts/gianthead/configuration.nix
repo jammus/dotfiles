@@ -62,6 +62,9 @@
     allowedTCPPorts = [ 22 ];
   };
 
+  networking.wireguard.enable = true;
+  services.mullvad-vpn.enable = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
 
