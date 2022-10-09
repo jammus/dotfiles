@@ -44,27 +44,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-  # ssh access
-  services.openssh.enable = true;
-
-  networking.firewall = {
-    enable = true;
-    checkReversePath = "loose";
-
-    # Tailscale can always connect
-    trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
-
-    # Any device can connect via ssh (seems like openssh enables anyway, but no
-    # harm being double sure)
-    allowedTCPPorts = [ 22 ];
-  };
-
-  networking.wireguard.enable = true;
-  services.mullvad-vpn.enable = true;
-
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
 

@@ -33,22 +33,6 @@
   # set a hostname
   networking.hostName = "pistachio";
 
-  # ssh access
-  services.openssh.enable = true;
-
-  networking.firewall = {
-    enable = true;
-    checkReversePath = "loose";
-
-    # Tailscale can always connect
-    trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
-
-    # Any device can connect via ssh (seems like openssh enables anyway, but no
-    # harm being double sure)
-    allowedTCPPorts = [ 22 ];
-  };
-
   # users.users.root.openssh.authorizedKeys.keys = [
     # "your public key here"
   # ];
