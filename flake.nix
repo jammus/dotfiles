@@ -114,5 +114,20 @@
         }
       ];
     };
+    darwinConfigurations.book-of-stabbing = darwin.lib.darwinSystem {
+      system = "x86_64-darwin";
+      modules = [
+        ./hosts/book-of-stabbing/configuration.nix
+        home-manager.darwinModules.home-manager {
+          home-manager.useUserPackages = true;
+          home-manager.users.jammus = {
+            imports = [
+              ./home/default.nix
+              ./home/darwin-desktop.nix
+            ];
+          };
+        }
+      ];
+    };
   };
 }
