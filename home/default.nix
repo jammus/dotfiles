@@ -21,8 +21,10 @@
     wget
     tree
     gopass
+    age
     p7zip
     ripgrep
+    tig
   ];
 
 
