@@ -22,6 +22,7 @@
     tree
     gopass
     p7zip
+    ripgrep
   ];
 
 
