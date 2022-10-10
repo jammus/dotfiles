@@ -8,16 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../common/base.nix
       ../../common/users.nix
       ../../common/networking.nix
       ../../common/gpu/nvidia.nix
     ];
-
-  # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
 
   # Bootloader.
   boot.loader.systemd-boot = {

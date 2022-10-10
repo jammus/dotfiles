@@ -3,10 +3,16 @@
   imports =
     [
       ../../common/base.nix
-      ../../common/users.nix
       ../../common/darwin.nix
       ../../common/brew.nix
     ];
+
+  users.users.jammus = {
+    shell = pkgs.zsh;
+    name = "jammus";
+    description = "James Scott";
+    home = "/Users/jammus";
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
