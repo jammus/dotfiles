@@ -25,6 +25,7 @@
     p7zip
     ripgrep
     tig
+    bat
   ];
 
 
