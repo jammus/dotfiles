@@ -26,6 +26,10 @@
     ripgrep
     tig
     bat
+    nb
+    pandoc # For nb
+    nmap # For nb
+    w3m # For nb
   ];
 
 
