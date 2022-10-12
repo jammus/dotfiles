@@ -3,6 +3,12 @@
     enable = true;
     userName = "jammus";
     userEmail = "jammus@gmail.com";
+    includes = [
+      {
+        path = "~/work/gitconfig";
+        condition = "gitdir:~/work/";
+      }
+    ];
     extraConfig = {
       color = {
         branch = "auto";
