@@ -30,6 +30,7 @@
     pandoc # For nb
     nmap # For nb
     w3m # For nb
+    visidata
   ];
 
 
