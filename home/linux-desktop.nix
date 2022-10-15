@@ -17,5 +17,6 @@
     viu
     nitrogen
     betterlockscreen
+    pavucontrol
   ];
 }
