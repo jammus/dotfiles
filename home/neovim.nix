@@ -1,20 +1,5 @@
 { pkgs, ... }:
-
-let
-  nvim-lazy-lsp = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "lazy-lsp.nvim";
-    version = "2022.10.09";
-    src = pkgs.fetchFromGitHub {
-      owner = "dundalek";
-      repo = "lazy-lsp.nvim";
-      rev = "d1731da0751317eae2c2b6b591e5c7f0216fc654";
-      sha256 = "0jd9lywj5q09ccrpmvf0566dx8wf7qbnkny86pwx4mw556zgzbmy";
-    };
-    meta.homepage = "https://github.com/dundalek/lazy-lsp.nvim";
-  };
-in
 {
-
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -25,8 +10,7 @@ in
       nvim-tree-lua
       (nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
       nvim-web-devicons
-      nvim-lspconfig
-      nvim-lazy-lsp
+      lazy-lsp-nvim
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
