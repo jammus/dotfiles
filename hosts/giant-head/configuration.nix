@@ -33,7 +33,7 @@
   boot.initrd.luks.devices."luks-4c8a35e0-ed49-46d4-a003-978ed68a8997".device = "/dev/disk/by-uuid/4c8a35e0-ed49-46d4-a003-978ed68a8997";
   boot.initrd.luks.devices."luks-4c8a35e0-ed49-46d4-a003-978ed68a8997".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "gianthead"; # Define your hostname.
+  networking.hostName = "giant-head"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

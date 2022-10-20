@@ -69,10 +69,10 @@
         } 
       ];
     };
-    nixosConfigurations.gianthead = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.giant-head = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./hosts/gianthead/configuration.nix
+        ./hosts/giant-head/configuration.nix
         ./common/desktop.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
