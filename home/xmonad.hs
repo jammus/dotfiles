@@ -3,6 +3,7 @@ import XMonad
 import XMonad.Actions.UpdatePointer
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.Spacing
 import XMonad.Util.EZConfig
 import XMonad.Util.Ungrab
@@ -14,7 +15,7 @@ main :: IO()
 main = xmonad $ ewmh def {
     modMask = mod4Mask,
     terminal = "kitty",
-    layoutHook = avoidStruts $ spacing 4 (layoutHook defaultConfig),
+    layoutHook = avoidStruts $ spacing 4 (layoutHook defaultConfig ||| emptyBSP),
     focusFollowsMouse = False,
     logHook = updatePointer (0.5, 0.5) (0, 0)
   }
