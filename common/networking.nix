@@ -28,6 +28,8 @@
   networking.wireguard.enable = true;
   services.mullvad-vpn.enable = true;
 
+  networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
+
   services.avahi = {
     enable = true;
     publish = {
