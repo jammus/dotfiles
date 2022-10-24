@@ -30,6 +30,10 @@
 
   networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
+  programs.ssh = {
+    startAgent = true;
+  };
+
   services.avahi = {
     enable = true;
     publish = {
