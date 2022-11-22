@@ -22,7 +22,7 @@
 
     skhdConfig = ''
       # Open terminal
-      shift + alt - return : kitty -1
+      shift + alt - return : kitty
     '';
   };
 }
