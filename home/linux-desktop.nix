@@ -2,7 +2,6 @@
 {
   imports = [
     ./alacritty.nix
-    ./kitty.nix
     ./rofi
     ./xmonad.nix
     ./hyprland.nix
