@@ -13,6 +13,7 @@
       ../../common/networking.nix
       ../../common/gpu/nvidia.nix
       ../../common/games.nix
+      ../../common/sound.nix
     ];
 
   # Bootloader.

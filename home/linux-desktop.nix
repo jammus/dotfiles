@@ -17,5 +17,6 @@
     nitrogen
     betterlockscreen
     pavucontrol
+    spotify-tui
   ];
 }
