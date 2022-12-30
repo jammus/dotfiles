@@ -31,6 +31,8 @@
 
       set textwidth=80
 
+      set autoindent expandtab tabstop=4 shiftwidth=4
+
       nnoremap <leader><space> :noh<cr>
 
       " use tab to match bracket pairs
