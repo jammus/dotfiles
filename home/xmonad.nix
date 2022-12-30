@@ -52,6 +52,9 @@
     activeOpacity = 1.0;
     inactiveOpacity = 0.98;
 
+    vSync = true;
+    backend = "glx";
+
     settings = {
       blur = {
         method = "gaussian";
