@@ -11,6 +11,7 @@
       hide_window_decorations titlebar-only
       enable_audio_bell yes
       close_on_child_death yes
+      askpass unless-set
     '';
   };
 }
