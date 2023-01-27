@@ -19,9 +19,12 @@
       cmp-treesitter
       telescope-nvim
       plenary-nvim
+      conjure
+      vim-jack-in
     ];
     extraConfig = ''
       let mapleader = ","
+      let maplocalleader = "_"
 
       set ignorecase
 
@@ -32,6 +35,9 @@
       set textwidth=80
 
       set autoindent expandtab tabstop=4 shiftwidth=4
+
+      set splitright
+      set splitbelow
 
       nnoremap <leader><space> :noh<cr>
 
