@@ -39,7 +39,6 @@
 
   home.sessionVariables = {
     EDITOR = "vim";
-    TMUX_TMPDIR = "/tmp";
   };
 
   programs.gpg.enable = true;

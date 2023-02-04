@@ -63,8 +63,6 @@
       };
     };
 
-    experimentalBackends = true;
-
     opacityRules = [
       "90:class_g *?= 'Rofi'"
       "100:class_g *?= 'Firefox'"
