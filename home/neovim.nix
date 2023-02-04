@@ -21,6 +21,8 @@
       plenary-nvim
       conjure
       vim-jack-in
+      vim-dispatch-neovim
+      gruvbox
     ];
     extraConfig = ''
       let mapleader = ","
@@ -38,6 +40,11 @@
 
       set splitright
       set splitbelow
+
+      set termguicolors
+
+      colorscheme gruvbox
+      set background=dark
 
       nnoremap <leader><space> :noh<cr>
 
