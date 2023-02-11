@@ -35,6 +35,7 @@
     magic-wormhole
     exa
     wakeonlan
+    jq
   ];
 
 
