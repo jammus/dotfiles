@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 {
   xsession.windowManager.xmonad = {
     enable = true;
@@ -44,6 +44,10 @@
        , template = "%XMonadLog% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %WSSS% | %date% "
        }
     '';
+  };
+
+  services.dunst = {
+    enable = true;
   };
 
   services.picom = {
