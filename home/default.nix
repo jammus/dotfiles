@@ -32,6 +32,7 @@
     nmap # For nb
     w3m # For nb
     visidata
+    magic-wormhole
   ];
 
 
