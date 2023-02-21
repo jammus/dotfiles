@@ -34,6 +34,7 @@
     visidata
     magic-wormhole
     exa
+    wakeonlan
   ];
 
 
