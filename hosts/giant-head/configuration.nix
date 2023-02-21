@@ -14,7 +14,15 @@
       ../../common/gpu/nvidia.nix
       ../../common/games.nix
       ../../common/sound.nix
+      ../../common/bluetooth.nix
     ];
+
+  services.udev.extraRules = ''
+    # DualShock 4 over Bluetooth
+    KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
+  '';
+
+  hardware.xone.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot = {
