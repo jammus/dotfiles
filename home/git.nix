@@ -29,8 +29,8 @@
     delta = {
       enable = true;
       options = {
-        features = "gruvbox-dark";
-        side-by-side = true;
+        features = "line-numbers decorations gruvbox-dark";
+        line-numbers = true;
       };
     };
   };
