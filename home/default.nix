@@ -36,6 +36,7 @@
     wakeonlan
     jq
     lsd
+    fd
   ];
 
 
