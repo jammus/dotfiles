@@ -4,7 +4,7 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     shellAliases = {
-      ls = "exa";
+      ls = "lsd";
     };
     oh-my-zsh = {
       enable = true;

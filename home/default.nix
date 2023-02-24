@@ -33,9 +33,9 @@
     w3m # For nb
     visidata
     magic-wormhole
-    exa
     wakeonlan
     jq
+    lsd
   ];
 
 
