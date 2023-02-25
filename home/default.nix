@@ -9,6 +9,8 @@
     ./neovim.nix
     ./git.nix
     ./taskwarrior.nix
+    ./zoxide.nix
+    ./fzf.nix
   ];
 
   # Allow unfree packages
