@@ -5,6 +5,7 @@
     enableCompletion = true;
     shellAliases = {
       ls = "lsd";
+      cat = "bat";
     };
     oh-my-zsh = {
       enable = true;

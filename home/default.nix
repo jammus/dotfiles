@@ -12,6 +12,7 @@
     ./zoxide.nix
     ./fzf.nix
     ./helix.nix
+    ./bat.nix
   ];
 
   # Allow unfree packages
