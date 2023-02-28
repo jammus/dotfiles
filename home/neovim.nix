@@ -22,6 +22,7 @@
       conjure
       vim-jack-in
       vim-dispatch-neovim
+      which-key-nvim
       gruvbox
     ];
     extraConfig = ''
@@ -162,6 +163,8 @@
       vim.keymap.set('n', 'fh', builtin.help_tags, {})
       vim.keymap.set('n', 'fs', builtin.lsp_document_symbols, {})
       vim.keymap.set('n', 'fS', builtin.lsp_workspace_symbols, {})
+
+      require("which-key").setup {}
       EOF
     '';
   };
