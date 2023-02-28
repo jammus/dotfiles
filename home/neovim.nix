@@ -26,8 +26,9 @@
       gruvbox
     ];
     extraConfig = ''
-      let mapleader = ","
-      let maplocalleader = "_"
+      nnoremap <SPACE> <Nop>
+      let mapleader = " "
+      let maplocalleader = ","
 
       set ignorecase
 
@@ -58,13 +59,21 @@
         autocmd FileType md setlocal wrap
       augroup END
 
-      lua require("nvim-tree").setup()
-      nnoremap <leader>f :NvimTreeFocus<cr>
-      nnoremap <leader>F :NvimTreeToggle<cr>
+
+      nnoremap <leader>E :NvimTreeToggle<cr>
+
 
       lua << EOF
+      require("nvim-tree").setup {}
+      require("which-key").setup {}
+      local wk = require("which-key")
+      wk.register({
+        e = { "<cmd>NvimTreeFocus<cr>", "Open file explorer" },
+        E = { "<cmd>NvimTreeClose<cr>", "Close file explorer" },
+      }, { prefix = "<leader>" })
+
       local opts = { noremap=true, silent=true }
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+      vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
@@ -92,7 +101,7 @@
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-        vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+        vim.keymap.set('n', '<space>rf', function() vim.lsp.buf.format { async = true } end, bufopts)
       end
       require('nvim-treesitter.configs').setup {
           highlight = {
@@ -156,15 +165,17 @@
           },
         },
       }
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', 'ff', builtin.find_files, {})
-      vim.keymap.set('n', 'fg', builtin.live_grep, {})
-      vim.keymap.set('n', 'fb', builtin.buffers, {})
-      vim.keymap.set('n', 'fh', builtin.help_tags, {})
-      vim.keymap.set('n', 'fs', builtin.lsp_document_symbols, {})
-      vim.keymap.set('n', 'fS', builtin.lsp_workspace_symbols, {})
 
-      require("which-key").setup {}
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
+      wk.register({
+        f = { "<cmd>Telescope find_files<cr>", "Open file picker" },
+        b = { "<cmd>Telescope buffers<cr>", "Open buffer picker" },
+        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Open symbol picker" },
+        S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Open workspace symbol picker" },
+        g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
+      }, { prefix = "<leader>" })
+
       EOF
     '';
   };
