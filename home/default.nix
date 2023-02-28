@@ -11,6 +11,7 @@
     ./taskwarrior.nix
     ./zoxide.nix
     ./fzf.nix
+    ./helix.nix
   ];
 
   # Allow unfree packages
