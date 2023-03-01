@@ -169,11 +169,13 @@
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
       wk.register({
-        f = { "<cmd>Telescope find_files<cr>", "Open file picker" },
-        b = { "<cmd>Telescope buffers<cr>", "Open buffer picker" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Open symbol picker" },
-        S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Open workspace symbol picker" },
-        g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
+        f = { name = "Find...", 
+          f = { "<cmd>Telescope find_files<cr>", "Find file" },
+          b = { "<cmd>Telescope buffers<cr>", "Find buffer" },
+          s = { "<cmd>Telescope lsp_document_symbols<cr>", "Find symbol" },
+          S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Find symbol in workspace" },
+          g = { "<cmd>Telescope live_grep<cr>", "Find in file" },
+      }
       }, { prefix = "<leader>" })
 
       EOF
