@@ -65,13 +65,10 @@
       lua << EOF
       require("nvim-tree").setup {}
 
-      local keys = {}
-      for i=33,126 do
-        table.insert(keys, string.char(i))
-      end
+      -- Wrap single character key labels in square brackets eg, f becomes [f]
       local key_labels = {}
-      for i, key in pairs(keys) do
-        key_labels[key] = '[' .. key .. ']'
+      for i=33,126 do
+        key_labels[string.char(i)] = '[' .. string.char(i) .. ']'
       end
 
       require("which-key").setup {
