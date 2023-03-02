@@ -24,6 +24,7 @@
       vim-dispatch-neovim
       which-key-nvim
       gruvbox-material
+      lualine-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -70,6 +71,12 @@
       for i=33,126 do
         key_labels[string.char(i)] = '[' .. string.char(i) .. ']'
       end
+
+      require('lualine').setup {
+        options = {
+          theme = 'gruvbox-material',
+        },
+      }
 
       require("which-key").setup {
         icons = {
