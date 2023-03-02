@@ -25,6 +25,7 @@
       which-key-nvim
       gruvbox-material
       lualine-nvim
+      trouble-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -96,6 +97,8 @@
           f = { "<cmd>Telescope diagnostics<cr>", "Find diagnostics" },
           n = { vim.diagnostic.goto_next, "Next" },
           p = { vim.diagnostic.goto_prev, "Previous" },
+          s = { "<cmd>Trouble document_diagnostics<cr>", "Show diagnostics" },
+          S = { "<cmd>Trouble workspace_diagnostics<cr>", "Show all diagnostics" },
       }
       }, { prefix = "<leader>" })
 
@@ -208,6 +211,17 @@
           s = { "<cmd>Telescope lsp_document_symbols<cr>", "Find symbol" },
           S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Find symbol in workspace" },
           g = { "<cmd>Telescope live_grep<cr>", "Find in file" },
+          h = { "<cmd>Telescope oldfiles<cr>", "Find recently opened file" },
+      }
+      }, { prefix = "<leader>" })
+
+      wk.register({
+        t = { name = "Trouble...", 
+          p = { "<cmd>Trouble document_diagnostics<cr>", "Problems" },
+          P = { "<cmd>Trouble workspace_diagnostics<cr>", "Problems in workspace" },
+          r = { "<cmd>Trouble lsp_references<cr>", "References" },
+          f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+          t = { "<cmd>TroubleToggle<cr>", "Toggle" },
       }
       }, { prefix = "<leader>" })
 
