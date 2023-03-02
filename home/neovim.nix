@@ -65,18 +65,24 @@
 
       lua << EOF
       require("nvim-tree").setup {}
-      require("which-key").setup {}
+      require("which-key").setup {
+        icons = {
+          group = "",
+        },
+      }
       local wk = require("which-key")
       wk.register({
         e = { "<cmd>NvimTreeFocus<cr>", "Open file explorer" },
         E = { "<cmd>NvimTreeClose<cr>", "Close file explorer" },
       }, { prefix = "<leader>" })
 
-      local opts = { noremap=true, silent=true }
-      vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+      wk.register({
+        d = { name = "Diagnostics...", 
+          f = { "<cmd>Telescope diagnostics<cr>", "Find diagnostics" },
+          n = { vim.diagnostic.goto_next, "Next" },
+          p = { vim.diagnostic.goto_prev, "Previous" },
+      }
+      }, { prefix = "<leader>" })
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
@@ -172,6 +178,7 @@
         f = { name = "Find...", 
           f = { "<cmd>Telescope find_files<cr>", "Find file" },
           b = { "<cmd>Telescope buffers<cr>", "Find buffer" },
+          d = { "<cmd>Telescope diagnostics<cr>", "Find diagnostics" },
           s = { "<cmd>Telescope lsp_document_symbols<cr>", "Find symbol" },
           S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Find symbol in workspace" },
           g = { "<cmd>Telescope live_grep<cr>", "Find in file" },
