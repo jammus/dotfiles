@@ -172,6 +172,17 @@
         },
       }
 
+      require('telescope').setup({
+        defaults = {
+          layout_strategy = 'horizontal',
+          layout_config = {
+            vertical = { mirror = false },
+            horizontal = {
+              preview_cutoff = 0,
+            }
+          },
+        },
+      })
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
       wk.register({
