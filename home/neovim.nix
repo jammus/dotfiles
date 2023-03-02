@@ -62,14 +62,25 @@
 
       nnoremap <leader>E :NvimTreeToggle<cr>
 
-
       lua << EOF
       require("nvim-tree").setup {}
+
+      local keys = {}
+      for i=33,126 do
+        table.insert(keys, string.char(i))
+      end
+      local key_labels = {}
+      for i, key in pairs(keys) do
+        key_labels[key] = '[' .. key .. ']'
+      end
+
       require("which-key").setup {
         icons = {
           group = "",
         },
+        key_labels = key_labels,
       }
+
       local wk = require("which-key")
       wk.register({
         e = { "<cmd>NvimTreeFocus<cr>", "Open file explorer" },
