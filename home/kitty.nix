@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = true;
-    theme = "Gruvbox Dark Hard";
+    theme = "Gruvbox Material Dark Hard";
     font = {
       name = "Fira Code";
       size = 16;
