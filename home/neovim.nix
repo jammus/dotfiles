@@ -23,7 +23,7 @@
       vim-jack-in
       vim-dispatch-neovim
       which-key-nvim
-      gruvbox
+      gruvbox-material
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -45,7 +45,7 @@
 
       set termguicolors
 
-      colorscheme gruvbox
+      colorscheme gruvbox-material
       set background=dark
 
       nnoremap <leader><space> :noh<cr>
