@@ -219,8 +219,8 @@
         t = { name = "Trouble...", 
           p = { "<cmd>Trouble document_diagnostics<cr>", "Problems" },
           P = { "<cmd>Trouble workspace_diagnostics<cr>", "Problems in workspace" },
-          r = { "<cmd>Trouble lsp_references<cr>", "References" },
-          f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+          u = { "<cmd>Trouble lsp_references<cr>", "Usages" },
+          d = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
           t = { "<cmd>TroubleToggle<cr>", "Toggle" },
       }
       }, { prefix = "<leader>" })
