@@ -3,7 +3,7 @@
     enable = true;
     theme = "Gruvbox Material Dark Hard";
     font = {
-      name = "Fira Code";
+      name = "Hack Nerd Font Mono";
       size = 16;
     };
     extraConfig = ''
