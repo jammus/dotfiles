@@ -109,7 +109,7 @@ let fgDark = "#1d2021";
       };
       hostname = {
         style = machineStyle;
-        format = "[@$ssh_symbol$hostname ]($style)";
+        format = "[@$hostname ]($style)";
       };
       directory = {
         style = pathStyle;
