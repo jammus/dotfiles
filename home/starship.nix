@@ -8,7 +8,7 @@ let fgDark = "#1d2021";
     pathBg = "#d8a657";
     pathStyle = "fg:${fgDark} bg:${pathBg}";
 
-    gitBg = "#89b482";
+    gitBg = "#928374";
     gitStyle = "fg:${fgDark} bg:${gitBg}";
 
     langBg = "#504945";
@@ -110,7 +110,7 @@ let fgDark = "#1d2021";
       };
       git_branch = {
         style = gitStyle;
-        format = "[ $symbol $branch ]($style)";
+        format = "[ $symbol$branch ]($style)";
       };
       python = {
         symbol = "";
