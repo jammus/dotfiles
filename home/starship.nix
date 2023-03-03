@@ -120,8 +120,15 @@ let fgDark = "#1d2021";
         format = "[$all_status$ahead_behind ]($style)";
       };
       git_branch = {
+        symbol = "";
         style = gitStyle;
-        format = "[ $symbol$branch ]($style)";
+        format = "[ $symbol $branch ]($style)";
+      };
+      nodejs = {
+        symbol = "";
+        not_capable_style = langStyle;
+        style = langStyle;
+        format = "[ $symbol ($version) ]($style)";
       };
       python = {
         symbol = "";
