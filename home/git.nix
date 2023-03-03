@@ -25,6 +25,9 @@
       rebase = {
         autosquash = true;
       };
+      rebase = {
+        autoStash = true;
+      };
     };
     delta = {
       enable = true;
