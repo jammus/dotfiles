@@ -2,8 +2,8 @@
 let fgDark = "#1d2021";
     fgLight = "#d4be98";
 
-    hostBg = "#e78a43";
-    hostStyle = "fg:${fgDark} bg:${hostBg}";
+    machineBg = "#e78a43";
+    machineStyle = "fg:${fgDark} bg:${machineBg}";
 
     pathBg = "#d8a657";
     pathStyle = "fg:${fgDark} bg:${pathBg}";
@@ -25,12 +25,13 @@ let fgDark = "#1d2021";
       add_newline = false;
       line_break.disabled = true;
       format = lib.concatStrings [
-        "[█](${hostBg})"
+        "[█](${machineBg})"
         "$os"
         "$battery"
         "$username"
+        "$hostname"
 
-        "[](bg:${pathBg} fg:${hostBg})"
+        "[](bg:${pathBg} fg:${machineBg})"
 
         "$directory"
 
@@ -97,8 +98,18 @@ let fgDark = "#1d2021";
         disabled = false;
         symbols = {
           Macos = " ";
+          NixOS = " ";
         };
-        style = hostStyle;
+        style = machineStyle;
+      };
+      username = {
+        style_user = machineStyle;
+        style_root = machineStyle;
+        format = "[$user]($style)";
+      };
+      hostname = {
+        style = machineStyle;
+        format = "[@$ssh_symbol$hostname ]($style)";
       };
       directory = {
         style = pathStyle;
