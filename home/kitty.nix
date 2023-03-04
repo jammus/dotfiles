@@ -4,7 +4,7 @@
     theme = "Gruvbox Material Dark Hard";
     font = {
       name = "FiraCode";
-      size = 16;
+      size = 15;
     };
     extraConfig = ''
       draw_minimal_borders no
