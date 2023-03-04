@@ -12,7 +12,6 @@
     _1password-gui
     krita
     (ranger.override { imagePreviewSupport = true; })
-    jetbrains.idea-ultimate
     viu
     nitrogen
     betterlockscreen
