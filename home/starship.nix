@@ -35,13 +35,15 @@ let fgDark = "#1d2021";
 
         "$directory"
 
-        "[](bg:${gitBg} fg:${pathBg})"
+        "[ ](bg:${gitBg} fg:${pathBg})"
 
         "$git_branch"
+        "$git_state"
         "$git_status"
 
-        "[](bg:${langBg} fg:${gitBg})"
+        "[ ](bg:${langBg} fg:${gitBg})"
 
+        "$nix_shell"
         "$c"
         "$cmake"
         "$cobol"
@@ -84,7 +86,7 @@ let fgDark = "#1d2021";
         "$vagrant"
         "$zig"
 
-        "[](bg:${statusBg} fg:${langBg})"
+        "[ ](bg:${statusBg} fg:${langBg})"
 
         "$cmd_duration"
 
@@ -119,24 +121,39 @@ let fgDark = "#1d2021";
         style = gitStyle;
         format = "[$all_status$ahead_behind ]($style)";
       };
+      git_state = {
+        style = gitStyle;
+        format = "\([$state( $progress_current/$progress_total) ]($style)\)";
+      };
       git_branch = {
         symbol = "";
         style = gitStyle;
-        format = "[ $symbol $branch ]($style)";
+        format = "[$symbol $branch ]($style)";
+      };
+      nix_shell = {
+        symbol = "";
+        style = langStyle;
+        format = "[$symbol ]($style)";
+      };
+      java = {
+        symbol = "";
+        style = langStyle;
+        version_format = "$major";
+        format = "[$symbol ]($style)";
       };
       nodejs = {
         symbol = "";
         not_capable_style = langStyle;
         style = langStyle;
-        format = "[ $symbol ($version) ]($style)";
+        format = "[$symbol ]($style)";
       };
       python = {
         symbol = "";
         style = langStyle;
-        format = "[ $symbol ($version) ]($style)";
+        format = "[$symbol ]($style)";
       };
       cmd_duration = {
-        format = "[ took ](${statusStyle})[$duration ](${durationStyle})";
+        format = "[took ](${statusStyle})[$duration ](${durationStyle})";
       };
     };
   };
