@@ -6,14 +6,60 @@
     config = ./xmonad.hs;
   };
 
-  programs.xmobar = {
+  services.polybar = {
     enable = true;
+    script = "polybar main &";
+    settings = {
+      "bar/main" = {
+        width = "100%";
+        height = 36;
+        radius = 0.0;
+        fixed.center = true;
+        modules.left = "ewmh";
+        modules.right = "volume date";
+        background = "#282828";
+        foreground = "#d4be98";
+        font = ["FiraCode Nerd Font Mono:style=Regular"];
+      };
+      "module/date" = {
+        type = "internal/date";
+        format = "<label>";
+        date = "%Y-%m-%d%";
+        time = "%H:%M";
+        label = "%date% %time%";
+        format-padding = 2;
+        format-font = 0;
+      };
+      "module/ewmh" = {
+        type = "internal/xworkspaces";
+        label.active.foreground = "#1d2021";
+        label.active.background = "#d8a657";
+        label.active.padding = 2;
+        label.occupied.foreground = "#d4be98";
+        label.occupied.background = "#504945";
+        label.occupied.padding = 2;
+        label.empty.foreground = "#3c3836";
+        label.empty.padding = 2;
+      };
+      "module/volume" = {
+        type = "internal/pulseaudio";
+        format.volume = "&lt;ramp-volume&gt; &lt;label-volume&gt;";
+        label.muted.text = "🔇";
+        label.muted.foreground = "#666";
+        ramp.volume = ["🔈" "🔉" "🔊"];
+        click.right = "pavucontrol &amp;";
+      };
+    };
+  };
+
+  programs.xmobar = {
+    enable = false;
     extraConfig = ''
       Config { overrideRedirect = False
        , font     = "xft:iosevka-9"
-       , bgColor  = "#5f5f5f"
-       , fgColor  = "#f8f8f2"
-       , position = TopW L 100
+       , bgColor  = "#928374"
+       , fgColor  = "#1d2021"
+       , position = TopH 25
        , commands = [ Run Weather "WSSS"
                         [ "--template", "<weather> <tempC>°C"
                         , "-L", "0"
