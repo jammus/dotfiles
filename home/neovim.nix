@@ -8,7 +8,7 @@
       vim-nix
       vim-surround
       nvim-tree-lua
-      (nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
+      nvim-treesitter.withAllGrammars
       nvim-web-devicons
       lazy-lsp-nvim
       nvim-cmp
