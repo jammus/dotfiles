@@ -122,10 +122,8 @@
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, bufopts)
         vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-        vim.keymap.set('n', '<space>rf', function() vim.lsp.buf.format { async = true } end, bufopts)
       end
       require('nvim-treesitter.configs').setup {
           highlight = {
@@ -222,6 +220,13 @@
           u = { "<cmd>Trouble lsp_references<cr>", "Usages" },
           d = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
           t = { "<cmd>TroubleToggle<cr>", "Toggle" },
+      }
+      }, { prefix = "<leader>" })
+
+      wk.register({
+        r = { name = "Refactor...", 
+          n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+          f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
       }
       }, { prefix = "<leader>" })
 
