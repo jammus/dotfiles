@@ -60,7 +60,6 @@ let fgDark = "#1d2021";
         "$haskell"
         "$haxe"
         "$helm"
-        "$java"
         "$julia"
         "$kotlin"
         "$gradle"
@@ -85,6 +84,7 @@ let fgDark = "#1d2021";
         "$vlang"
         "$vagrant"
         "$zig"
+        "$env_var"
 
         "[ ](bg:${statusBg} fg:${langBg})"
 
@@ -135,10 +135,9 @@ let fgDark = "#1d2021";
         style = langStyle;
         format = "[$symbol ]($style)";
       };
-      java = {
+      env_var.JAVA_HOME = {
         symbol = "";
         style = langStyle;
-        version_format = "$major";
         format = "[$symbol ]($style)";
       };
       nodejs = {
@@ -149,6 +148,8 @@ let fgDark = "#1d2021";
       };
       python = {
         symbol = "";
+        detect_files = [];
+        detect_extensions = [];
         style = langStyle;
         format = "[$symbol ]($style)";
       };
