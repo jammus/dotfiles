@@ -13,6 +13,7 @@
     ./fzf.nix
     ./helix.nix
     ./bat.nix
+    ./lsd.nix
   ];
 
   # Allow unfree packages
@@ -39,7 +40,6 @@
     magic-wormhole
     wakeonlan
     jq
-    lsd
     fd
   ];
 
