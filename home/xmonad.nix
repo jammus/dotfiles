@@ -8,7 +8,12 @@
 
   services.polybar = {
     enable = true;
-    script = "polybar main &";
+    script = ''
+      polybar main &
+    '';
+    package = pkgs.polybar.override {
+      pulseSupport = true;
+    };
     settings = {
       "bar/main" = {
         width = "100%";
@@ -19,6 +24,7 @@
         modules.right = "volume date";
         background = "#282828";
         foreground = "#d4be98";
+        padding = 0;
         font = ["FiraCode Nerd Font Mono:style=Regular"];
       };
       "module/date" = {
@@ -27,27 +33,30 @@
         date = "%Y-%m-%d%";
         time = "%H:%M";
         label = "%date% %time%";
-        format-padding = 2;
-        format-font = 0;
+        label-padding = 2;
+        label-font = 0;
       };
       "module/ewmh" = {
         type = "internal/xworkspaces";
+        label.active.text = "%name%";
         label.active.foreground = "#1d2021";
         label.active.background = "#d8a657";
         label.active.padding = 2;
+        label.occupied.text = "%name%";
         label.occupied.foreground = "#d4be98";
         label.occupied.background = "#504945";
         label.occupied.padding = 2;
+        label.empty.text = "%name%";
         label.empty.foreground = "#3c3836";
         label.empty.padding = 2;
       };
       "module/volume" = {
         type = "internal/pulseaudio";
-        format.volume = "&lt;ramp-volume&gt; &lt;label-volume&gt;";
-        label.muted.text = "🔇";
+        format.volume = "<ramp-volume> <label-volume>";
+        label.muted.text = "󰖁";
         label.muted.foreground = "#666";
-        ramp.volume = ["🔈" "🔉" "🔊"];
-        click.right = "pavucontrol &amp;";
+        ramp.volume = ["󰕿" "󰖀" "󰕾"];
+        click.right = "pavucontrol &";
       };
     };
   };
@@ -100,7 +109,7 @@
     enable = true;
 
     activeOpacity = 1.0;
-    inactiveOpacity = 0.98;
+    inactiveOpacity = 0.95;
 
     vSync = true;
     backend = "glx";
