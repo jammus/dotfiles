@@ -26,6 +26,7 @@
       gruvbox-material
       lualine-nvim
       trouble-nvim
+      project-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -65,7 +66,14 @@
       nnoremap <leader>E :NvimTreeToggle<cr>
 
       lua << EOF
-      require("nvim-tree").setup {}
+      require("nvim-tree").setup {
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+        update_focused_file = {
+          enable = true,
+          update_root = true
+        },
+      }
 
       -- Wrap single character key labels in square brackets eg, f becomes [f]
       local key_labels = {}
@@ -87,9 +95,18 @@
       }
 
       local wk = require("which-key")
+
       wk.register({
         e = { "<cmd>NvimTreeFocus<cr>", "Open file explorer" },
         E = { "<cmd>NvimTreeClose<cr>", "Close file explorer" },
+      }, { prefix = "<leader>" })
+
+      require("project_nvim").setup { }
+
+      wk.register({
+        p = { name = "Projects...", 
+          o = { "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>", "Open" },
+        }
       }, { prefix = "<leader>" })
 
       wk.register({
@@ -199,8 +216,12 @@
           },
         },
       })
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
+      require('telescope').load_extension('projects')
+
+      wk.register({
+        h = { "<cmd>Telescope help_tags<cr>", "Help" },
+      }, { prefix = "<leader>" })
+
       wk.register({
         f = { name = "Find...", 
           f = { "<cmd>Telescope find_files<cr>", "Find file" },
@@ -213,6 +234,9 @@
       }
       }, { prefix = "<leader>" })
 
+      require("trouble").setup {
+        auto_jump = {"lsp_definitions"}
+      }
       wk.register({
         t = { name = "Trouble...", 
           p = { "<cmd>Trouble document_diagnostics<cr>", "Problems" },
