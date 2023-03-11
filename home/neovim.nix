@@ -27,6 +27,7 @@
       lualine-nvim
       trouble-nvim
       project-nvim
+      nvim-autopairs
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -253,6 +254,8 @@
           f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
       }
       }, { prefix = "<leader>" })
+
+      require("nvim-autopairs").setup {}
 
       EOF
     '';
