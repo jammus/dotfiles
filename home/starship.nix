@@ -2,6 +2,9 @@
 let fgDark = "#1d2021";
     fgLight = "#d4be98";
 
+    yellow = "#d8a657";
+    blue = "#7daea3";
+
     machineBg = "#e78a43";
     machineStyle = "fg:${fgDark} bg:${machineBg}";
 
@@ -133,12 +136,12 @@ let fgDark = "#1d2021";
       nix_shell = {
         symbol = "";
         style = langStyle;
-        format = "[$symbol ]($style)";
+        format = "[$symbol ]($style fg:${blue})";
       };
       env_var.JAVA_HOME = {
         symbol = "";
         style = langStyle;
-        format = "[$symbol ]($style)";
+        format = "[$symbol ]($style fg:${blue})";
       };
       nodejs = {
         symbol = "";
@@ -151,7 +154,7 @@ let fgDark = "#1d2021";
         detect_files = [];
         detect_extensions = [];
         style = langStyle;
-        format = "[$symbol ]($style)";
+        format = "[$symbol ]($style fg:${yellow})";
       };
       cmd_duration = {
         format = "[took ](${statusStyle})[$duration ](${durationStyle})";
