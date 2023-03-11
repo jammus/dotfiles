@@ -28,6 +28,7 @@
       trouble-nvim
       project-nvim
       nvim-autopairs
+      vim-cursorword
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
