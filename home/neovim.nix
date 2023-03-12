@@ -29,6 +29,7 @@
       project-nvim
       nvim-autopairs
       vim-cursorword
+      minimap-vim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -233,7 +234,7 @@
           S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Find symbol in workspace" },
           g = { "<cmd>Telescope live_grep<cr>", "Find in file" },
           h = { "<cmd>Telescope oldfiles<cr>", "Find recently opened file" },
-      }
+        }
       }, { prefix = "<leader>" })
 
       require("trouble").setup {
@@ -253,7 +254,14 @@
         r = { name = "Refactor...", 
           n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
           f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
-      }
+        }
+      }, { prefix = "<leader>" })
+
+      wk.register({
+        m = { name = "Minimap...", 
+          o = { "<cmd>Minimap<cr>", "Open" },
+          q = { "<cmd>MinimapClose<cr>", "Close" },
+        }
       }, { prefix = "<leader>" })
 
       require("nvim-autopairs").setup {}
