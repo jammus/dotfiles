@@ -34,6 +34,7 @@
       fidget-nvim
       telescope-fzf-native-nvim
       leap-nvim
+      symbols-outline-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -326,6 +327,8 @@
       }
 
       require('leap').add_default_mappings()
+
+      require("symbols-outline").setup()
 
       EOF
     '';
