@@ -31,6 +31,7 @@
       vim-cursorword
       minimap-vim
       bufferline-nvim
+      fidget-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -314,6 +315,13 @@
           q = { "<cmd>tabclose<cr>", "Close" },
         }
       }, { prefix = "<leader>" })
+
+      require("fidget").setup {
+        text = {
+          spinner = "dots",
+        }
+      }
+
       EOF
     '';
   };
