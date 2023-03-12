@@ -99,9 +99,14 @@
       key_labels["["] = ' [ '
       key_labels["]"] = ' ] '
 
+      vim.opt.showmode = false
+
       require('lualine').setup {
         options = {
           theme = 'gruvbox-material',
+          disabled_filetypes = {
+            statusline = {'NvimTree', 'Outline'}
+          },
         },
       }
 
