@@ -30,6 +30,7 @@
       nvim-autopairs
       vim-cursorword
       minimap-vim
+      bufferline-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -67,15 +68,23 @@
 
 
       nnoremap <leader>E :NvimTreeToggle<cr>
+      nnoremap C-A-<tab> :tabnext<cr>
 
       lua << EOF
       require("nvim-tree").setup {
+
         sync_root_with_cwd = true,
         respect_buf_cwd = true,
         update_focused_file = {
           enable = true,
           update_root = true
         },
+        tab = {
+          sync = {
+            open = true,
+            close = true,
+          }
+        }
       }
 
       -- Wrap single character key labels in square brackets eg, f becomes [f]
@@ -83,6 +92,8 @@
       for i=33,126 do
         key_labels[string.char(i)] = '[' .. string.char(i) .. ']'
       end
+      key_labels["["] = ' [ '
+      key_labels["]"] = ' ] '
 
       require('lualine').setup {
         options = {
@@ -100,8 +111,10 @@
       local wk = require("which-key")
 
       wk.register({
-        e = { "<cmd>NvimTreeFocus<cr>", "Open file explorer" },
-        E = { "<cmd>NvimTreeClose<cr>", "Close file explorer" },
+        e = { name = "Explorer...", 
+          o = { "<cmd>NvimTreeFocus<cr>", "Open/Focus" },
+          q = { "<cmd>NvimTreeClose<cr>", "Close" },
+        },
       }, { prefix = "<leader>" })
 
       require("project_nvim").setup { }
@@ -115,8 +128,8 @@
       wk.register({
         d = { name = "Diagnostics...", 
           f = { "<cmd>Telescope diagnostics<cr>", "Find diagnostics" },
-          n = { vim.diagnostic.goto_next, "Next" },
-          p = { vim.diagnostic.goto_prev, "Previous" },
+          ["]"] = { vim.diagnostic.goto_next, "Next" },
+          ["["] = { vim.diagnostic.goto_prev, "Previous" },
           s = { "<cmd>Trouble document_diagnostics<cr>", "Show diagnostics" },
           S = { "<cmd>Trouble workspace_diagnostics<cr>", "Show all diagnostics" },
       }
@@ -266,6 +279,41 @@
 
       require("nvim-autopairs").setup {}
 
+      require("bufferline").setup {
+        options = {
+          mode = "tabs",
+          indicator = {
+            style = "none",
+          },
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = "File Explorer",
+              text_align = "center",
+            },
+            {
+              filetype = "minimap",
+              text = "Minimap",
+              text_align = "center",
+            },
+          }
+        },
+        highlights = {
+          buffer_selected = {
+            italic = false,
+          }
+        },
+      }
+
+      wk.register({
+        t = { name = "Tabs...", 
+          ["]"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
+          ["["] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+          n = { "<cmd>tabnew<cr>", "New" },
+          o = { "<cmd>tabnew | Telescope find_files<cr>", "Open in new tab" },
+          q = { "<cmd>tabclose<cr>", "Close" },
+        }
+      }, { prefix = "<leader>" })
       EOF
     '';
   };
