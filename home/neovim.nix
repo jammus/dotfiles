@@ -33,6 +33,7 @@
       bufferline-nvim
       fidget-nvim
       telescope-fzf-native-nvim
+      leap-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -323,6 +324,8 @@
           spinner = "dots",
         }
       }
+
+      require('leap').add_default_mappings()
 
       EOF
     '';
