@@ -241,13 +241,13 @@
         auto_jump = {"lsp_definitions"}
       }
       wk.register({
-        t = { name = "Trouble...", 
+        T = { name = "Trouble...", 
           p = { "<cmd>Trouble document_diagnostics<cr>", "Problems" },
           P = { "<cmd>Trouble workspace_diagnostics<cr>", "Problems in workspace" },
           u = { "<cmd>Trouble lsp_references<cr>", "Usages" },
           d = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
           t = { "<cmd>TroubleToggle<cr>", "Toggle" },
-      }
+        }
       }, { prefix = "<leader>" })
 
       wk.register({
