@@ -32,6 +32,7 @@
       minimap-vim
       bufferline-nvim
       fidget-nvim
+      telescope-fzf-native-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -234,6 +235,7 @@
         },
       })
       require('telescope').load_extension('projects')
+      require('telescope').load_extension('fzf')
 
       wk.register({
         h = { "<cmd>Telescope help_tags<cr>", "Help" },
