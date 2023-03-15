@@ -41,6 +41,7 @@
     wakeonlan
     jq
     fd
+    cachix
   ];
 
 
