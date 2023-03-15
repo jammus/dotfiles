@@ -36,6 +36,7 @@
       telescope-fzf-native-nvim
       leap-nvim
       symbols-outline-nvim
+      vim-visual-multi
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -74,6 +75,10 @@
 
       nnoremap <leader>E :NvimTreeToggle<cr>
       nnoremap C-A-<tab> :tabnext<cr>
+
+      let g:VM_maps = {}
+      let g:VM_maps["Add Cursor Down"]    = '<C-S-j>'   " new cursor down
+      let g:VM_maps["Add Cursor Up"]      = '<C-S-k>'   " new cursor up
 
       lua << EOF
       require("nvim-tree").setup {
