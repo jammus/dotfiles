@@ -15,6 +15,7 @@
       cmp-nvim-lsp
       cmp-buffer
       cmp-vsnip
+      vim-vsnip
       cmp-path
       cmp-treesitter
       telescope-nvim
