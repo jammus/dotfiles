@@ -343,7 +343,9 @@
       require("symbols-outline").setup()
 
       wk.register({
-        g = { "<cmd>LazyGit<cr>", "LazyGit" },
+        g = { name = "Git...",
+          g = { "<cmd>LazyGit<cr>", "LazyGit" },
+        }
       }, { prefix = "<leader>" })
 
       EOF
