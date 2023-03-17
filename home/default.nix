@@ -30,7 +30,6 @@
     age
     p7zip
     ripgrep
-    tig
     bat
     nb
     pandoc # For nb
@@ -42,6 +41,7 @@
     jq
     fd
     cachix
+    lazygit
   ];
 
 

@@ -37,6 +37,7 @@
       leap-nvim
       symbols-outline-nvim
       vim-visual-multi
+      lazygit-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -340,6 +341,10 @@
       require('leap').add_default_mappings()
 
       require("symbols-outline").setup()
+
+      wk.register({
+        g = { "<cmd>LazyGit<cr>", "LazyGit" },
+      }, { prefix = "<leader>" })
 
       EOF
     '';
