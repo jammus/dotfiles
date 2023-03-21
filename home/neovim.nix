@@ -298,7 +298,6 @@
 
       require("bufferline").setup {
         options = {
-          mode = "tabs",
           indicator = {
             style = "none",
           },
@@ -323,9 +322,19 @@
       }
 
       wk.register({
-        t = { name = "Tabs...", 
+        b = { name = "Buffers...", 
           ["]"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
           ["["] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+          f = { "<cmd>Telescope buffers<cr>", "Find" },
+          p = { "<cmd>BufferLinePick<cr>", "Pick" },
+          q = { "<cmd>bd<cr>", "Close" },
+        }
+      }, { prefix = "<leader>" })
+
+      wk.register({
+        t = { name = "Tabs...", 
+          ["]"] = { "<cmd>tabnext<cr>", "Next" },
+          ["["] = { "<cmd>tabprevious<cr>", "Previous" },
           n = { "<cmd>tabnew<cr>", "New" },
           o = { "<cmd>tabnew | Telescope find_files<cr>", "Open in new tab" },
           q = { "<cmd>tabclose<cr>", "Close" },
@@ -345,6 +354,10 @@
       wk.register({
         g = { name = "Git...",
           g = { "<cmd>LazyGit<cr>", "LazyGit" },
+          h = { name = "History...",
+            f = { "<cmd>LazyGitFilterCurrentFile<cr>", "File" },
+            a = { "<cmd>LazyGitFilter<cr>", "All" },
+          }
         }
       }, { prefix = "<leader>" })
 
