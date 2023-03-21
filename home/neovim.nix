@@ -23,7 +23,7 @@
       conjure
       vim-jack-in
       vim-dispatch-neovim
-      which-key-nvim
+      { plugin = which-key-nvim; optional = true; }
       gruvbox-material
       lualine-nvim
       trouble-nvim
@@ -38,6 +38,7 @@
       symbols-outline-nvim
       vim-visual-multi
       lazygit-nvim
+      lazy-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -82,6 +83,26 @@
       let g:VM_maps["Add Cursor Up"]      = '<C-S-k>'   " new cursor up
 
       lua << EOF
+
+      require("lazy").setup({
+        { dir = "${pkgs.vimPlugins.nvim-tree-lua}" },
+        { dir = "${pkgs.vimPlugins.lualine-nvim}" },
+        { dir = "${pkgs.vimPlugins.lualine-nvim}" },
+        { dir = "${pkgs.vimPlugins.which-key-nvim}" },
+        { dir = "${pkgs.vimPlugins.project-nvim}" },
+        { dir = "${pkgs.vimPlugins.telescope-nvim}" },
+        { dir = "${pkgs.vimPlugins.fidget-nvim}" },
+        { dir = "${pkgs.vimPlugins.trouble-nvim}" },
+        { dir = "${pkgs.vimPlugins.nvim-autopairs}" },
+        { dir = "${pkgs.vimPlugins.bufferline-nvim}" },
+        { dir = "${pkgs.vimPlugins.symbols-outline-nvim}" },
+        { dir = "${pkgs.vimPlugins.nvim-treesitter}" },
+        { dir = "${pkgs.vimPlugins.nvim-cmp}" },
+        { dir = "${pkgs.vimPlugins.cmp-nvim-lsp}" },
+        { dir = "${pkgs.vimPlugins.lazy-lsp-nvim}" },
+        { dir = "${pkgs.vimPlugins.lspconfig}" },
+      })
+
       require("nvim-tree").setup {
 
         sync_root_with_cwd = true,
