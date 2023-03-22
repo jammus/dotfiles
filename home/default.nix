@@ -14,6 +14,7 @@
     ./helix.nix
     ./bat.nix
     ./lsd.nix
+    ./lazygit.nix
   ];
 
   # Allow unfree packages
@@ -41,7 +42,6 @@
     jq
     fd
     cachix
-    lazygit
   ];
 
 
