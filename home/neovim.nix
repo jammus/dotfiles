@@ -38,6 +38,7 @@
       symbols-outline-nvim
       vim-visual-multi
       lazygit-nvim
+      scope-nvim
     ];
     extraConfig = ''
       nnoremap <SPACE> <Nop>
@@ -74,7 +75,6 @@
       augroup END
 
 
-      nnoremap <leader>E :NvimTreeToggle<cr>
       nnoremap C-A-<tab> :tabnext<cr>
 
       let g:VM_maps = {}
@@ -360,6 +360,8 @@
           }
         }
       }, { prefix = "<leader>" })
+
+      require("scope").setup()
 
       EOF
     '';
