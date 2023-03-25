@@ -21,7 +21,7 @@ xmonadConfig = def {
     normalBorderColor = "#504945",
     focusedBorderColor = "#e78a43",
     borderWidth = 3,
-    layoutHook = avoidStruts $ spacing 4 (layoutHook defaultConfig ||| emptyBSP ||| ResizableTall 1 (3/100) (1/2) []),
+    layoutHook = avoidStruts $ spacing 10 (layoutHook defaultConfig ||| emptyBSP ||| ResizableTall 1 (3/100) (1/2) []),
     focusFollowsMouse = False,
     logHook = updatePointer (0.5, 0.5) (0, 0)
   }
