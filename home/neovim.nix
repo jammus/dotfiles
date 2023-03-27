@@ -247,7 +247,7 @@
             ["["] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
             f = { "<cmd>Telescope buffers<cr>", "Find" },
             p = { "<cmd>BufferLinePick<cr>", "Pick" },
-            q = { "<cmd>bd<cr>", "Close" },
+            q = { "<cmd>BufferLinePickClose<cr>", "Close" },
           }
         }, { prefix = "<leader>" })
 
