@@ -42,6 +42,7 @@
     jq
     fd
     cachix
+    unzip
   ];
 
 
