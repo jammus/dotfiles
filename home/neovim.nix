@@ -91,6 +91,8 @@
               "erg_language_server",
               "ruby_ls",
               "neocmake",
+              "jedi_language_server",
+              "pylsp",
             },
             -- Default config passed to all servers to specify on_attach callback and other options.
             default_config = {
