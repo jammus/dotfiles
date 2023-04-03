@@ -14,9 +14,11 @@
       vim-vsnip
       cmp-path
       cmp-treesitter
+      cmp-cmdline
       plenary-nvim
       conjure
       vim-jack-in
+      vim-dispatch
       vim-dispatch-neovim
       vim-cursorword
       minimap-vim
@@ -138,6 +140,22 @@
               { name = 'buffer' },
             })
           })
+
+          cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+              { name = 'path' }
+            }, {
+              { name = 'cmdline' }
+            })
+          })
+
+          cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+              { name = 'buffer' }
+            }
+          })
         '';
       }
       { 
@@ -154,6 +172,12 @@
               },
             },
           })
+        '';
+      }
+      {
+        plugin = telescope-file-browser-nvim; type = "lua";
+        config = ''
+          require("telescope").load_extension "file_browser"
         '';
       }
       {
