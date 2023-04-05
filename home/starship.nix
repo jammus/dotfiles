@@ -1,23 +1,34 @@
 { lib, ... }:
-let fgDark = "#1d2021";
-    fgLight = "#d4be98";
+let bg0 = "#1d2021";
 
+    fg0 = "#d4be98";
+
+    bg5 = "#504945";
+    bgStatusLine2 = "#32302f";
+
+    orange = "#e78a43";
     yellow = "#d8a657";
+    green = "#a9b665";
     blue = "#7daea3";
 
-    machineBg = "#e78a43";
+    grey1 = "#928374";
+
+    fgLight = fg0;
+    fgDark = bg0;
+
+    machineBg = orange;
     machineStyle = "fg:${fgDark} bg:${machineBg}";
 
-    pathBg = "#d8a657";
+    pathBg = yellow;
     pathStyle = "fg:${fgDark} bg:${pathBg}";
 
-    gitBg = "#928374";
+    gitBg = grey1;
     gitStyle = "fg:${fgDark} bg:${gitBg}";
 
-    langBg = "#504945";
+    langBg = bg5;
     langStyle = "fg:${fgLight} bg:${langBg}";
 
-    statusBg = "#32302f";
+    statusBg = bgStatusLine2;
     statusStyle = "fg:${fgLight} bg:${statusBg}";
     durationStyle = "bold yellow bg:${statusBg}"; in
 {
@@ -147,7 +158,7 @@ let fgDark = "#1d2021";
         symbol = "";
         not_capable_style = langStyle;
         style = langStyle;
-        format = "[$symbol ]($style)";
+        format = "[$symbol ]($style fg:${green})";
       };
       python = {
         symbol = "";
