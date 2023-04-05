@@ -156,6 +156,11 @@ let fgDark = "#1d2021";
         style = langStyle;
         format = "[$symbol ]($style fg:${yellow})";
       };
+      golang = {
+        symbol = "ﳑ";
+        style = langStyle;
+        format = "[$symbol ]($style fg:${blue})";
+      };
       cmd_duration = {
         format = "[took ](${statusStyle})[$duration ](${durationStyle})";
       };
