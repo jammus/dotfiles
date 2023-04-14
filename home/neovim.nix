@@ -25,6 +25,7 @@
       gruvbox-material
       vim-visual-multi
       lazygit-nvim
+      dressing-nvim
       {
         plugin = nvim-tree-lua; type = "lua";
         config = ''
@@ -199,6 +200,9 @@
               group = "",
             },
             key_labels = key_labels,
+            window = {
+              winblend = 5,
+            },
           }
 
         local wk = require("which-key")
