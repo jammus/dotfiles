@@ -414,7 +414,7 @@
 
       set textwidth=80
 
-      set autoindent expandtab tabstop=4 shiftwidth=4
+      set autoindent expandtab tabstop=2 shiftwidth=2
 
       set splitright
       set splitbelow
