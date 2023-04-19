@@ -1,6 +1,14 @@
 { lib, pkgs, ... }:
 {
-  services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      nvidia-vaapi-driver
+    ];
+  };
+
+  hardware.nvidia.modesetting.enable = true;
 }
