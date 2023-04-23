@@ -43,6 +43,7 @@
     fd
     cachix
     unzip
+    mosh
   ];
 
 
