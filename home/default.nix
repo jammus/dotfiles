@@ -44,6 +44,7 @@
     cachix
     unzip
     mosh
+    duf
   ];
 
 
