@@ -295,9 +295,23 @@
         wk.register({
           g = { name = "Git...",
             g = { "<cmd>LazyGit<cr>", "LazyGit" },
-            h = { name = "History...",
+            H = { name = "History...",
               f = { "<cmd>LazyGitFilterCurrentFile<cr>", "File" },
               a = { "<cmd>LazyGitFilter<cr>", "All" },
+            },
+            a = { name = "Annotate/Blame...",
+              l = { "<cmd>Gitsigns blame_line full=true<cr>", "Line" },
+              t = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle" },
+            },
+            h = { name = "Hunk...",
+              ["]"] = { "<cmd>Gitsigns next_hunk<cr>", "Next" },
+              ["["] = { "<cmd>Gitsigns prev_hunk<cr>", "Previous" },
+              s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage" },
+              u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo stage" },
+              r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset" },
+            },
+            b = { name = "Buffer...",
+              s = { "<cmd>Gitsigns stage_buffer<cr>", "Stage" },
             }
           }
         }, { prefix = "<leader>" })
@@ -399,6 +413,17 @@
       {
         plugin = scope-nvim; type = "lua";
         config = "require('scope').setup()";
+      }
+      {
+        plugin = gitsigns-nvim; type = "lua";
+        config = ''
+          require('gitsigns').setup{
+            signcolumn = true,
+            numhl      = true,
+            linehl     = true,
+            word_diff  = true,
+          }
+        '';
       }
     ];
     extraConfig = ''
