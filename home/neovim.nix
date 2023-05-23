@@ -95,6 +95,7 @@
               "jedi_language_server",
               "pyright",
               "denols",
+              "sqls",
             },
             -- Default config passed to all servers to specify on_attach callback and other options.
             default_config = {
@@ -421,7 +422,7 @@
             signcolumn = true,
             numhl      = true,
             linehl     = true,
-            word_diff  = true,
+            word_diff  = false,
           }
         '';
       }
