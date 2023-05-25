@@ -344,8 +344,10 @@
       {
         plugin = project-nvim; type = "lua";
         config = ''
-          require("project_nvim").setup { }
-          require('telescope').load_extension('projects')
+        require("project_nvim").setup {
+          detection_methods = { "lsp" },
+        }
+        require('telescope').load_extension('projects')
         '';
       }
       {
