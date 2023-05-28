@@ -26,6 +26,7 @@
       vim-visual-multi
       lazygit-nvim
       dressing-nvim
+      copilot-vim
       {
         plugin = nvim-tree-lua; type = "lua";
         config = ''
