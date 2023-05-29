@@ -266,6 +266,14 @@
         }, { prefix = "<leader>" })
 
         wk.register({
+          r = { name = "Refactor...", 
+            e = { name = "Extract...",
+              f = { "<cmd>lua require('refactoring').refactor('Extract Function')<cr>", "Function", mode = "v"},
+            },
+          }
+        }, { prefix = "<leader>", mode = "v" })
+
+        wk.register({
           m = { name = "Minimap...", 
             o = { "<cmd>Minimap<cr>", "Open" },
             q = { "<cmd>MinimapClose<cr>", "Close" },
@@ -426,6 +434,13 @@
             linehl     = true,
             word_diff  = false,
           }
+        '';
+      }
+      {
+        plugin = refactoring-nvim; type = "lua";
+        config = ''
+          require('refactoring').setup({})
+          require("telescope").load_extension("refactoring")
         '';
       }
     ];
