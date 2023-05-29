@@ -324,6 +324,12 @@
             }
           }
         }, { prefix = "<leader>" })
+
+        wk.register({
+          w = { name = "Window...",
+            q = { "<cmd>close<cr>", "Close" },
+          }
+        }, { prefix = "<leader>" })
         '';
       }
       {
