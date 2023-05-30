@@ -112,6 +112,13 @@
                 -- on_attach = on_lua_attach,
                 -- capabilities = capabilities,
               },
+              ltex = {
+                settings = {
+                  ltex =  {
+                    language = "en-GB"
+                  },
+                },
+              },
             },
           }
         '';
@@ -268,10 +275,16 @@
         wk.register({
           r = { name = "Refactor...", 
             e = { name = "Extract...",
-              f = { "<cmd>lua require('refactoring').refactor('Extract Function')<cr>", "Function", mode = "v"},
+              f = { "<cmd>lua require('refactoring').refactor('Extract Function')<cr>", "Function" },
             },
           }
         }, { prefix = "<leader>", mode = "v" })
+
+        wk.register({
+          s = { name = "Spelling...",
+            s = { "<cmd>Telescope spell_suggest<cr>", "Suggestions" },
+          },
+        }, { prefix = "<leader>" })
 
         wk.register({
           m = { name = "Minimap...", 
