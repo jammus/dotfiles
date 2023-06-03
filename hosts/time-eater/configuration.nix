@@ -7,7 +7,7 @@
     ../../roles/mastodon.nix
   ];
 
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot  = true;
   zramSwap.enable = true;
   networking.hostName = "time-eater";
   networking.domain = "";
@@ -18,7 +18,7 @@
 
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
 
-  services.openssh.passwordAuthentication = false;
+  services.openssh.settings.PasswordAuthentication = false;
 
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
