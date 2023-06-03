@@ -172,6 +172,11 @@ let bg0 = "#1d2021";
         style = langStyle;
         format = "[$symbol ]($style fg:${blue})";
       };
+      rust = {
+        symbol = "";
+        style = langStyle;
+        format = "[$symbol ]($style fg:${orange})";
+      };
       cmd_duration = {
         format = "[took ](${statusStyle})[$duration ](${durationStyle})";
       };
