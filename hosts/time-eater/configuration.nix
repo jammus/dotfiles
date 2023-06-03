@@ -18,6 +18,8 @@
 
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
 
+  services.openssh.passwordAuthentication = false;
+
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
 
