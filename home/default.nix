@@ -45,6 +45,7 @@
     unzip
     mosh
     duf
+    du-dust
   ];
 
 
