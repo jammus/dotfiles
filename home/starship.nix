@@ -6,6 +6,7 @@ let bg0 = "#1d2021";
     bg5 = "#504945";
     bgStatusLine2 = "#32302f";
 
+    aqua = "#89b482";
     orange = "#e78a43";
     yellow = "#d8a657";
     green = "#a9b665";
