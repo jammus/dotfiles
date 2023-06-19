@@ -57,10 +57,13 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_SG.utf8";
 
-  # Configure keymap in X11
+  # Configure keymap and monitor setup in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
+    screenSection = ''
+      Option         "metamodes" "DP-2: nvidia-auto-select +0+0 {rotation=right}, DP-0: nvidia-auto-select +1548+200 {AllowGSYNCCompatible=On}"
+    '';
   };
 
   # sound.enable = true;
