@@ -36,6 +36,7 @@
     pandoc # For nb
     nmap # For nb
     w3m # For nb
+    readability-cli # For nb
     visidata
     magic-wormhole
     wakeonlan
