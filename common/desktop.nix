@@ -13,4 +13,6 @@
   services.xserver.windowManager.xmonad = {
     enable = true;
   };
+  security.polkit.enable = true;
+  programs.sway.enable = true;
 }
