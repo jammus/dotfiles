@@ -18,5 +18,6 @@
     pavucontrol
     spotify
     spotify-tui
+    obsidian
   ];
 }
