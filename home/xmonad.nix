@@ -16,6 +16,7 @@
     };
     settings = {
       "bar/main" = {
+        monitor = "\${env:MONITOR:DP-0}";
         width = "100%";
         height = 36;
         radius = 0.0;
