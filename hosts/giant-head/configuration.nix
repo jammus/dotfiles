@@ -24,6 +24,8 @@
 
   hardware.xone.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # Bootloader.
   boot.loader.systemd-boot = {
     enable = true;
@@ -62,7 +64,7 @@
     layout = "us";
     xkbVariant = "";
     screenSection = ''
-      Option         "metamodes" "DP-2: nvidia-auto-select +0+0 {rotation=right, viewportin=1800x3200}, DP-0: nvidia-auto-select +1945+520 {AllowGSYNCCompatible=On}"
+      Option         "metamodes" "DP-0: nvidia-auto-select +0+0 {rotation=right, viewportin=1800x3200}, DP-2: nvidia-auto-select +1945+520 {AllowGSYNCCompatible=On}"
     '';
   };
 
