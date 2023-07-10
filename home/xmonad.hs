@@ -10,6 +10,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Grid
 import XMonad.Layout.Spacing
 import XMonad.Util.EZConfig
 import XMonad.Util.Ungrab
@@ -23,7 +24,7 @@ xmonadConfig = def {
     normalBorderColor = "#504945",
     focusedBorderColor = "#e78a43",
     borderWidth = 3,
-    layoutHook = smartBorders . avoidStruts $ spacing 10 (layoutHook defaultConfig ||| emptyBSP ||| ResizableTall 1 (3/100) (1/2) []),
+    layoutHook = smartBorders . avoidStruts $ spacing 10 (layoutHook defaultConfig ||| emptyBSP ||| ResizableTall 1 (3/100) (1/2) [] ||| Grid),
     focusFollowsMouse = False,
     manageHook = composeAll [
         isFullscreen --> doFullFloat,
