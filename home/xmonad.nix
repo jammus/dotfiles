@@ -113,9 +113,10 @@
     inactiveOpacity = 0.95;
 
     vSync = true;
-    backend = "glx";
+    backend = "xrender";
 
     settings = {
+      unredir-if-possible = false;
       blur = {
         method = "gaussian";
         size = 10;
