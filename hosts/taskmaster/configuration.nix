@@ -8,11 +8,18 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../common/base.nix
+      ../../common/users.nix
+      ../../common/networking.nix
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    editor = false;
+    configurationLimit = 20;
+  };
 
   # Setup keyfile
   boot.initrd.secrets = {
@@ -55,14 +62,6 @@
   services.xserver = {
     layout = "us";
     xkbVariant = "";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jammus = {
-    isNormalUser = true;
-    description = "James Scott";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
   };
 
   # Allow unfree packages
