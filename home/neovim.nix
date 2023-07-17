@@ -359,6 +359,26 @@ in
             q = { "<cmd>close<cr>", "Close" },
           }
         }, { prefix = "<leader>" })
+
+        wk.register({
+          o = { name = "Obsidian...",
+            n = { "<cmd>ObsidianNew<cr>", "New" },
+            f = { "<cmd>ObsidianFollowLink<cr>", "Follow" },
+            o = { "<cmd>ObsidianOpen<cr>", "Open" },
+            b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
+            y = { "<cmd>ObsidianYesterday<cr>", "Yesterday" },
+            t = { "<cmd>ObsidianToday<cr>", "Today" },
+          }
+        }, { prefix = "<leader>" })
+
+        wk.register({
+          o = { name = "Obsidian...",
+            n = { "<cmd>ObsidianLinkNew<cr>", "New" },
+            l = { "<cmd>ObsidianLink<cr>", "Link" },
+            o = { "<cmd>ObsidianOpen<cr>", "Open" },
+            b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
+          }
+        }, { prefix = "<leader>", mode = 'v' })
         '';
       }
       {
