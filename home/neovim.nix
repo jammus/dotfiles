@@ -502,7 +502,7 @@ in
         plugin = obsidian-nvim; type = "lua";
         config = ''
           require('obsidian').setup {
-    dir = "~/nb/work",  -- no need to call 'vim.fn.expand' here
+    dir = "~/nb",  -- no need to call 'vim.fn.expand' here
 
     -- Optional, if you keep notes in a specific subdirectory of your vault.
     notes_subdir = "notes",
