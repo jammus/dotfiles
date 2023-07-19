@@ -1,11 +1,11 @@
 { pkgs, ... }:
 let obsidian-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "obisidan.nvim";
-    version = "v1.11.0";
+    version = "v1.12.0";
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
       repo = "obsidian.nvim";
-      rev = "a132e2fb697c85aff0a984d9f00637af10306a0c";
+      rev = "1982447bd8481bf5b8e6e033519d54feb77a4e41";
       sha256 = "sha256-QeWyhWgG86lz33t46rPaBi+k0e14Co1l2eO3HksadoE=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
