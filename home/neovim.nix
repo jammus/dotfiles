@@ -6,7 +6,7 @@ let obsidian-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
       owner = "epwalsh";
       repo = "obsidian.nvim";
       rev = "1982447bd8481bf5b8e6e033519d54feb77a4e41";
-      sha256 = "sha256-QeWyhWgG86lz33t46rPaBi+k0e14Co1l2eO3HksadoE=";
+      sha256 = "sha256-rQSlykd1lsLHCXBFzVwdPDcabVW+hJhAfyk96rES2OE=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
     dependencies = [
