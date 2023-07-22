@@ -20,6 +20,20 @@
     editor = false;
     configurationLimit = 20;
   };
+  boot.initrd = {
+    network = {
+      enable = true;
+      ssh = {
+        enable = true;
+        port = 2222;
+        hostKeys = [ "/etc/ssh/initrd_ssh_host_ed25519_key" ];
+        authorizedKeys = config.users.users.jammus.openssh.authorizedKeys.keys;
+      };
+    };
+    availableKernelModules = [ "r8169" ];
+  };
+  networking.useDHCP = false;
+  networking.interfaces.enp6s0.useDHCP = true;
 
   # Setup keyfile
   boot.initrd.secrets = {
