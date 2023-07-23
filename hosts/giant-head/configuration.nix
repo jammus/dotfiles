@@ -59,12 +59,17 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_SG.utf8";
 
+  programs.hyprland.enable = true;
+  environment.sessionVariables = rec {
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
   # Configure keymap and monitor setup in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
     screenSection = ''
-      Option         "metamodes" "DP-0: nvidia-auto-select +0+0 {rotation=right, viewportin=1800x3200}, DP-2: nvidia-auto-select +1945+520 {AllowGSYNCCompatible=On}"
+      Option         "metamodes" "DP-2: nvidia-auto-select +0+0 {rotation=right, viewportin=1800x3200}, DP-0: nvidia-auto-select +1945+520 {AllowGSYNCCompatible=On}"
     '';
   };
 
