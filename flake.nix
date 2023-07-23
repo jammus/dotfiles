@@ -10,12 +10,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-  outputs = { home-manager, nixpkgs, hyprland, darwin, ...}:
+  outputs = { home-manager, nixpkgs, darwin, ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -52,12 +48,6 @@
       modules = [
         ./hosts/moosebird/configuration.nix
         ./common/desktop.nix
-        hyprland.nixosModules.default
-        {
-          programs.hyprland = {
-            enable = true;
-          };
-        }
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
           home-manager.users.jammus = {

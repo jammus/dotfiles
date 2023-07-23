@@ -19,4 +19,7 @@
       # hidpi = true;
     # };
   # };
+  programs.wofi = {
+    enable = true;
+  };
 } 
