@@ -20,6 +20,9 @@
     editor = false;
     configurationLimit = 20;
   };
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+
   boot.initrd = {
     network = {
       enable = true;
@@ -44,6 +47,7 @@
   boot.initrd.luks.devices."luks-6501ce48-4b48-4dee-9552-55e836ead36c".device = "/dev/disk/by-uuid/6501ce48-4b48-4dee-9552-55e836ead36c";
   boot.initrd.luks.devices."luks-6501ce48-4b48-4dee-9552-55e836ead36c".keyFile = "/crypto_keyfile.bin";
 
+  networking.hostId = "6d778fb4"; # Define your hostname.
   networking.hostName = "taskmaster"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

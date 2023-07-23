@@ -25,6 +25,16 @@
       fsType = "vfat";
     };
 
+  fileSystems."/mnt/taskpool" =
+    { device = "taskpool";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/taskpool/media" =
+    { device = "taskpool/media";
+      fsType = "zfs";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/f5fb7d30-593f-48e5-a0a4-3a7ed3607978"; }
     ];
