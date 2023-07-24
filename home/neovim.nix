@@ -268,6 +268,7 @@ in
             S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Find symbol in workspace" },
             g = { "<cmd>Telescope live_grep<cr>", "Find in file" },
             h = { "<cmd>Telescope oldfiles<cr>", "Find recently opened file" },
+            o = { "<cmd>ObsidianQuickSwitch<cr>", "Find Obsidian file" },
           }
         }, { prefix = "<leader>" })
 
@@ -368,6 +369,7 @@ in
             b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
             y = { "<cmd>ObsidianYesterday<cr>", "Yesterday" },
             t = { "<cmd>ObsidianToday<cr>", "Today" },
+            s = { "<cmd>ObsidianSearch<cr>", "Today" },
           }
         }, { prefix = "<leader>" })
 
