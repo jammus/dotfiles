@@ -6,6 +6,8 @@
     shellAliases = {
       ls = "lsd";
       cat = "bat";
+      bl = "nb backlog/";
+      bm = "nb bookmarks/";
     };
     oh-my-zsh = {
       enable = true;
