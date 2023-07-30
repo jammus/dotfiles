@@ -1,26 +1,48 @@
-{ lib, ... }:
+{ lib, osConfig, ... }:
 let bg0 = "#1d2021";
 
     fg0 = "#d4be98";
+    fg1 = "#ddc7a1";
 
     bg5 = "#504945";
     bgStatusLine2 = "#32302f";
 
+    red = "#ea6962";
     aqua = "#89b482";
     orange = "#e78a43";
     yellow = "#d8a657";
     green = "#a9b665";
     blue = "#7daea3";
+    purple = "#d3869b";
+    bgVisualBlue = "#2e3b3b";
 
     grey1 = "#928374";
 
     fgLight = fg0;
     fgDark = bg0;
 
-    machineBg = orange;
+    accentColorPrimary = {
+      "taskmaster" = red;
+      "timeeater" = aqua;
+      "giant-head" = fg1;
+      "book-of-stabbing" = purple;
+      "nemesis" = green;
+      "reptomancer" = orange;
+    };
+
+    accentColorSecondary = {
+      "taskmaster" = green;
+      "timeeater" = purple;
+      "giant-head" = fg0;
+      "book-of-stabbing" = purple;
+      "nemesis" = fg0;
+      "reptomancer" = orange;
+    };
+
+    machineBg = accentColorPrimary.${osConfig.networking.hostName} or orange;
     machineStyle = "fg:${fgDark} bg:${machineBg}";
 
-    pathBg = yellow;
+    pathBg = accentColorSecondary.${osConfig.networking.hostName} or yellow;
     pathStyle = "fg:${fgDark} bg:${pathBg}";
 
     gitBg = grey1;
@@ -31,7 +53,8 @@ let bg0 = "#1d2021";
 
     statusBg = bgStatusLine2;
     statusStyle = "fg:${fgLight} bg:${statusBg}";
-    durationStyle = "bold yellow bg:${statusBg}"; in
+    durationStyle = "bold yellow bg:${statusBg}";
+    in
 {
   programs.starship = {
     enable = true;
