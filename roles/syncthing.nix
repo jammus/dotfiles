@@ -4,8 +4,8 @@
     syncthing = {
       enable = true;
       user = "jammus";
-      dataDir = "/home/jammus/docs";    # Default folder for new synced folders
-      configDir = "/home/jammus/docs/.config/syncthing";   # Folder for Syncthing's settings and keys
+      dataDir = "/home/jammus/.local/syncthing";    # Default folder for new synced folders
+      configDir = "/home/jammus/.config/syncthing";   # Folder for Syncthing's settings and keys
       guiAddress = "0.0.0.0:8384";
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
