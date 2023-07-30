@@ -14,15 +14,15 @@ let bg0 = "#1d2021";
     green = "#a9b665";
     blue = "#7daea3";
     purple = "#d3869b";
-    bgVisualBlue = "#2e3b3b";
 
     grey1 = "#928374";
+    grey2 = "#a89984";
 
     fgLight = fg0;
     fgDark = bg0;
 
     accentColorPrimary = {
-      "taskmaster" = red;
+      "taskmaster" = orange;
       "timeeater" = aqua;
       "giant-head" = fg1;
       "book-of-stabbing" = purple;
@@ -31,7 +31,7 @@ let bg0 = "#1d2021";
     };
 
     accentColorSecondary = {
-      "taskmaster" = green;
+      "taskmaster" = grey2;
       "timeeater" = purple;
       "giant-head" = fg0;
       "book-of-stabbing" = purple;
