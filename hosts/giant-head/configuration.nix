@@ -15,6 +15,7 @@
       ../../common/games.nix
       ../../common/sound.nix
       ../../common/bluetooth.nix
+      ../../roles/syncthing.nix
     ];
 
   services.udev.extraRules = ''
