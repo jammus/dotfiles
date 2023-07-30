@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 {
-  xdg.configFile."hypr/hyprland.conf".source = ../dots/hyprland.conf;
+  xdg.configFile."hypr/hyprland.conf".source = ../config/hyprland.conf;
 
   # imports = [
     # inputs.hyprland.homeManagerModules.default
