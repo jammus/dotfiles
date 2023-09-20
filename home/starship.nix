@@ -34,7 +34,7 @@ let bg0 = "#1d2021";
       "taskmaster" = grey2;
       "timeeater" = purple;
       "giant-head" = fg0;
-      "book-of-stabbing" = purple;
+      "book-of-stabbing" = aqua;
       "nemesis" = fg0;
       "reptomancer" = orange;
     };
