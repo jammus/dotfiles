@@ -47,6 +47,7 @@
     mosh
     duf
     du-dust
+    yazi
   ];
 
 
