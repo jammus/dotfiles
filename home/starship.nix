@@ -201,6 +201,16 @@ let bg0 = "#1d2021";
         style = langStyle;
         format = "[$symbol ]($style fg:${orange})";
       };
+      lua = {
+        symbol = "";
+        style = langStyle;
+        format = "[$symbol ]($style fg:${blue})";
+      };
+      fennel = {
+        # symbol = "";
+        style = langStyle;
+        format = "[$symbol ]($style fg:${green})";
+      };
       cmd_duration = {
         format = "[took ](${statusStyle})[$duration ](${durationStyle})";
       };
