@@ -113,7 +113,7 @@
     inactiveOpacity = 0.95;
 
     vSync = true;
-    backend = "xrender";
+    # backend = "glx";
 
     settings = {
       unredir-if-possible = false;
