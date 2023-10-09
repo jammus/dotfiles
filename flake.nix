@@ -84,6 +84,7 @@
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
+              ./home/linux.nix
             ];
           };
         } 
