@@ -1,28 +1,26 @@
 { ... }:
+{ pkgs, ... }:
 {
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+    ];
+  };
+  services.jellyfin.enable = true;
   users.users = {
     jellyfin = {
-      group = "jellyfin";
-      isNormalUser = true;
       extraGroups = [
         "render"
         "media"
       ];
     };
   };
-
-  users.groups = {
-    jellyfin = {};
-    media = {};
-  };
-
-  # https://nixos.wiki/wiki/Samba
-  networking.firewall.allowedTCPPorts = [
-    5357 # wsdd
-  ];
-  networking.firewall.allowedUDPPorts = [
-    3702 # wsdd
-  ];
-
-  services.samba.openFirewall = true;
 }
