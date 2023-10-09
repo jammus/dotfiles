@@ -1,0 +1,54 @@
+{ pkgs, ... }:
+{
+  # https://nixos.wiki/wiki/Samba
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    extraConfig = ''
+      workgroup = WORKGROUP
+      server string = taskmaster
+      netbios name = taskmaster
+      security = user 
+      use sendfile = yes
+      #max protocol = smb2
+      hosts allow = 0.0.0.0/0
+      hosts deny = 0.0.0.0/0
+      guest account = nobody
+      map to guest = bad user
+    '';
+    shares = {
+      media = {
+        path = "/nas/media";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "media";
+        "force group" = "media";
+      };
+    };
+  };
+
+  services.samba.openFirewall = true;
+  networking.firewall.allowedTCPPorts = [
+    5357 # wsdd
+  ];
+  networking.firewall.allowedUDPPorts = [
+    3702 # wsdd
+  ];
+
+  users.users = {
+    media = {
+      group = "media";
+      isNormalUser = true;
+      extraGroups = [
+        "media"
+      ];
+    };
+  };
+
+  users.groups = {
+    media = {};
+  };
+}
