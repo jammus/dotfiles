@@ -11,6 +11,9 @@
       ../../common/base.nix
       ../../common/users.nix
       ../../common/networking.nix
+      ../../roles/jellyfin.nix
+      ../../roles/syncthing.nix
+      ../../roles/nas.nix
     ];
 
   # Bootloader.
