@@ -19,6 +19,8 @@
     spotify
     spotify-tui
     obsidian
+    waypaper
+    swww
   ];
 
   wayland.windowManager.sway = {
