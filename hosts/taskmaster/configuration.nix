@@ -14,6 +14,7 @@
       ../../roles/jellyfin.nix
       ../../roles/syncthing.nix
       ../../roles/nas.nix
+      # ../../roles/home-assistant.nix
     ];
 
   # Bootloader.
