@@ -48,6 +48,7 @@
     duf
     du-dust
     yazi
+    lazydocker
   ];
 
 
