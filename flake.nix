@@ -10,8 +10,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprsome = {
+      url = "github:sopa0/hyprsome";
+    };
   };
-  outputs = { home-manager, nixpkgs, darwin, ...}:
+  outputs = { home-manager, nixpkgs, darwin, hyprsome, ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -70,6 +73,9 @@
             imports = [
               ./home/default.nix
               ./home/linux-desktop.nix
+            ];
+            home.packages = [
+              hyprsome.packages.x86_64-linux.default
             ];
           };
         } 

@@ -28,7 +28,7 @@
     settings = [{
       modules-left = [ "hyprland/workspaces" ];
       modules-center = [ "hyprland/window" ];
-      modules-right = [ "temperature" "cpu" "memory" "pulseaudio" "clock" ];
+      modules-right = [ "cpu" "temperature" "memory" "pulseaudio" "clock" ];
       pulseaudio = {
         format = "{icon}  {volume}%";
         format-muted = "󰖁";
@@ -37,9 +37,9 @@
         };
         on-click = "pavucontrol";
       };
-      "wlr/workspaces" = {
+      "hyprland/workspaces" = {
         active-only = false;
-        format = "{name}";
+        format = "{icon}";
         format-icons = {
           "1" = "一";
           "2" = "二";
@@ -51,10 +51,26 @@
           "8" = "八";
           "9" = "九";
           "10" = "十";
+          "11" = "一";
+          "12" = "二";
+          "13" = "三";
+          "14" = "四";
+          "15" = "五";
+          "16" = "六";
+          "17" = "七";
+          "18" = "八";
+          "19" = "九";
+          "20" = "十";
           # "urgent" = "";
           # "active" = "";
           # "default" = "";
         };
+      };
+      "cpu" = {
+        format = "  {usage}%";
+      };
+      "memory" = {
+        format = "󰘚  {percentage}%";
       };
     }];
   };
