@@ -5,6 +5,7 @@
     ./rofi
     ./xmonad.nix
     ./hyprland.nix
+    ./linux.nix
   ];
 
   home.packages = with pkgs; [
