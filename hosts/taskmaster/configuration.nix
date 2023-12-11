@@ -14,8 +14,49 @@
       ../../roles/jellyfin.nix
       ../../roles/syncthing.nix
       ../../roles/nas.nix
-      # ../../roles/home-assistant.nix
+      ../../roles/home-assistant.nix
     ];
+
+  users.users = {
+    gitea = {
+      uid = 3001;
+      group = "gitea";
+      isNormalUser = true;
+      extraGroups = [
+      ];
+    };
+  };
+
+  users.groups = {
+    gitea = {
+      gid = 3001;
+    };
+  };
+
+  virtualisation.oci-containers.containers."gitea" = {
+    autoStart = true;
+    image = "gitea/gitea:latest";
+    environment = {
+      USER_UID = "3001";
+      USER_GID = "3001";
+      DISABLE_REGISTRATION = "false";
+    };
+    volumes = [
+      "/nas/services/gitea:/data"
+      # "/etc/timezone:/etc/timezone:ro"
+      # # "/etc/localtime:/etc/localtime:ro"
+    ];
+    ports = [
+      "3000:3000"
+      "222:222"
+    ];
+    environment = {
+      SSH_LISTEN_PORT = "222";
+    };
+    extraOptions = [
+      "--network=host"
+    ];
+  };
 
   # Bootloader.
   boot.loader.efi.canTouchEfiVariables = true;

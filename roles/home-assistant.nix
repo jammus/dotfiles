@@ -1,5 +1,18 @@
 { pkgs, ... }:
 {  
+  users.users = {
+    homeassistant = {
+      group = "homeassistant";
+      isNormalUser = true;
+      extraGroups = [
+      ];
+    };
+  };
+
+  users.groups = {
+    homeassistant = {};
+  };
+
   virtualisation.oci-containers = {
     backend = "podman";
     containers.homeassistant = {
