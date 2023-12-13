@@ -103,7 +103,6 @@ let bg0 = "#1d2021";
         "$helm"
         "$julia"
         "$kotlin"
-        "$gradle"
         "$lua"
         "$nim"
         "$nodejs"
