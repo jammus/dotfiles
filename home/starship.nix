@@ -22,6 +22,7 @@ let bg0 = "#1d2021";
     fgDark = bg0;
 
     accentColorPrimary = {
+      "default" = orange;
       "taskmaster" = orange;
       "timeeater" = aqua;
       "giant-head" = fg1;
@@ -31,6 +32,7 @@ let bg0 = "#1d2021";
     };
 
     accentColorSecondary = {
+      "default" = yellow;
       "taskmaster" = grey2;
       "timeeater" = purple;
       "giant-head" = fg0;
@@ -39,10 +41,11 @@ let bg0 = "#1d2021";
       "reptomancer" = orange;
     };
 
-    machineBg = accentColorPrimary.${osConfig.networking.hostName} or orange;
+    hostName = if builtins.isString osConfig.networking.hostName then osConfig.networking.hostName else "default";
+    machineBg = accentColorPrimary.${hostName};
     machineStyle = "fg:${fgDark} bg:${machineBg}";
 
-    pathBg = accentColorSecondary.${osConfig.networking.hostName} or yellow;
+    pathBg = accentColorSecondary.${hostName};
     pathStyle = "fg:${fgDark} bg:${pathBg}";
 
     gitBg = grey1;
