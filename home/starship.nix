@@ -178,7 +178,7 @@ let bg0 = "#1d2021";
       env_var.JAVA_HOME = {
         symbol = "";
         style = langStyle;
-        format = "[$symbol ]($style fg:${blue})";
+        format = "[$symbol ]($style fg:${red})";
       };
       nodejs = {
         symbol = "";
