@@ -13,6 +13,18 @@ let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
       pkgs.vimPlugins.plenary-nvim
     ];
   };
+  nvlime = pkgs.vimUtils.buildVimPlugin {
+    pname = "nvlime";
+    version = "v0.5.0rc";
+    src = pkgs.fetchFromGitHub {
+      owner = "nvlime";
+      repo ="nvlime";
+      rev = "83606f7e2d017ee7fcafe4ed4bf91ac776705633";
+      sha256 = "sha256-rQSlykd1lsLHCXBFzVwdPDcabVW+hJhAfyk96rES2OE=";
+    };
+    dependencies = [
+    ];
+  };
 in
 {
   programs.neovim = {
@@ -42,6 +54,8 @@ in
       lazygit-nvim
       dressing-nvim
       copilot-vim
+      nvlime
+      # nfnl  -- just waiting for a PR to be merged
       {
         plugin = nvim-tree-lua; type = "lua";
         config = ''
