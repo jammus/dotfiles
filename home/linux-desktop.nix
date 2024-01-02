@@ -22,6 +22,7 @@
     obsidian
     waypaper
     swww
+    nvtop
   ];
 
   wayland.windowManager.sway = {
