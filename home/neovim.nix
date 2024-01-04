@@ -1,12 +1,12 @@
 { pkgs, ... }:
-let obsidian-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "obisidan.nvim";
     version = "v1.12.0";
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
       repo = "obsidian.nvim";
-      rev = "1982447bd8481bf5b8e6e033519d54feb77a4e41";
-      sha256 = "sha256-rQSlykd1lsLHCXBFzVwdPDcabVW+hJhAfyk96rES2OE=";
+      rev = "fe78b91cd97095ae01bf1f9c3d29e73d2790194d";
+      sha256 = "sha256-Si658TCI6gouWSG0xgznSDMl2cAY0GN09ayeI69LVS0=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
     dependencies = [
@@ -553,20 +553,6 @@ in
     -- Optional, set to true if you don't want Obsidian to manage frontmatter.
     disable_frontmatter = false,
 
-    -- Optional, alternatively you can customize the frontmatter data.
-    note_frontmatter_func = function(note)
-      -- This is equivalent to the default frontmatter function.
-      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-      -- `note.metadata` contains any manually added fields in the frontmatter.
-      -- So here we just make sure those fields are kept in the frontmatter.
-      if note.metadata ~= nil and require("obsidian").util.table_length(note.metadata) > 0 then
-        for k, v in pairs(note.metadata) do
-          out[k] = v
-        end
-      end
-      return out
-    end,
-
     -- Optional, for templates (see below).
     templates = {
       subdir = "templates",
@@ -596,6 +582,15 @@ in
     -- is not installed, or if it the command does not support it, the
     -- remaining finders will be attempted in the original order.
     finder = "telescope.nvim",
+
+    ui = {
+      enable = true,
+      hl_groups = {
+        -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
+        ObsidianExtLinkIcon = { fg = "#d8a657" },
+        ObsidianRefText = { underline = true, fg = "#d8a657" },
+      },
+    },
   }
         '';
       }
