@@ -26,6 +26,7 @@
   programs.waybar = {
     enable = true;
     settings = [{
+      height = 32;
       modules-left = [ "hyprland/workspaces" ];
       modules-center = [ "hyprland/window" ];
       modules-right = [ "cpu" "temperature" "memory" "pulseaudio" "clock" ];
@@ -39,6 +40,9 @@
       };
       "hyprland/workspaces" = {
         active-only = false;
+        persistent-workspaces = {
+          "*" = 9;
+        };
         format = "{icon}";
         format-icons = {
           "1" = "一";
