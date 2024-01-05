@@ -19,6 +19,8 @@
       active_tab_font_style normal
       inactive_tab_foreground #d4be98
       inactive_tab_background #504945
+
+      disable_ligatures always
     '';
   };
 }
