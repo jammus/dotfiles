@@ -21,17 +21,26 @@
   boot.initrd.luks.devices."luks-b0b4a2bf-12e4-4e62-985a-f48f722c3789".device = "/dev/disk/by-uuid/b0b4a2bf-12e4-4e62-985a-f48f722c3789";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/872B-8046";
+    {
+      device = "/dev/disk/by-uuid/872B-8046";
       fsType = "vfat";
     };
 
   fileSystems."/nas/services" =
-    { device = "taskpool/services";
+    {
+      device = "taskpool/services";
       fsType = "zfs";
     };
 
   fileSystems."/nas/media" =
-    { device = "taskpool/media";
+    {
+      device = "taskpool/media";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nas/photos" =
+    {
+      device = "taskpool/photos";
       fsType = "zfs";
     };
 
