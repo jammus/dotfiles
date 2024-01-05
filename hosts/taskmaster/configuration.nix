@@ -19,6 +19,11 @@
 
   age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
 
+  services.zfs.autoScrub = {
+    enable = true;
+    interval = "*-*-1,15 02:30";
+  };
+
   users.users = {
     gitea = {
       uid = 3001;
