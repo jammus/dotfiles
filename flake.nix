@@ -13,8 +13,11 @@
     hyprsome = {
       url = "github:sopa0/hyprsome";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+    };
   };
-  outputs = { home-manager, nixpkgs, darwin, hyprsome, ...}:
+  outputs = { home-manager, nixpkgs, darwin, hyprsome, agenix, ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -84,6 +87,7 @@
     nixosConfigurations.taskmaster = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        agenix.nixosModules.default
         ./hosts/taskmaster/configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
