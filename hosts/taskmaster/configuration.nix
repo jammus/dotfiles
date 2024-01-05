@@ -17,6 +17,8 @@
       ../../roles/home-assistant.nix
     ];
 
+  age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
+
   users.users = {
     gitea = {
       uid = 3001;
