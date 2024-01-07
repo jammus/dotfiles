@@ -40,6 +40,65 @@
     };
   };
 
+  systemd.services.init-filerun-network-and-files = {
+    description = "Create the network bridge for Immich.";
+    after = [ "network.target" ];
+    serviceConfig.Type = "oneshot";
+    wantedBy = [
+      "podman-immich.service" "podman-redis.service"
+      "podman-postgres14.service"
+    ];
+    script = ''
+      ${pkgs.podman}/bin/podman pod exists immich-pod || \
+        ${pkgs.podman}/bin/podman pod create -n immich-pod -p '0.0.0.0:2283:8080'
+    '';
+  };
+
+  # Immich
+  virtualisation.oci-containers.containers = {
+    immich = {
+      autoStart = true;
+      image = "ghcr.io/imagegenius/immich:latest";
+      volumes = [
+        "/nas/services/immich:/config"
+        "/nas/services/immich-photos:/photos"
+        "/nas/services/immich-ml:/config/machine-learning"
+      ];
+      environment = {
+        PUID = "1000";
+        PGID = "1000";
+        TZ = "Asia/Singapore"; # Change this to your timezone
+        DB_HOSTNAME = "postgres14";
+        DB_USERNAME = "postgres";
+        DB_PASSWORD = "postgres";
+        DB_DATABASE_NAME = "immich";
+        REDIS_HOSTNAME = "redis";
+      };
+      extraOptions = [ "--pod=immich-pod" "--gpus=all" ];
+    };
+
+    redis = {
+      autoStart = true;
+      image = "redis";
+      extraOptions = [ "--pod=immich-pod" ];
+    };
+
+    postgres14 = {
+      autoStart = true;
+      image = "tensorchord/pgvecto-rs:pg14-v0.1.11";
+      volumes = [
+        "pgdata:/var/lib/postgresql/data"
+      ];
+      environment = {
+        POSTGRES_USER = "postgres";
+        POSTGRES_PASSWORD = "postgres";
+        POSTGRES_DB = "immich";
+      };
+      extraOptions = [ "--pod=immich-pod" ];
+    };
+  };
+
+
   virtualisation.oci-containers.containers = {
     gitea = {
       autoStart = true;
