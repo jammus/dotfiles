@@ -40,29 +40,65 @@
     };
   };
 
-  virtualisation.oci-containers.containers."gitea" = {
-    autoStart = true;
-    image = "gitea/gitea:latest";
-    environment = {
-      USER_UID = "3001";
-      USER_GID = "3001";
-      DISABLE_REGISTRATION = "false";
+  virtualisation.oci-containers.containers = {
+    gitea = {
+      autoStart = true;
+      image = "gitea/gitea:latest";
+      environment = {
+        USER_UID = "3001";
+        USER_GID = "3001";
+        DISABLE_REGISTRATION = "false";
+      };
+      volumes = [
+        "/nas/services/gitea:/data"
+      ];
+      ports = [
+        "3000:3000"
+        "222:222"
+      ];
+      environment = {
+        SSH_LISTEN_PORT = "222";
+      };
+      extraOptions = [
+        "--network=host"
+      ];
     };
-    volumes = [
-      "/nas/services/gitea:/data"
-      # "/etc/timezone:/etc/timezone:ro"
-      # # "/etc/localtime:/etc/localtime:ro"
-    ];
-    ports = [
-      "3000:3000"
-      "222:222"
-    ];
-    environment = {
-      SSH_LISTEN_PORT = "222";
+    podgrab = {
+      autoStart = true;
+      image = "akhilrex/podgrab";
+      volumes = [
+        "/nas/services/podgrab:/config"
+        "/nas/media/podcasts:/assets"
+      ];
+      ports = [
+        "3080:3080"
+      ];
+      environment = {
+        CHECK_FREQUENCY = "240";
+        PORT = "3080";
+      };
+      extraOptions = [
+        "--network=host"
+      ];
     };
-    extraOptions = [
-      "--network=host"
-    ];
+  };
+
+
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      dockerSocket.enable = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+      # For Nixos version > 22.11
+      #defaultNetwork.settings = {
+      #  dns_enabled = true;
+      #};
+    };
   };
 
   # Bootloader.
