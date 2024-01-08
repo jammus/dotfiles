@@ -58,10 +58,10 @@
   virtualisation.oci-containers.containers = {
     immich = {
       autoStart = true;
-      image = "ghcr.io/imagegenius/immich:latest";
+      image = "ghcr.io/imagegenius/immich:v1.92.0-ig236";
       volumes = [
         "/nas/services/immich:/config"
-        "/nas/services/immich-photos:/photos"
+        "/nas/photos/library:/photos"
         "/nas/services/immich-ml:/config/machine-learning"
       ];
       environment = {
@@ -87,7 +87,7 @@
       autoStart = true;
       image = "tensorchord/pgvecto-rs:pg14-v0.1.11";
       volumes = [
-        "pgdata:/var/lib/postgresql/data"
+        "/nas/photos/db:/var/lib/postgresql/data"
       ];
       environment = {
         POSTGRES_USER = "postgres";
