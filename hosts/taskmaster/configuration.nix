@@ -59,6 +59,7 @@
     immich = {
       autoStart = true;
       image = "ghcr.io/imagegenius/immich:v1.92.0-ig236";
+      dependsOn = [ "redis" "postgres14" ];
       volumes = [
         "/nas/services/immich:/config"
         "/nas/photos/library:/photos"
