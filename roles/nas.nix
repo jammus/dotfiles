@@ -65,5 +65,9 @@
     datasets."taskpool/services" = {
       useTemplate = [ "backup" ];
     };
+
+    datasets."taskpool/photos" = {
+      useTemplate = [ "backup" ];
+    };
   };
 }
