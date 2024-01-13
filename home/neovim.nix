@@ -5,8 +5,8 @@ let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
       repo = "obsidian.nvim";
-      rev = "fe78b91cd97095ae01bf1f9c3d29e73d2790194d";
-      sha256 = "sha256-Si658TCI6gouWSG0xgznSDMl2cAY0GN09ayeI69LVS0=";
+      rev = "6b232d4a795af7725af7f03ee6bb2ab15333301e";
+      sha256 = "sha256-A1qx55tfGT1XC7So7J70EfdJ5jGKbLo3ZW6RAQhrkoU=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
     dependencies = [
@@ -599,6 +599,14 @@ in
 
     ui = {
       enable = true,
+      checkboxes = {
+        -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
+        [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+        ["x"] = { char = "", hl_group = "ObsidianDone" },
+        ["-"] = { char = "󰡖", hl_group = "ObsidianTodo" },
+        [">"] = { char = "", hl_group = "ObsidianRightArrow" },
+        ["~"] = { char = "󱋭", hl_group = "ObsidianTilde" },
+      },
       hl_groups = {
         -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
         ObsidianExtLinkIcon = { fg = "#d8a657" },
