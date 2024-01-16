@@ -17,10 +17,10 @@ let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "nvlime";
     version = "v0.5.0rc";
     src = pkgs.fetchFromGitHub {
-      owner = "nvlime";
+      owner = "monkoose";
       repo ="nvlime";
       rev = "83606f7e2d017ee7fcafe4ed4bf91ac776705633";
-      sha256 = "sha256-rQSlykd1lsLHCXBFzVwdPDcabVW+hJhAfyk96rES2OE=";
+      sha256 = "sha256-UXx2b08C342brANMRVyX2yh3RFlF1zI0i9cXoC+6jFQ=";
     };
     dependencies = [
     ];
@@ -381,9 +381,16 @@ in
             f = { "<cmd>ObsidianFollowLink<cr>", "Follow" },
             o = { "<cmd>ObsidianOpen<cr>", "Open" },
             b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-            y = { "<cmd>ObsidianYesterday<cr>", "Yesterday" },
-            t = { "<cmd>ObsidianToday<cr>", "Today" },
-            s = { "<cmd>ObsidianSearch<cr>", "Today" },
+            s = { "<cmd>ObsidianSearch<cr>", "Search" },
+            d = { name = "Daily...",
+              t = { "<cmd>ObsidianToday<cr>", "Today" },
+              w = { name = "Working day...",
+                p = { "<cmd>ObsidianYesterday<cr>", "Previous" },
+                n = { "<cmd>ObsidianTomorrow<cr>", "Next" },
+              },
+              p = { "<cmd>ObsidianToday -1<cr>", "Previous" },
+              n = { "<cmd>ObsidianToday +1<cr>", "Next" },
+            }
           }
         }, { prefix = "<leader>" })
 
