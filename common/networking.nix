@@ -25,9 +25,6 @@
     allowedTCPPorts = [ 22 ];
   };
 
-  networking.wireguard.enable = true;
-  services.mullvad-vpn.enable = true;
-
   networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
   programs.ssh = {
