@@ -33,6 +33,11 @@
       extraGroups = [
       ];
     };
+    photos = {
+      uid = 3002;  
+      group = "photos";
+      isSystemUser = true;
+    };
     audiobookshelf = {
       uid = 3003;
       group = "media";
@@ -43,6 +48,9 @@
   users.groups = {
     gitea = {
       gid = 3001;
+    };
+    photos = {
+      gid = 3002;
     };
   };
 
@@ -94,7 +102,7 @@
       ];
       environment = {
         PUID = "1000";
-        PGID = "1000";
+        PGID = "100";
         TZ = "Asia/Singapore"; # Change this to your timezone
         DB_HOSTNAME = "postgres14";
         DB_USERNAME = "postgres";
@@ -125,7 +133,6 @@
       extraOptions = [ "--pod=immich-pod" ];
     };
   };
-
 
   virtualisation.oci-containers.containers = {
     gitea = {
