@@ -102,7 +102,7 @@
         DB_DATABASE_NAME = "immich";
         REDIS_HOSTNAME = "redis";
       };
-      extraOptions = [ "--pod=immich-pod" "--gpus=all" ];
+      extraOptions = [ "--pod=immich-pod" ];
     };
 
     redis = {
@@ -184,6 +184,8 @@
       #defaultNetwork.settings = {
       #  dns_enabled = true;
       #};
+
+      enableNvidia = true;
     };
   };
 
