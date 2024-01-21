@@ -33,6 +33,11 @@
       extraGroups = [
       ];
     };
+    audiobookshelf = {
+      uid = 3003;
+      group = "media";
+      isSystemUser = true;
+    };
   };
 
   users.groups = {
@@ -53,6 +58,27 @@
       ${pkgs.podman}/bin/podman pod exists immich-pod || \
         ${pkgs.podman}/bin/podman pod create -n immich-pod -p '0.0.0.0:2283:8080'
     '';
+  };
+
+  virtualisation.oci-containers.containers = {
+    audiobookshelf = {
+      autoStart = true;
+      image = "ghcr.io/advplyr/audiobookshelf:latest";
+      volumes = [
+        "/nas/media/audiobooks:/audiobooks"
+        "/nas/media/podcasts:/podcasts"
+        "/nas/services/audiobookshelf/config:/config"
+        "/nas/services/audiobookshelf/metadata:/metadata"
+      ];
+      ports = [
+        "13378:80"
+      ];
+      environment = {
+        AUDIOBOOKSHELF_UID = "${toString config.users.users.audiobookshelf.uid}";
+        AUDIOBOOKSHELF_GID = "${toString config.users.groups.media.gid}";
+        TZ = "Asia/Singapore"; # Change this to your timezone
+      };
+    };
   };
 
   # Immich

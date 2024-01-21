@@ -49,7 +49,9 @@
   };
 
   users.groups = {
-    media = {};
+    media = {
+      gid = 989;
+    };
   };
 
   services.sanoid = {
