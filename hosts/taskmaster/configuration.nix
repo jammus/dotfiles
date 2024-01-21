@@ -18,6 +18,7 @@
     ];
 
   age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
+  age.secrets."zfs-junk.key".file = ../../secrets/zfs-junk.key.age;
 
   services.zfs.autoScrub = {
     enable = true;

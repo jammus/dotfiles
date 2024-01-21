@@ -44,6 +44,12 @@
       fsType = "zfs";
     };
 
+  fileSystems."/nas/junk" =
+    {
+      device = "taskpool/junk";
+      fsType = "zfs";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/f5fb7d30-593f-48e5-a0a4-3a7ed3607978"; }
     ];

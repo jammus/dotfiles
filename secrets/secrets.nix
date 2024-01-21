@@ -10,4 +10,5 @@ let
   keys = personal ++ hosts;
 in {
   "zfs.key.age".publicKeys = keys;
+  "zfs-junk.key.age".publicKeys = keys;
 }
