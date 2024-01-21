@@ -61,7 +61,6 @@
   i18n.defaultLocale = "en_SG.utf8";
 
   programs.hyprland.enable = true;
-  programs.hyprland.enableNvidiaPatches = true;
 
   environment.sessionVariables = rec {
     WLR_NO_HARDWARE_CURSORS = "1";
