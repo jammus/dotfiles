@@ -658,7 +658,7 @@ in
 
       augroup WrapLineInMarkdownFile
         autocmd!
-        autocmd FileType markdown setlocal wrap
+        autocmd FileType markdown setlocal nowrap
         autocmd FileType markdown setlocal conceallevel=1
       augroup END
 
