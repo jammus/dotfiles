@@ -1,12 +1,12 @@
 { pkgs, ... }:
 let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "obisidan.nvim";
-    version = "v1.12.0";
+    version = "v2.7.0";
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
       repo = "obsidian.nvim";
-      rev = "6b232d4a795af7725af7f03ee6bb2ab15333301e";
-      sha256 = "sha256-A1qx55tfGT1XC7So7J70EfdJ5jGKbLo3ZW6RAQhrkoU=";
+      rev = "v2.7.0";
+      sha256 = "sha256-D+4OO6oingy2iOaMtMFryr0pY6Mi3YzpZN8T4K1gXZ0=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
     dependencies = [
@@ -619,6 +619,8 @@ in
         -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
         ObsidianExtLinkIcon = { fg = "#d8a657" },
         ObsidianRefText = { underline = true, fg = "#d8a657" },
+        ObsidianBullet = { bold = true, fg = "#7daea3" },
+        ObsidianDone = { fg = "#a9b665" },
       },
     },
   }
