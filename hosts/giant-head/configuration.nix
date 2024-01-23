@@ -18,6 +18,17 @@
       ../../roles/syncthing.nix
     ];
 
+  services.syncthing.settings.folders = {
+    finance-data = {
+      path = "/home/jammus/code/finances/data";
+      devices = [ "taskmaster" ];
+    };
+    giant-head-docs = {
+      path = "/home/jammus/docs";
+      devices = [ "taskmaster" ];
+    };
+  };
+
   services.udev.extraRules = ''
     # DualShock 4 over Bluetooth
     KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
