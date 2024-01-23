@@ -17,6 +17,11 @@
       ../../roles/home-assistant.nix
     ];
 
+  services.syncthing.settings.folders.finance-data = {
+    path = "/nas/junk/finance-data";
+    devices = [ "giant-head" ];
+  };
+
   age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
   age.secrets."zfs-junk.key".file = ../../secrets/zfs-junk.key.age;
 
