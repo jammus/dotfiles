@@ -611,16 +611,17 @@ in
         -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
         [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
         ["x"] = { char = "", hl_group = "ObsidianDone" },
-        ["-"] = { char = "󰡖", hl_group = "ObsidianTodo" },
+        ["-"] = { char = "󰡖", hl_group = "ObsidianTodoPartial" },
         [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-        ["~"] = { char = "󱋭", hl_group = "ObsidianTilde" },
+        ["~"] = { char = "󰜺", hl_group = "ObsidianTodoCancel" },
       },
       hl_groups = {
         -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
         ObsidianExtLinkIcon = { fg = "#d8a657" },
         ObsidianRefText = { underline = true, fg = "#d8a657" },
-        ObsidianBullet = { bold = true, fg = "#7daea3" },
+        ObsidianBullet = { bold = true, fg = "#7c6f64" },
         ObsidianDone = { fg = "#a9b665" },
+        ObsidianTodoCancel = { fg = "#ea6962" },
       },
     },
   }
