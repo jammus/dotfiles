@@ -386,11 +386,11 @@ in
             d = { name = "Daily...",
               t = { "<cmd>ObsidianToday<cr>", "Today" },
               w = { name = "Working day...",
-                p = { "<cmd>ObsidianYesterday<cr>", "Previous" },
-                n = { "<cmd>ObsidianTomorrow<cr>", "Next" },
+                ["]"] = { "<cmd>ObsidianTomorrow<cr>", "Next" },
+                ["["] = { "<cmd>ObsidianYesterday<cr>", "Previous" },
               },
-              p = { "<cmd>ObsidianToday -1<cr>", "Previous" },
-              n = { "<cmd>ObsidianToday +1<cr>", "Next" },
+              ["]"] = { "<cmd>ObsidianToday +1<cr>", "Next" },
+              ["["] = { "<cmd>ObsidianToday -1<cr>", "Previous" },
             }
           }
         }, { prefix = "<leader>" })
