@@ -613,7 +613,7 @@ in
         ["x"] = { char = "", hl_group = "ObsidianDone" },
         ["-"] = { char = "󰡖", hl_group = "ObsidianTodoPartial" },
         [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-        ["~"] = { char = "󰜺", hl_group = "ObsidianTodoCancel" },
+        ["o"] = { char = "󰜺", hl_group = "ObsidianTodoCancel" },
       },
       hl_groups = {
         -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
