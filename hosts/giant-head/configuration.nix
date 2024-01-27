@@ -52,6 +52,12 @@
     "/crypto_keyfile.bin" = null;
   };
 
+  # ZFS
+
+  networking.hostId = "56d0d77b";
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+
   # Enable swap on luks
   boot.initrd.luks.devices."luks-4c8a35e0-ed49-46d4-a003-978ed68a8997".device = "/dev/disk/by-uuid/4c8a35e0-ed49-46d4-a003-978ed68a8997";
   boot.initrd.luks.devices."luks-4c8a35e0-ed49-46d4-a003-978ed68a8997".keyFile = "/crypto_keyfile.bin";
