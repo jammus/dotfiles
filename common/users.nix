@@ -5,7 +5,9 @@
   programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.mutableUsers = false;
   users.users.jammus = {
+    initialHashedPassword = "\$6\$L3VMq4TrbbNUbNgI\$A3xT231qXg6FqMt.J3xZx.rb4cqj7QdsNcvBO1E2TIUzwu6968VrRPGl0bulVciH0GZnjHCTdHhp.KzOps.Sv0";
     isNormalUser = true;
     description = "James Scott";
     extraGroups = [
