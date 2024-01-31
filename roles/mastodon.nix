@@ -5,7 +5,8 @@
     localDomain = "return12.net";
     configureNginx = false;
     smtp.fromAddress = "";
-    enableUnixSocket = false;
+    enableUnixSocket = true;
+    streamingProcesses = 2;
     extraConfig = {
       WEB_DOMAIN = "mastodon.return12.net";
       SINGLE_USER_MODE = "true";
@@ -60,7 +61,8 @@
     };
 
     locations."/api/v1/streaming/" = {
-      proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
+      # proxyPass = (if config.services.mastodon.enableUnixSocket then "http://unix:/run/mastodon-streaming/streaming.socket" else "http://127.0.0.1:${toString(config.services.mastodon.streamingPort)}/");
+      proxyPass = "http://unix:/run/mastodon-streaming/streaming.socket";
       proxyWebsockets = true;
     };
   };
