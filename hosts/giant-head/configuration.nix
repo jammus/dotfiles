@@ -29,6 +29,20 @@
     };
   };
 
+  services.openssh = {
+    hostKeys = [
+      {
+        path = "/persist/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+      {
+        path = "/persist/ssh/ssh_host_rsa_key";
+        type = "rsa";
+        bits = 4096;
+      }
+    ];
+  };
+
   services.udev.extraRules = ''
     # DualShock 4 over Bluetooth
     KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
