@@ -17,9 +17,15 @@
       ../../roles/home-assistant.nix
     ];
 
-  services.syncthing.settings.folders.finance-data = {
-    path = "/nas/junk/finance-data";
-    devices = [ "giant-head" ];
+  services.syncthing.settings.folders = {
+    finance-data = {
+      path = "/nas/junk/finance-data";
+      devices = [ "giant-head" ];
+    };
+    giant-head-docs = {
+      path = "/nas/junk/giant-head/docs";
+      devices = [ "giant-head" ];
+    };
   };
 
   age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
@@ -48,6 +54,11 @@
       group = "media";
       isSystemUser = true;
     };
+    pihole = {
+      uid = 3004;
+      group = "pihole";
+      isSystemUser = true;
+    };
   };
 
   users.groups = {
@@ -56,6 +67,9 @@
     };
     photos = {
       gid = 3002;
+    };
+    pihole = {
+      gid = 3004;
     };
   };
 
@@ -89,6 +103,27 @@
       environment = {
         AUDIOBOOKSHELF_UID = "${toString config.users.users.audiobookshelf.uid}";
         AUDIOBOOKSHELF_GID = "${toString config.users.groups.media.gid}";
+        TZ = "Asia/Singapore"; # Change this to your timezone
+      };
+    };
+  };
+
+  virtualisation.oci-containers.containers = {
+    pihole = {
+      autoStart = true;
+      image = "pihole/pihole";
+      volumes = [
+        "/nas/services/pihole/etc/pihole:/etc/pihole"
+        "/nas/services/pihole/etc/dnsmasq.d:/etc/dnsmasq.d"
+      ];
+      ports = [
+        "53:53/tcp"
+        "53:53/udp"
+        "9080:80/tcp"
+      ];
+      environment = {
+        PIHOLE_GID = "${toString config.users.groups.pihole.gid}";
+        PIHOLE_UID = "${toString config.users.users.pihole.uid}";
         TZ = "Asia/Singapore"; # Change this to your timezone
       };
     };
