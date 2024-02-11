@@ -21,6 +21,7 @@
   services.pihole = {
     enable = true;
     serverIp = "100.72.171.50";
+    persistanceRoot = "/nas/services/pihole";
   };
 
   services.syncthing.settings.folders = {

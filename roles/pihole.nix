@@ -10,6 +10,10 @@ in {
       type = types.str;
       default = "127.0.0.1";
     };
+    persistanceRoot = mkOption {
+      type = types.str;
+      default = "/nas/services/pihole";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -32,8 +36,8 @@ in {
         autoStart = true;
         image = "pihole/pihole";
         volumes = [
-          "/nas/services/pihole/etc/pihole:/etc/pihole"
-          "/nas/services/pihole/etc/dnsmasq.d:/etc/dnsmasq.d"
+          "${cfg.persistanceRoot}/etc/pihole:/etc/pihole"
+          "${cfg.persistanceRoot}/etc/dnsmasq.d:/etc/dnsmasq.d"
         ];
         ports = [
           "0.0.0.0:53:53/tcp"
