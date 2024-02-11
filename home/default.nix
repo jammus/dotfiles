@@ -11,7 +11,6 @@
     ./taskwarrior.nix
     ./zoxide.nix
     ./fzf.nix
-    ./helix.nix
     ./bat.nix
     ./lsd.nix
     ./lazygit.nix
@@ -26,7 +25,6 @@
   };
 
   home.packages = with pkgs; [
-    htop
     btop
     ack
     _1password
@@ -36,7 +34,6 @@
     age
     p7zip
     ripgrep
-    bat
     nb
     pandoc # For nb
     nmap # For nb
