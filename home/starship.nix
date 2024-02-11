@@ -23,6 +23,7 @@ let bg0 = "#1d2021";
 
     accentColorPrimary = {
       "default" = orange;
+      "pistachio" = green;
       "taskmaster" = orange;
       "time-eater" = aqua;
       "giant-head" = fg1;
@@ -33,6 +34,7 @@ let bg0 = "#1d2021";
 
     accentColorSecondary = {
       "default" = yellow;
+      "pistachio" = green;
       "taskmaster" = grey2;
       "time-eater" = purple;
       "giant-head" = fg0;
