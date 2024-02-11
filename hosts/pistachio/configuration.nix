@@ -8,7 +8,28 @@
       ../../common/users.nix
       ../../common/networking.nix
       ./taskserver.nix
+      ../../roles/pihole.nix
     ];
+
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      dockerSocket.enable = true;
+    };
+  };
+
+  virtualisation.oci-containers = {
+    backend = "podman";
+  };
+
+  services.pihole = {
+    enable = true;
+    serverIp = "100.104.40.62";
+    persistanceRoot = "/persistance/services/pihole";
+  };
 
   # NixOS wants to enable GRUB by default
   boot.loader.grub.enable = false;
