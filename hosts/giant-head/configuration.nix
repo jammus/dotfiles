@@ -18,6 +18,8 @@
       ../../roles/syncthing.nix
     ];
 
+  age.secrets."backup_ed25519".file = ../../secrets/backup_ed25519.age;
+
   services.syncthing.settings.folders = {
     finance-data = {
       path = "/home/jammus/code/finances/data";

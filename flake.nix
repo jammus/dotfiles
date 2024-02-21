@@ -68,6 +68,7 @@
     nixosConfigurations.giant-head = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        agenix.nixosModules.default
         ./hosts/giant-head/configuration.nix
         ./common/desktop.nix
         home-manager.nixosModules.home-manager {
