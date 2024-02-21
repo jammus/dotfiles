@@ -61,6 +61,14 @@
       group = "media";
       isSystemUser = true;
     };
+    backup = {
+      uid = 4001;
+      group = "backup";
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfkhhWt2ibQdKFhdWpcwywq+NVLAmZ8/lnpgjbVdEN4"
+      ];
+    };
   };
 
   users.groups = {
@@ -69,6 +77,9 @@
     };
     photos = {
       gid = 3002;
+    };
+    backup = {
+      gid = 4001;
     };
   };
 
