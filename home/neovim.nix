@@ -5,8 +5,8 @@ let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
       repo = "obsidian.nvim";
-      rev = "v2.7.0";
-      sha256 = "sha256-D+4OO6oingy2iOaMtMFryr0pY6Mi3YzpZN8T4K1gXZ0=";
+      rev = "v3.3.1";
+      sha256 = "sha256-7mu91AZPiCIxIVkw4Fa1hpYvxWzCejJDl8gAcgS2OHE=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
     dependencies = [
@@ -542,6 +542,27 @@ in
       date_format = "%Y-%m-%d"
     },
 
+    new_notes_location = "notes_subdir",
+
+    note_frontmatter_func = function(note)
+      -- Add the title of the note as an alias.
+      if note.title then
+        note:add_alias(note.title)
+      end
+
+      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+
+      -- `note.metadata` contains any manually added fields in the frontmatter.
+      -- So here we just make sure those fields are kept in the frontmatter.
+      if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+        for k, v in pairs(note.metadata) do
+          out[k] = v
+        end
+      end
+
+      return out
+    end,
+
     -- Optional, completion.
     completion = {
       -- If using nvim-cmp, otherwise set to false
@@ -551,7 +572,6 @@ in
       -- Where to put new notes created from completion. Valid options are
       --  * "current_dir" - put new notes in same directory as the current buffer.
       --  * "notes_subdir" - put new notes in the default notes subdirectory.
-      new_notes_location = "notes_subdir"
     },
 
     -- Optional, customize how names/IDs for new notes are created.
@@ -569,7 +589,7 @@ in
           suffix = suffix .. string.char(math.random(65, 90))
         end
       end
-      return tostring(os.time()) .. "-" .. suffix
+      return suffix
     end,
 
     -- Optional, set to true if you don't want Obsidian to manage frontmatter.
