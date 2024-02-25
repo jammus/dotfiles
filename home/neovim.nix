@@ -1,12 +1,12 @@
 { pkgs, ... }:
 let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "obisidan.nvim";
-    version = "v2.7.0";
+    version = "v3.5.0";
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
       repo = "obsidian.nvim";
-      rev = "v3.3.1";
-      sha256 = "sha256-7mu91AZPiCIxIVkw4Fa1hpYvxWzCejJDl8gAcgS2OHE=";
+      rev = "v3.5.0";
+      sha256 = "sha256-Dn6uGE0bYvYPfn+3qSmKSSEAEbI0qMq1RehU9btOCgQ=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
     dependencies = [
