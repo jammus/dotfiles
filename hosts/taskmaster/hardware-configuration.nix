@@ -30,24 +30,28 @@
     {
       device = "taskpool/services";
       fsType = "zfs";
+      options = [ "nofail" ];
     };
 
   fileSystems."/nas/media" =
     {
       device = "taskpool/media";
       fsType = "zfs";
+      options = [ "nofail" ];
     };
 
   fileSystems."/nas/photos" =
     {
       device = "taskpool/photos";
       fsType = "zfs";
+      options = [ "nofail" ];
     };
 
   fileSystems."/nas/junk" =
     {
       device = "taskpool/junk";
       fsType = "zfs";
+      options = [ "nofail" ];
     };
 
   swapDevices =
