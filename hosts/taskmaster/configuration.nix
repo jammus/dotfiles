@@ -45,6 +45,40 @@
     interval = "*-*-1,15 02:30";
   };
 
+  services.borgbackup.jobs."borgbase" = {
+    paths = [
+      "/home/jammus/nb"
+      "/mnt/borgjobs/services"
+      "/mnt/borgjobs/photos"
+    ];
+    exclude = [
+    ];
+    repo = "t51c4lr9@t51c4lr9.repo.borgbase.com:repo";
+    preHook = ''
+      ${pkgs.zfs}/bin/zfs destroy taskpool/services@borgbase && true
+      ${pkgs.zfs}/bin/zfs snapshot taskpool/services@borgbase
+      /run/wrappers/bin/mount --bind /nas/services/.zfs/snapshot/borgbase /mnt/borgjobs/services
+
+      ${pkgs.zfs}/bin/zfs destroy taskpool/photos@borgbase && true
+      ${pkgs.zfs}/bin/zfs snapshot taskpool/photos@borgbase
+      /run/wrappers/bin/mount --bind /nas/photos/.zfs/snapshot/borgbase /mnt/borgjobs/photos
+    '';
+    postHook = ''
+      /run/wrappers/bin/umount /mnt/borgjobs/services
+      ${pkgs.zfs}/bin/zfs destroy taskpool/services@borgbase
+
+      /run/wrappers/bin/umount /mnt/borgjobs/photos
+      ${pkgs.zfs}/bin/zfs destroy taskpool/photos@borgbase
+    '';
+    encryption = {
+      mode = "repokey-blake2";
+      passCommand = "cat /run/agenix/backup.passphrase";
+    };
+    environment.BORG_RSH = "ssh -i /run/agenix/backup_ed25519";
+    compression = "auto,lzma";
+    startAt = "daily";
+  };
+
   users.users = {
     gitea = {
       uid = 3001;
