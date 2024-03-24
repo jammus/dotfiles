@@ -158,7 +158,7 @@
   virtualisation.oci-containers.containers = {
     immich = {
       autoStart = true;
-      image = "ghcr.io/imagegenius/immich:v1.92.0-ig236";
+      image = "ghcr.io/imagegenius/immich:v1.98.1-ig258";
       dependsOn = [ "redis" "postgres14" ];
       volumes = [
         "/nas/services/immich:/config"
@@ -186,7 +186,7 @@
 
     postgres14 = {
       autoStart = true;
-      image = "tensorchord/pgvecto-rs:pg14-v0.1.11";
+      image = "tensorchord/pgvecto-rs:pg14-v0.2.0";
       volumes = [
         "/nas/photos/db:/var/lib/postgresql/data"
       ];
