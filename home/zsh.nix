@@ -1,7 +1,9 @@
 {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion = {
+      enable = true;
+    };
     enableCompletion = true;
     shellAliases = {
       ls = "lsd";
