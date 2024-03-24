@@ -51,6 +51,7 @@
     du-dust
     yazi
     lazydocker
+    devenv
   ];
 
 
