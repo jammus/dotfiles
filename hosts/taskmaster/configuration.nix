@@ -16,6 +16,7 @@
       ../../roles/nas.nix
       ../../roles/home-assistant.nix
       ../../roles/pihole.nix
+      ../../roles/navidrome.nix
     ];
 
   services.pihole = {
