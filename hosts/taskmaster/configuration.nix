@@ -49,8 +49,14 @@
   services.borgbackup.jobs."borgbase" = {
     paths = [
       "/home/jammus/nb"
+      "/home/jammus/dots"
       "/mnt/borgjobs/services"
       "/mnt/borgjobs/photos"
+      "/mnt/borgjobs/junk"
+      "/nas/media/audiobooks"
+      "/nas/media/podcasts"
+      "/nas/media/music"
+      "/nas/media/books"
     ];
     exclude = [
     ];
@@ -63,6 +69,10 @@
       ${pkgs.zfs}/bin/zfs destroy taskpool/photos@borgbase && true
       ${pkgs.zfs}/bin/zfs snapshot taskpool/photos@borgbase
       /run/wrappers/bin/mount --bind /nas/photos/.zfs/snapshot/borgbase /mnt/borgjobs/photos
+
+      ${pkgs.zfs}/bin/zfs destroy taskpool/junk@borgbase && true
+      ${pkgs.zfs}/bin/zfs snapshot taskpool/junk@borgbase
+      /run/wrappers/bin/mount --bind /nas/junk/.zfs/snapshot/borgbase /mnt/borgjobs/junk
     '';
     postHook = ''
       /run/wrappers/bin/umount /mnt/borgjobs/services
@@ -70,6 +80,8 @@
 
       /run/wrappers/bin/umount /mnt/borgjobs/photos
       ${pkgs.zfs}/bin/zfs destroy taskpool/photos@borgbase
+      /run/wrappers/bin/umount /mnt/borgjobs/junk
+      ${pkgs.zfs}/bin/zfs destroy taskpool/junk@borgbase
     '';
     encryption = {
       mode = "repokey-blake2";
