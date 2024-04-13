@@ -125,7 +125,8 @@
     after = [ "network.target" ];
     serviceConfig.Type = "oneshot";
     wantedBy = [
-      "podman-immich.service" "podman-redis.service"
+      "podman-immich.service"
+      "podman-redis.service"
       "podman-postgres14.service"
     ];
     script = ''
@@ -159,7 +160,7 @@
   virtualisation.oci-containers.containers = {
     immich = {
       autoStart = true;
-      image = "ghcr.io/imagegenius/immich:v1.98.1-ig258";
+      image = "ghcr.io/imagegenius/immich:v1.101.0-ig270";
       dependsOn = [ "redis" "postgres14" ];
       volumes = [
         "/nas/services/immich:/config"
