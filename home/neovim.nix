@@ -105,11 +105,11 @@ in
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
             vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
             vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-            vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-            vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-            vim.keymap.set('n', '<space>wl', function()
-              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end, bufopts)
+            --vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+            --vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+            --vim.keymap.set('n', '<space>wl', function()
+              --print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            --end, bufopts)
             vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
             vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
             vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
@@ -372,6 +372,7 @@ in
 
         wk.register({
           w = { name = "Window...",
+            r = { "<cmd>lua require('smart-splits').start_resize_mode()<cr>", "Resize" },
             q = { "<cmd>close<cr>", "Close" },
           }
         }, { prefix = "<leader>" })
@@ -520,6 +521,29 @@ in
         config = ''
           require('refactoring').setup({})
           require("telescope").load_extension("refactoring")
+        '';
+      }
+      {
+        plugin = smart-splits-nvim; type = "lua";
+        config = ''
+        require('smart-splits').setup({
+          resize_mode = {
+            -- key to exit persistent resize mode
+            quit_key = '<ESC>',
+            -- keys to use for moving in resize mode
+            -- in order of left, down, up' right
+            resize_keys = { 'h', 'j', 'k', 'l' },
+            -- set to true to silence the notifications
+            -- when entering/exiting persistent resize mode
+            silent = true,
+            -- must be functions, they will be executed when
+            -- entering or exiting the resize mode
+            hooks = {
+              on_enter = nil,
+              on_leave = nil,
+            },
+          }
+        })
         '';
       }
       {
