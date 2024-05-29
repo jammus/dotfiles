@@ -17,4 +17,5 @@ in {
   "zfs-junk.key.age".publicKeys = keys;
   "backup_ed25519.age".publicKeys = keys;
   "backup.passphrase.age".publicKeys = keys;
+  "new.passphrase.age".publicKeys = keys;
 }
