@@ -17,8 +17,13 @@
       ../../roles/home-assistant.nix
       ../../roles/pihole.nix
       ../../roles/navidrome.nix
+      ../../roles/grafana.nix
+      ../../roles/prometheus.nix
     ];
 
+  systemd.tmpfiles.rules = [
+    "L /var/lib/prometheus2 - - - - /nas/services/prometheus2"
+  ];
   services.pihole = {
     enable = true;
     serverIp = "100.72.171.50";
