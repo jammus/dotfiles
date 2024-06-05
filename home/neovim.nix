@@ -55,7 +55,7 @@ in
       dressing-nvim
       copilot-vim
       nvlime
-      # nfnl  -- just waiting for a PR to be merged
+      aniseed
       {
         plugin = nvim-tree-lua; type = "lua";
         config = ''
