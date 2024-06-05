@@ -15,7 +15,6 @@ let bg0 = "#1d2021";
     blue = "#7daea3";
     purple = "#d3869b";
 
-    grey0 = "#7c#7c6f646f64";
     grey1 = "#928374";
     grey2 = "#a89984";
 
