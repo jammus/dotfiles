@@ -1,12 +1,12 @@
 { pkgs, ... }:
 let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "obisidan.nvim";
-    version = "v3.5.0";
+    version = "v3.7.14";
     src = pkgs.fetchFromGitHub {
       owner = "epwalsh";
       repo = "obsidian.nvim";
-      rev = "v3.5.0";
-      sha256 = "sha256-Dn6uGE0bYvYPfn+3qSmKSSEAEbI0qMq1RehU9btOCgQ=";
+      rev = "v3.7.14";
+      sha256 = "sha256-LYQFpTa4BaiqtH8BUevi12/OSZW7uEAytiAuQXkNeUo=";
     };
     meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
     dependencies = [
@@ -563,7 +563,8 @@ in
       -- Optional, if you keep daily notes in a separate directory.
       folder = "notes/dailies",
       -- Optional, if you want to change the date format for daily notes.
-      date_format = "%Y-%m-%d"
+      date_format = "%Y-%m-%d",
+      alias_format = "%B %-d, %Y"
     },
 
     new_notes_location = "notes_subdir",
@@ -704,7 +705,7 @@ in
       augroup WrapLineInMarkdownFile
         autocmd!
         autocmd FileType markdown setlocal nowrap
-        autocmd FileType markdown setlocal conceallevel=1
+        autocmd FileType markdown setlocal conceallevel=2
       augroup END
 
 
