@@ -2,23 +2,8 @@
 {
   xdg.configFile."hypr/hyprland.conf".source = ../config/hyprland.conf;
 
-  # imports = [
-    # inputs.hyprland.homeManagerModules.default
-  # ];
+  xdg.configFile."waybar/style.css".source = ../config/waybar.css;
 
-  # wayland.windowManager.hyprland = {
-    # enable = true;
-    # package = pkgs.hyprland;
-    # systemdIntegration = true;
-    # extraConfig = ''
-      # bind=SUPER,j,cyclenext,prev
-      # bind=SUPER,k,cyclenext,next
-    # '';
-    # xwayland = {
-      # enable = true;
-      # hidpi = true;
-    # };
-  # };
   programs.wofi = {
     enable = true;
   };
@@ -26,22 +11,23 @@
   programs.waybar = {
     enable = true;
     settings = [{
-      height = 32;
+      position = "bottom";
+      height = 52;
       modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "hyprland/window" ];
       modules-right = [ "cpu" "temperature" "memory" "pulseaudio" "clock" ];
       pulseaudio = {
-        format = "{icon}  {volume}%";
-        format-muted = "󰖁";
+        format = " <span color=\"#89b482\">:vol</span> <span color=\"#a9b665\">\"{volume}%\"</span>";
+        format-muted = "󰖁 ";
         format-icons = {
-          default = ["" "" ""];
+          default = [" " " " " "];
         };
         on-click = "pavucontrol";
       };
       "hyprland/workspaces" = {
         active-only = false;
         persistent-workspaces = {
-          "*" = 9;
+          "DP-1" = [ 1 2 3 4 5 6 7 8 9];
+          "DP-2" = [ 11 12 13 14 15 16 17 18 19];
         };
         format = "{icon}";
         format-icons = {
@@ -71,10 +57,16 @@
         };
       };
       "cpu" = {
-        format = "  {usage}%";
+        format = "{{<span color=\"#89b482\">:cpu</span> <span color=\"#a9b665\">\"{usage}%\"</span>";
+      };
+      "temperature" = {
+        format = " <span color=\"#89b482\">:temp</span> <span color=\"#a9b665\">\"{temperatureC}°C\"</span>";
       };
       "memory" = {
-        format = "󰘚  {percentage}%";
+        format = " <span color=\"#89b482\">:mem</span> <span color=\"#a9b665\">\"{percentage}%\"</span>";
+      };
+      "clock" = {
+        format = " <span color=\"#89b482\">:now</span> [<span color=\"#d3869b\">{:%H %M}</span>]}}";
       };
     }];
   };

@@ -24,9 +24,17 @@
 
 #waybar {
   margin: 10px;
-  background: @bgStatusLine2;
+  background: transparent;
   color: @fg1;
   font-weight: bold;
+}
+
+#waybar > .horizontal {
+  background: @bgStatusLine2;
+  border: 2px solid rgba(125, 174, 163, 0.4);
+  border-radius: 8;
+  margin: 10;
+  margin-top: 0;
 }
 
 #workspaces button {
@@ -36,6 +44,7 @@
   border-radius: 0;
   box-shadow: none;
   font-weight: bold;
+  margin-right: 5;
 }
 
 #workspaces button.empty {
@@ -44,8 +53,13 @@
 }
 
 #workspaces button.visible {
-  background: @yellow;
+  background: @blue;
   color: @bg0;
+}
+
+.modules-left,
+.modules-right {
+  padding: 5;
 }
 
 #clock,
@@ -65,7 +79,7 @@
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0 3px;
+    padding: 0 0px;
     font-weight: bold;
     background: @bgStatusLine2;
 }
