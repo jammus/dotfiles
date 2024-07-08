@@ -4,6 +4,7 @@ let bg0 = "#1d2021";
     fg0 = "#d4be98";
     fg1 = "#ddc7a1";
 
+    bg4 = "#3c3836";
     bg5 = "#504945";
     bgStatusLine2 = "#32302f";
 
@@ -15,6 +16,7 @@ let bg0 = "#1d2021";
     blue = "#7daea3";
     purple = "#d3869b";
 
+    grey0 = "#7c6f64";
     grey1 = "#928374";
     grey2 = "#a89984";
 
@@ -26,7 +28,7 @@ let bg0 = "#1d2021";
       "pistachio" = green;
       "taskmaster" = orange;
       "time-eater" = aqua;
-      "giant-head" = fg1;
+      "giant-head" = blue;
       "book-of-stabbing" = purple;
       "nemesis" = green;
       "reptomancer" = orange;
@@ -37,7 +39,7 @@ let bg0 = "#1d2021";
       "pistachio" = green;
       "taskmaster" = grey2;
       "time-eater" = purple;
-      "giant-head" = fg0;
+      "giant-head" = grey1;
       "book-of-stabbing" = aqua;
       "nemesis" = fg0;
       "reptomancer" = orange;
@@ -50,13 +52,13 @@ let bg0 = "#1d2021";
     pathBg = accentColorSecondary.${hostName};
     pathStyle = "fg:${fgDark} bg:${pathBg}";
 
-    gitBg = grey1;
+    gitBg = grey0;
     gitStyle = "fg:${fgDark} bg:${gitBg}";
 
     langBg = bg5;
     langStyle = "fg:${fgLight} bg:${langBg}";
 
-    statusBg = bgStatusLine2;
+    statusBg = bg4;
     statusStyle = "fg:${fgLight} bg:${statusBg}";
     durationStyle = "bold yellow bg:${statusBg}";
     in

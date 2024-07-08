@@ -1,0 +1,71 @@
+@define-color bg0 #1d2021;
+
+@define-color fg0 #d4be98;
+@define-color fg1 #ddc7a1;
+
+@define-color bg5 #504945;
+@define-color bgStatusLine2 #32302f;
+@define-color bgStatusLine3 #504945;
+
+@define-color red #ea6962;
+@define-color aqua #89b482;
+@define-color orange #e78a43;
+@define-color yellow #d8a657;
+@define-color green #a9b665;
+@define-color blue #7daea3;
+@define-color purple #d3869b;
+
+@define-color grey1 #928374;
+@define-color grey2 #a89984;
+
+* {
+  font-family: "Fira Code Nerd Font";
+}
+
+#waybar {
+  margin: 10px;
+  background: @bgStatusLine2;
+  color: @fg1;
+  font-weight: bold;
+}
+
+#workspaces button {
+  color: @fg1;
+  background: @bgStatusLine3;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: bold;
+}
+
+#workspaces button.empty {
+  background: @bgStatusLine2;
+  color: @grey2;
+}
+
+#workspaces button.visible {
+  background: @yellow;
+  color: @bg0;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 3px;
+    font-weight: bold;
+    background: @bgStatusLine2;
+}
