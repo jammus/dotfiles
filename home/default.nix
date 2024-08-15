@@ -53,6 +53,7 @@
     lazydocker
     fx
     devenv
+    yt-dlp
   ];
 
 
