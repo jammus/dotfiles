@@ -18,11 +18,11 @@
     betterlockscreen
     pavucontrol
     spotify
-    spotify-tui
     obsidian
     waypaper
     swww
-    nvtop
+    nvtopPackages.full
+    discord
   ];
 
   wayland.windowManager.sway = {
