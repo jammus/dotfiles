@@ -19,6 +19,7 @@
       ../../roles/navidrome.nix
       ../../roles/grafana.nix
       ../../roles/prometheus.nix
+      ../../roles/immich.nix
     ];
 
   systemd.tmpfiles.rules = [
@@ -29,6 +30,8 @@
     serverIp = "100.72.171.50";
     persistanceRoot = "/nas/services/pihole";
   };
+
+  services.immich.enable = true;
 
   services.syncthing.settings.folders = {
     finance-data = {
@@ -137,21 +140,6 @@
     };
   };
 
-  systemd.services.init-filerun-network-and-files = {
-    description = "Create the network bridge for Immich.";
-    after = [ "network.target" ];
-    serviceConfig.Type = "oneshot";
-    wantedBy = [
-      "podman-immich.service"
-      "podman-redis.service"
-      "podman-postgres14.service"
-    ];
-    script = ''
-      ${pkgs.podman}/bin/podman pod exists immich-pod || \
-        ${pkgs.podman}/bin/podman pod create -n immich-pod -p '0.0.0.0:2283:8080'
-    '';
-  };
-
   virtualisation.oci-containers.containers = {
     audiobookshelf = {
       autoStart = true;
@@ -170,51 +158,6 @@
         AUDIOBOOKSHELF_GID = "${toString config.users.groups.media.gid}";
         TZ = "Asia/Singapore"; # Change this to your timezone
       };
-    };
-  };
-
-  # Immich
-  virtualisation.oci-containers.containers = {
-    immich = {
-      autoStart = true;
-      image = "ghcr.io/imagegenius/immich:v1.101.0-ig270";
-      dependsOn = [ "redis" "postgres14" ];
-      volumes = [
-        "/nas/services/immich:/config"
-        "/nas/photos/library:/photos"
-        "/nas/services/immich-ml:/config/machine-learning"
-      ];
-      environment = {
-        PUID = "1000";
-        PGID = "100";
-        TZ = "Asia/Singapore"; # Change this to your timezone
-        DB_HOSTNAME = "postgres14";
-        DB_USERNAME = "postgres";
-        DB_PASSWORD = "postgres";
-        DB_DATABASE_NAME = "immich";
-        REDIS_HOSTNAME = "redis";
-      };
-      extraOptions = [ "--pod=immich-pod" ];
-    };
-
-    redis = {
-      autoStart = true;
-      image = "redis";
-      extraOptions = [ "--pod=immich-pod" ];
-    };
-
-    postgres14 = {
-      autoStart = true;
-      image = "tensorchord/pgvecto-rs:pg14-v0.2.0";
-      volumes = [
-        "/nas/photos/db:/var/lib/postgresql/data"
-      ];
-      environment = {
-        POSTGRES_USER = "postgres";
-        POSTGRES_PASSWORD = "postgres";
-        POSTGRES_DB = "immich";
-      };
-      extraOptions = [ "--pod=immich-pod" ];
     };
   };
 
