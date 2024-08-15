@@ -693,6 +693,8 @@ in
 
       set termguicolors
 
+      set exrc
+
       colorscheme gruvbox-material
       set background=dark
 
