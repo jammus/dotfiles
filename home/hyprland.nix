@@ -1,6 +1,8 @@
 { config, pkgs, inputs, ... }:
 {
+  xdg.configFile."hypr/hyprlock.conf".source = ../config/hyprlock.conf;
 
+  xdg.configFile."hypr/hypridle.conf".source = ../config/hypridle.conf;
   xdg.configFile."waybar/style.css".source = ../config/waybar.css;
 
   wayland.windowManager.hyprland = {
@@ -237,4 +239,6 @@
       };
     }];
   };
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
 } 
