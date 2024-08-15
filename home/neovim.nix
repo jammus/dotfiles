@@ -53,9 +53,16 @@ in
       vim-visual-multi
       lazygit-nvim
       dressing-nvim
-      copilot-vim
       nvlime
       aniseed
+      {
+        plugin = copilot-vim; type = "vim";
+        config = ''
+          let g:copilot_filetypes = {
+                \ 'md': v:false,
+                \ }
+        '';
+      }
       {
         plugin = nvim-tree-lua; type = "lua";
         config = ''
