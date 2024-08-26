@@ -20,6 +20,7 @@
       ../../roles/grafana.nix
       ../../roles/prometheus.nix
       ../../roles/immich.nix
+      ../../roles/ersatztv.nix
     ];
 
   systemd.tmpfiles.rules = [
@@ -32,6 +33,8 @@
   };
 
   services.immich.enable = true;
+
+  services.ersatztv.enable = true;
 
   services.syncthing.settings.folders = {
     finance-data = {
