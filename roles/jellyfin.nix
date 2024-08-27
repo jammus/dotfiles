@@ -16,6 +16,10 @@
 
   services.jellyfin.enable = true;
 
+  systemd.services.jellyfin = {
+    path = [ pkgs.yt-dlp ];
+  };
+
   users.users = {
     jellyfin = {
       extraGroups = [
