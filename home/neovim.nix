@@ -557,10 +557,19 @@ in
         plugin = obsidian-nvim; type = "lua";
         config = ''
           require('obsidian').setup {
-    dir = "~/nb",  -- no need to call 'vim.fn.expand' here
+            workspaces = {
+              {
+                name = "personal",
+                path = "~/nb/personal",
+              },
+              {
+                name = "work",
+                path = "~/nb/work",
+              },
+            },
+    dir = "~/nb/personal",  -- no need to call 'vim.fn.expand' here
 
     -- Optional, if you keep notes in a specific subdirectory of your vault.
-    notes_subdir = "notes",
 
     -- Optional, set the log level for Obsidian. This is an integer corresponding to one of the log
     -- levels defined by "vim.log.levels.*" or nil, which is equivalent to DEBUG (1).
@@ -568,7 +577,7 @@ in
 
     daily_notes = {
       -- Optional, if you keep daily notes in a separate directory.
-      folder = "notes/dailies",
+      folder = "dailies/",
       -- Optional, if you want to change the date format for daily notes.
       date_format = "%Y-%m-%d",
       alias_format = "%B %-d, %Y"
