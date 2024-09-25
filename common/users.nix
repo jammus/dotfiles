@@ -15,6 +15,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "media"
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
