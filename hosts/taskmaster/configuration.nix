@@ -58,6 +58,10 @@
       path = "/nas/junk/giant-head/docs";
       devices = [ "giant-head" ];
     };
+    datasette-data = {
+      path = "/nas/junk/data/datasette/data";
+      devices = [ "giant-head" ];
+    };
   };
 
   age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
