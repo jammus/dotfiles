@@ -54,6 +54,7 @@
     fx
     devenv
     yt-dlp
+    zellij
   ];
 
 
