@@ -29,6 +29,10 @@
       path = "/home/jammus/docs";
       devices = [ "taskmaster" ];
     };
+    datasette-data = {
+      path = "/home/jammus/code/datasette-runner/data";
+      devices = [ "taskmaster" ];
+    };
   };
 
   services.openssh = {
