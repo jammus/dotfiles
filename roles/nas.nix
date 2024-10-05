@@ -3,24 +3,22 @@
   # https://nixos.wiki/wiki/Samba
   services.samba = {
     enable = true;
-    securityType = "user";
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = taskmaster
-      netbios name = taskmaster
-      security = user 
-      use sendfile = yes
-      #max protocol = smb2
-      hosts allow = 0.0.0.0/0
-      hosts deny = 0.0.0.0/0
-      guest account = nobody
-      map to guest = bad user
-    '';
-    shares = {
-      media = {
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "taskmaster";
+        "netbios name" = "taskmaster";
+        "security" = "user";
+        "use sendfile" = "yes";
+        "hosts allow" = "192.168.88. 127.0.0.1 localhost";
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      "media" = {
         path = "/nas/media";
         browseable = "yes";
-        "read only" = "no";
+        "read only" = "yes";
         "guest ok" = "yes";
         "create mask" = "0644";
         "directory mask" = "0755";
