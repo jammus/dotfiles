@@ -130,12 +130,13 @@
 
       bind = [
         "$mainMod,RETURN,exec,kitty"
-        "$mainMod,C,killactive,"
-        "$mainMod,M,exit,"
         "$mainMod,E,exec,dolphin"
-        "$mainMod,V,togglefloating,"
         "$mainMod,space,exec,wofi --show drun -o DP-3"
         "$mainMod,P,pseudo,"
+
+        "$mainMod SHIFT,C,killactive,"
+        "$mainMod SHIFT,M,exit,"
+        "$mainMod SHIFT,V,togglefloating,"
 
         "$mainMod,left,movefocus,l"
         "$mainMod,right,movefocus,r"
@@ -172,7 +173,6 @@
         "$mainMod,mouse_down,workspace,e+1"
         "$mainMod,mouse_up,workspace,e-1"
       ];
-
 
     };
   };
