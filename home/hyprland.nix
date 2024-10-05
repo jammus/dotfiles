@@ -65,7 +65,6 @@
           border_size = 2;
           "col.active_border" = "0xff7daea3";
           "col.inactive_border" = "0x667daea3";
-          apply_sens_to_raw = 0; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
           layout = "dwindle";
       };
 
