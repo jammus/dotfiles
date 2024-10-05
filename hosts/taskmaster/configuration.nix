@@ -26,6 +26,19 @@
   systemd.tmpfiles.rules = [
     "L /var/lib/prometheus2 - - - - /nas/services/prometheus2"
   ];
+
+  boot.kernelParams = [
+    "i915.enable_guc=2"
+  ];
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-compute-runtime
+    ];
+  };
+
   services.pihole = {
     enable = true;
     serverIp = "100.72.171.50";
