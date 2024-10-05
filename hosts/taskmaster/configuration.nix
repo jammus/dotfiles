@@ -64,6 +64,27 @@
     };
   };
 
+  systemd.timers."archive-video" = {
+  wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "6h";
+      OnUnitActiveSec = "6h";
+      Unit = "archive-video.service";
+    };
+  };
+
+  systemd.services."archive-video" = {
+    path = [ pkgs.yt-dlp ];
+    script = ''
+      set -eu
+      /nas/junk/data/videos/archive-videos.sh /nas/junk/data/videos /nas/media/videos
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "jellyfin";
+    };
+  };
+
   age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
   age.secrets."zfs-junk.key".file = ../../secrets/zfs-junk.key.age;
   age.secrets."backup_ed25519".file = ../../secrets/backup_ed25519.age;
@@ -321,6 +342,8 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    yt-dlp
+    ffmpeg
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
