@@ -16,8 +16,11 @@
     agenix = {
       url = "github:ryantm/agenix";
     };
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+    };
   };
-  outputs = { home-manager, nixpkgs, darwin, hyprsome, agenix, ...}:
+  outputs = { home-manager, nixpkgs, darwin, hyprsome, agenix, nixos-cosmic, ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -69,6 +72,7 @@
       system = "x86_64-linux";
       modules = [
         agenix.nixosModules.default
+        nixos-cosmic.nixosModules.default
         ./hosts/giant-head/configuration.nix
         ./common/desktop.nix
         home-manager.nixosModules.home-manager {

@@ -226,56 +226,50 @@
 
         local wk = require("which-key")
 
-        wk.register({
-          e = { name = "Explorer...", 
-            o = { "<cmd>NvimTreeFocus<cr>", "Open/Focus" },
-            q = { "<cmd>NvimTreeClose<cr>", "Close" },
-          },
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>e", group = "Explorer..." }, 
+          { "<leader>eo", "<cmd>NvimTreeFocus<cr>", desc = "Open/Focus" }, 
+          { "<leader>eq", "<cmd>NvimTreeClose<cr>", desc = "Close" }, 
+        })
 
+        wk.add({
+            { "<leader>p", group = "Projects..." },
+            { "<leader>po", "<cmd>lua require('telescope').load_extension('projects').projects{}<cr>", desc = "Open" },
+        })
 
-        wk.register({
-          p = { name = "Projects...", 
-            o = { "<cmd>lua require('telescope').load_extension('projects').projects{}<cr>", "Open" },
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>d", group = "Diagnostics..." },
+          { "<leader>dS", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Show all diagnostics" },
+          { "<leader>d[", vim.diagnostic.goto_prev, desc = "Previous" },
+          { "<leader>d]", vim.diagnostic.goto_next, desc = "Next" },
+          { "<leader>df", "<cmd>Telescope diagnostics<cr>", desc = "Find diagnostics" },
+          { "<leader>ds", "<cmd>Trouble document_diagnostics<cr>", desc = "Show diagnostics" },
+        })
 
-        wk.register({
-          d = { name = "Diagnostics...", 
-            f = { "<cmd>Telescope diagnostics<cr>", "Find diagnostics" },
-            ["]"] = { vim.diagnostic.goto_next, "Next" },
-            ["["] = { vim.diagnostic.goto_prev, "Previous" },
-            s = { "<cmd>Trouble document_diagnostics<cr>", "Show diagnostics" },
-            S = { "<cmd>Trouble workspace_diagnostics<cr>", "Show all diagnostics" },
-        }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>h", "<cmd>Telescope help_tags<cr>", desc = "Help" },
+        })
 
-        wk.register({
-          h = { "<cmd>Telescope help_tags<cr>", "Help" },
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>f", group = "Find..." },
+          { "<leader>fS", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Find symbol in workspace" },
+          { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffer" },
+          { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Find diagnostics" },
+          { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file" },
+          { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find in file" },
+          { "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "Find recently opened file" },
+          { "<leader>fo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Find Obsidian file" },
+          { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Find symbol" },
+        })
 
-        wk.register({
-          f = { name = "Find...", 
-            f = { "<cmd>Telescope find_files<cr>", "Find file" },
-            b = { "<cmd>Telescope buffers<cr>", "Find buffer" },
-            d = { "<cmd>Telescope diagnostics<cr>", "Find diagnostics" },
-            s = { "<cmd>Telescope lsp_document_symbols<cr>", "Find symbol" },
-            S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Find symbol in workspace" },
-            g = { "<cmd>Telescope live_grep<cr>", "Find in file" },
-            h = { "<cmd>Telescope oldfiles<cr>", "Find recently opened file" },
-            o = { "<cmd>ObsidianQuickSwitch<cr>", "Find Obsidian file" },
-          }
-        }, { prefix = "<leader>" })
-
-        wk.register({
-          T = { name = "Trouble...", 
-            p = { "<cmd>Trouble document_diagnostics<cr>", "Problems" },
-            P = { "<cmd>Trouble workspace_diagnostics<cr>", "Problems in workspace" },
-            u = { "<cmd>Trouble lsp_references<cr>", "Usages" },
-            d = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-            t = { "<cmd>TroubleToggle<cr>", "Toggle" },
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>T", group = "Trouble..." },
+          { "<leader>TP", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Problems in workspace" },
+          { "<leader>Td", "<cmd>Trouble lsp_definitions<cr>", desc = "Definitions" },
+          { "<leader>Tp", "<cmd>Trouble document_diagnostics<cr>", desc = "Problems" },
+          { "<leader>Tt", "<cmd>TroubleToggle<cr>", desc = "Toggle" },
+          { "<leader>Tu", "<cmd>Trouble lsp_references<cr>", desc = "Usages" },
+        })
 
         wk.register({
           r = { name = "Refactor...", 
