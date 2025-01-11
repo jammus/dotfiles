@@ -96,6 +96,7 @@
             imports = [
               ./home/default.nix
               ./home/linux.nix
+              ./home/taskmaster.nix
             ];
           };
         } 
