@@ -62,6 +62,10 @@
       autosnap = true;
     };
 
+    datasets."taskpool/junk" = {
+      useTemplate = [ "backup" ];
+    };
+
     datasets."taskpool/services" = {
       useTemplate = [ "backup" ];
     };
