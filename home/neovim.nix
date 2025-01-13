@@ -55,6 +55,7 @@ in
       dressing-nvim
       nvlime
       aniseed
+      nvim-parinfer
       {
         plugin = copilot-vim; type = "vim";
         config = ''
