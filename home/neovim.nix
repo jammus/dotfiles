@@ -13,18 +13,6 @@ let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
       pkgs.vimPlugins.plenary-nvim
     ];
   };
-  nvlime = pkgs.vimUtils.buildVimPlugin {
-    pname = "nvlime";
-    version = "v0.5.0rc";
-    src = pkgs.fetchFromGitHub {
-      owner = "monkoose";
-      repo ="nvlime";
-      rev = "83606f7e2d017ee7fcafe4ed4bf91ac776705633";
-      sha256 = "sha256-UXx2b08C342brANMRVyX2yh3RFlF1zI0i9cXoC+6jFQ=";
-    };
-    dependencies = [
-    ];
-  };
 in
 {
   programs.neovim = {
@@ -53,7 +41,6 @@ in
       vim-visual-multi
       lazygit-nvim
       dressing-nvim
-      nvlime
       aniseed
       nvim-parinfer
       {
