@@ -1,19 +1,4 @@
 { pkgs, ... }:
-let obsidian-nvim = pkgs.vimUtils.buildVimPlugin {
-    pname = "obisidan.nvim";
-    version = "v3.7.14";
-    src = pkgs.fetchFromGitHub {
-      owner = "epwalsh";
-      repo = "obsidian.nvim";
-      rev = "v3.7.14";
-      sha256 = "sha256-LYQFpTa4BaiqtH8BUevi12/OSZW7uEAytiAuQXkNeUo=";
-    };
-    meta.homepage = "https://github.com/epwalsh/obsidian.nvim";
-    dependencies = [
-      pkgs.vimPlugins.plenary-nvim
-    ];
-  };
-in
 {
   programs.neovim = {
     enable = true;
