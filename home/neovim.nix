@@ -28,12 +28,28 @@
       dressing-nvim
       aniseed
       nvim-parinfer
+      lspkind-nvim
       {
-        plugin = copilot-vim; type = "vim";
+        plugin = copilot-lua; type = "lua";
         config = ''
-          let g:copilot_filetypes = {
-                \ 'md': v:false,
-                \ }
+          require("copilot").setup({
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+            copilot_node_command = '${pkgs.nodejs}/bin/node',
+          })
+        '';
+      }
+      {
+        plugin = CopilotChat-nvim; type = "lua";
+        config = ''
+          require("CopilotChat").setup()
+        '';
+      }
+      {
+        plugin = copilot-cmp;
+        type = "lua";
+        config = ''
+          require("copilot_cmp").setup()
         '';
       }
       {
@@ -138,6 +154,7 @@
         plugin = nvim-cmp; type = "lua";
         config = ''
           -- Set up nvim-cmp.
+          local lspkind = require('lspkind')
           local cmp = require'cmp'
           cmp.setup({
             snippet = {
@@ -157,11 +174,19 @@
               ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             }),
             sources = cmp.config.sources({
+              { name = "copilot", group_index = 2 },
               { name = 'nvim_lsp' },
               { name = 'vsnip' },
             }, {
               { name = 'buffer' },
-            })
+            }),
+            formatting = {
+              format = lspkind.cmp_format({
+                mode = "symbol_text",
+                max_width = 50,
+                symbol_map = { Copilot = "" }
+              })
+            },
           })
 
           cmp.setup.cmdline(':', {
