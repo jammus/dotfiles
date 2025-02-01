@@ -26,7 +26,6 @@
       vim-visual-multi
       lazygit-nvim
       dressing-nvim
-      aniseed
       nvim-parinfer
       lspkind-nvim
       {
@@ -231,21 +230,14 @@
       {
         plugin = which-key-nvim; type = "lua";
         config = ''
-          -- Wrap single character key labels in square brackets eg, f becomes [f]
-          local key_labels = {}
-          for i=33,126 do
-            key_labels[string.char(i)] = '[' .. string.char(i) .. ']'
-          end
-          key_labels["["] = ' [ '
-          key_labels["]"] = ' ] '
-
           require("which-key").setup {
             icons = {
               group = "",
             },
-            key_labels = key_labels,
-            window = {
-              winblend = 5,
+            win = {
+              wo = {
+                winblend = 5,
+              },
             },
           }
 
@@ -296,113 +288,102 @@
           { "<leader>Tu", "<cmd>Trouble lsp_references<cr>", desc = "Usages" },
         })
 
-        wk.register({
-          r = { name = "Refactor...", 
-            n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-            f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>r", group = "Refactor..." },
+          { "<leader>rf", "<cmd>lua vim.lsp.buf.format { async = true }<cr>", desc = "Format" },
+          { "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+        })
 
-        wk.register({
-          r = { name = "Refactor...", 
-            e = { name = "Extract...",
-              f = { "<cmd>lua require('refactoring').refactor('Extract Function')<cr>", "Function" },
-            },
-          }
-        }, { prefix = "<leader>", mode = "v" })
-
-        wk.register({
-          s = { name = "Spelling...",
-            s = { "<cmd>Telescope spell_suggest<cr>", "Suggestions" },
+        wk.add({
+          {
+            mode = { "v" },
+            { "<leader>r", group = "Refactor..." },
+            { "<leader>re", group = "Extract..." },
+            { "<leader>ref", "<cmd>lua require('refactoring').refactor('Extract Function')<cr>", desc = "Function" },
           },
-        }, { prefix = "<leader>" })
+        })
 
-        wk.register({
-          m = { name = "Minimap...", 
-            o = { "<cmd>Minimap<cr>", "Open" },
-            q = { "<cmd>MinimapClose<cr>", "Close" },
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>s", group = "Spelling..." },
+          { "<leader>ss", "<cmd>Telescope spell_suggest<cr>", desc = "Suggestions" },
+        })
+
+        wk.add({
+          { "<leader>m", group = "Minimap..." },
+          { "<leader>mo", "<cmd>Minimap<cr>", desc = "Open" },
+          { "<leader>mq", "<cmd>MinimapClose<cr>", desc = "Close" },
+        })
 
 
-        wk.register({
-          b = { name = "Buffers...", 
-            ["]"] = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-            ["["] = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-            f = { "<cmd>Telescope buffers<cr>", "Find" },
-            p = { "<cmd>BufferLinePick<cr>", "Pick" },
-            q = { "<cmd>BufferLinePickClose<cr>", "Close" },
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>b", group = "Buffers..." },
+          { "<leader>b[", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous" },
+          { "<leader>b]", "<cmd>BufferLineCycleNext<cr>", desc = "Next" },
+          { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find" },
+          { "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "Pick" },
+          { "<leader>bq", "<cmd>BufferLinePickClose<cr>", desc = "Close" },
+        })
 
-        wk.register({
-          t = { name = "Tabs...", 
-            ["]"] = { "<cmd>tabnext<cr>", "Next" },
-            ["["] = { "<cmd>tabprevious<cr>", "Previous" },
-            n = { "<cmd>tabnew<cr>", "New" },
-            o = { "<cmd>tabnew | Telescope find_files<cr>", "Open in new tab" },
-            q = { "<cmd>tabclose<cr>", "Close" },
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>t", group = "Tabs..." },
+          { "<leader>t[", "<cmd>tabprevious<cr>", desc = "Previous" },
+          { "<leader>t]", "<cmd>tabnext<cr>", desc = "Next" },
+          { "<leader>tn", "<cmd>tabnew<cr>", desc = "New" },
+          { "<leader>to", "<cmd>tabnew | Telescope find_files<cr>", desc = "Open in new tab" },
+          { "<leader>tq", "<cmd>tabclose<cr>", desc = "Close" },
+        })
 
-        wk.register({
-          g = { name = "Git...",
-            g = { "<cmd>LazyGit<cr>", "LazyGit" },
-            H = { name = "History...",
-              f = { "<cmd>LazyGitFilterCurrentFile<cr>", "File" },
-              a = { "<cmd>LazyGitFilter<cr>", "All" },
-            },
-            a = { name = "Annotate/Blame...",
-              l = { "<cmd>Gitsigns blame_line full=true<cr>", "Line" },
-              t = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle" },
-            },
-            h = { name = "Hunk...",
-              ["]"] = { "<cmd>Gitsigns next_hunk<cr>", "Next" },
-              ["["] = { "<cmd>Gitsigns prev_hunk<cr>", "Previous" },
-              s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage" },
-              u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo stage" },
-              r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset" },
-            },
-            b = { name = "Buffer...",
-              s = { "<cmd>Gitsigns stage_buffer<cr>", "Stage" },
-            }
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>g", group = "Git..." },
+          { "<leader>gH", group = "History..." },
+          { "<leader>gHa", "<cmd>LazyGitFilter<cr>", desc = "All" },
+          { "<leader>gHf", "<cmd>LazyGitFilterCurrentFile<cr>", desc = "File" },
+          { "<leader>ga", group = "Annotate/Blame..." },
+          { "<leader>gal", "<cmd>Gitsigns blame_line full=true<cr>", desc = "Line" },
+          { "<leader>gat", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle" },
+          { "<leader>gb", group = "Buffer..." },
+          { "<leader>gbs", "<cmd>Gitsigns stage_buffer<cr>", desc = "Stage" },
+          { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+          { "<leader>gh", group = "Hunk..." },
+          { "<leader>gh[", "<cmd>Gitsigns prev_hunk<cr>", desc = "Previous" },
+          { "<leader>gh]", "<cmd>Gitsigns next_hunk<cr>", desc = "Next" },
+          { "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset" },
+          { "<leader>ghs", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage" },
+          { "<leader>ghu", "<cmd>Gitsigns undo_stage_hunk<cr>", desc = "Undo stage" },
+        })
 
-        wk.register({
-          w = { name = "Window...",
-            r = { "<cmd>lua require('smart-splits').start_resize_mode()<cr>", "Resize" },
-            q = { "<cmd>close<cr>", "Close" },
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>w", group = "Window..." },
+          { "<leader>wq", "<cmd>close<cr>", desc = "Close" },
+          { "<leader>wr", "<cmd>lua require('smart-splits').start_resize_mode()<cr>", desc = "Resize" },
+        })
 
-        wk.register({
-          o = { name = "Obsidian...",
-            n = { "<cmd>ObsidianNew<cr>", "New" },
-            f = { "<cmd>ObsidianFollowLink<cr>", "Follow" },
-            o = { "<cmd>ObsidianOpen<cr>", "Open" },
-            b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-            s = { "<cmd>ObsidianSearch<cr>", "Search" },
-            d = { name = "Daily...",
-              t = { "<cmd>ObsidianToday<cr>", "Today" },
-              w = { name = "Working day...",
-                ["]"] = { "<cmd>ObsidianTomorrow<cr>", "Next" },
-                ["["] = { "<cmd>ObsidianYesterday<cr>", "Previous" },
-              },
-              ["]"] = { "<cmd>ObsidianToday +1<cr>", "Next" },
-              ["["] = { "<cmd>ObsidianToday -1<cr>", "Previous" },
-            }
-          }
-        }, { prefix = "<leader>" })
+        wk.add({
+          { "<leader>o", group = "Obsidian..." },
+          { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+          { "<leader>od", group = "Daily..." },
+          { "<leader>od[", "<cmd>ObsidianToday -1<cr>", desc = "Previous" },
+          { "<leader>od]", "<cmd>ObsidianToday +1<cr>", desc = "Next" },
+          { "<leader>odt", "<cmd>ObsidianToday<cr>", desc = "Today" },
+          { "<leader>odw", group = "Working day..." },
+          { "<leader>odw[", "<cmd>ObsidianYesterday<cr>", desc = "Previous" },
+          { "<leader>odw]", "<cmd>ObsidianTomorrow<cr>", desc = "Next" },
+          { "<leader>of", "<cmd>ObsidianFollowLink<cr>", desc = "Follow" },
+          { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New" },
+          { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open" },
+          { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search" },
+        })
 
-        wk.register({
-          o = { name = "Obsidian...",
-            n = { "<cmd>ObsidianLinkNew<cr>", "New" },
-            l = { "<cmd>ObsidianLink<cr>", "Link" },
-            o = { "<cmd>ObsidianOpen<cr>", "Open" },
-            b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-          }
-        }, { prefix = "<leader>", mode = 'v' })
+        wk.add({
+          {
+            mode = { "v" },
+            { "<leader>o", group = "Obsidian..." },
+            { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+            { "<leader>ol", "<cmd>ObsidianLink<cr>", desc = "Link" },
+            { "<leader>on", "<cmd>ObsidianLinkNew<cr>", desc = "New" },
+            { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open" },
+          },
+        })
         '';
       }
       {
