@@ -106,7 +106,6 @@
               --print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
             --end, bufopts)
             vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-            vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
             vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
           end
           require('lazy-lsp').setup {
@@ -170,7 +169,7 @@
               ['<C-f>'] = cmp.mapping.scroll_docs(4),
               ['<C-Space>'] = cmp.mapping.complete(),
               ['<C-e>'] = cmp.mapping.abort(),
-              ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+              ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             }),
             sources = cmp.config.sources({
               { name = "copilot", group_index = 2 },
@@ -183,7 +182,7 @@
               format = lspkind.cmp_format({
                 mode = "symbol_text",
                 max_width = 50,
-                symbol_map = { Copilot = "" }
+                symbol_map = { Copilot = " " }
               })
             },
           })
@@ -247,6 +246,12 @@
           { "<leader>e", group = "Explorer..." }, 
           { "<leader>eo", "<cmd>NvimTreeFocus<cr>", desc = "Open/Focus" }, 
           { "<leader>eq", "<cmd>NvimTreeClose<cr>", desc = "Close" }, 
+        })
+
+        wk.add({
+          { "<leader>c", group = "Code..." },
+          { "<leader>ca", vim.lsp.buf.code_action, desc = "Action" },
+          { "<leader>cc", "<cmd>CopilotChatOpen<cr>", desc = "Copilot chat" },
         })
 
         wk.add({
