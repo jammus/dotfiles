@@ -539,14 +539,29 @@
               {
                 name = "personal",
                 path = "~/nb/personal",
+                overrides = {
+                  daily_notes = {
+                    folder = "~/nb/personal/dailies/",
+                  },
+                },
               },
               {
                 name = "work",
                 path = "~/nb/work",
+                overrides = {
+                  daily_notes = {
+                    folder = "~/nb/work/dailies/",
+                  },
+                },
               },
               {
                 name = "public",
                 path = "~/nb/public",
+                overrides = {
+                  daily_notes = {
+                    folder = "~/nb/public/dailies/",
+                  },
+                },
               },
             },
 
