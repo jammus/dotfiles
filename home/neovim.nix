@@ -544,10 +544,11 @@
                 name = "work",
                 path = "~/nb/work",
               },
+              {
+                name = "public",
+                path = "~/nb/public",
+              },
             },
-    dir = "~/nb/personal",  -- no need to call 'vim.fn.expand' here
-
-    -- Optional, if you keep notes in a specific subdirectory of your vault.
 
     -- Optional, set the log level for Obsidian. This is an integer corresponding to one of the log
     -- levels defined by "vim.log.levels.*" or nil, which is equivalent to DEBUG (1).
