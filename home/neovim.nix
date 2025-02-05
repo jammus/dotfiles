@@ -375,8 +375,9 @@
           { "<leader>odw]", "<cmd>ObsidianTomorrow<cr>", desc = "Next" },
           { "<leader>of", "<cmd>ObsidianFollowLink<cr>", desc = "Follow" },
           { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New" },
-          { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open" },
+          { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Open" },
           { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search" },
+          { "<leader>ow", "<cmd>ObsidianWorkspace<cr>", desc = "Workspace" },
         })
 
         wk.add({
