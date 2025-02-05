@@ -542,7 +542,7 @@
                 path = "~/nb/personal",
                 overrides = {
                   daily_notes = {
-                    folder = "~/nb/personal/dailies/",
+                    folder = "dailies/",
                   },
                 },
               },
@@ -551,7 +551,7 @@
                 path = "~/nb/work",
                 overrides = {
                   daily_notes = {
-                    folder = "~/nb/work/dailies/",
+                    folder = "dailies/",
                   },
                 },
               },
@@ -560,7 +560,7 @@
                 path = "~/nb/public",
                 overrides = {
                   daily_notes = {
-                    folder = "~/nb/public/dailies/",
+                    folder = "dailies/",
                   },
                 },
               },
