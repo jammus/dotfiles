@@ -538,30 +538,13 @@
           require('obsidian').setup {
             workspaces = {
               {
-                name = "personal",
-                path = "~/nb/personal",
+                name = "nb",
+                path = "~/nb",
                 overrides = {
                   daily_notes = {
-                    folder = "dailies/",
+                    folder = "notes/dailies/",
                   },
-                },
-              },
-              {
-                name = "work",
-                path = "~/nb/work",
-                overrides = {
-                  daily_notes = {
-                    folder = "dailies/",
-                  },
-                },
-              },
-              {
-                name = "public",
-                path = "~/nb/public",
-                overrides = {
-                  daily_notes = {
-                    folder = "dailies/",
-                  },
+                  notes_subdir = "notes",
                 },
               },
             },
