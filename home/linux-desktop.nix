@@ -23,6 +23,7 @@
     swww
     nvtopPackages.full
     discord
+    feishin
   ];
 
   wayland.windowManager.sway = {
