@@ -4,6 +4,7 @@
     ./direnv.nix
     ./kitty.nix
     ./zsh.nix
+    ./fish.nix
     ./starship.nix
     ./tmux.nix
     ./neovim.nix
