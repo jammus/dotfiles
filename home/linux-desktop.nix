@@ -24,6 +24,7 @@
     nvtopPackages.full
     discord
     feishin
+    ollama-cuda
   ];
 
   wayland.windowManager.sway = {
