@@ -5,6 +5,9 @@
     autosuggestion = {
       enable = true;
     };
+    historySubstringSearch = { 
+      enable = true;
+    };
     initExtra = if pkgs.stdenv.hostPlatform.isDarwin then ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '' else "";
@@ -15,9 +18,12 @@
       bl = "nb notes:backlog/";
       bm = "nb notes:bookmarks/";
     };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "history-substring-search" ];
-    };
+    plugins = [
+      {
+        name = "vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+    ];
   };
 }
