@@ -1,6 +1,5 @@
-{ lib, osConfig, ... }:
+{ config, lib, osConfig, ... }:
 let bg0 = "#1d2021";
-
     fg0 = "#d4be98";
     fg1 = "#ddc7a1";
 
@@ -130,9 +129,11 @@ let bg0 = "#1d2021";
         "$zig"
         "$env_var"
 
-        "[ ](bg:${statusBg} fg:${langBg})"
+        "[](bg:${statusBg} fg:${langBg})"
 
         "$cmd_duration"
+
+        "$character"
 
         "[ ](fg:${statusBg})"
 
@@ -218,7 +219,16 @@ let bg0 = "#1d2021";
         format = "[$symbol ]($style fg:${green})";
       };
       cmd_duration = {
-        format = "[took ](${statusStyle})[$duration ](${durationStyle})";
+        format = "[ took ](${statusStyle})[$duration](${durationStyle})";
+      };
+      character = {
+        success_symbol = "[•](fg:${statusBg} bg:${statusBg})";
+        error_symbol = "[•](fg:${red} bg:${statusBg})";
+        vimcmd_replace_symbol = "[•](fg:${yellow} bg:${statusBg})";
+        vimcmd_replace_one_symbol = "[•](fg:${yellow} bg:${statusBg})";
+        vimcmd_visual_symbol = "[•](fg:${purple} bg:${statusBg})";
+        vimcmd_symbol = "[•](fg:${green} bg:${statusBg})";
+        format = "$symbol";
       };
     };
   };
