@@ -8,6 +8,9 @@
     historySubstringSearch = { 
       enable = true;
     };
+    syntaxHighlighting = {
+      enable = true;
+    };
     initExtra = if pkgs.stdenv.hostPlatform.isDarwin then ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '' else "";
