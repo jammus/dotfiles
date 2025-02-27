@@ -11,12 +11,15 @@
     syntaxHighlighting = {
       enable = true;
     };
-    initExtra = if pkgs.stdenv.hostPlatform.isDarwin then ''
+    initExtra = ''
+      setopt interactivecomments
+    '' + (if pkgs.stdenv.hostPlatform.isDarwin then ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
-    '' else "";
+    '' else "");
     enableCompletion = true;
     shellAliases = {
       ls = "lsd";
+      ll = "ls -l";
       cat = "bat";
       bl = "nb notes:backlog/";
       bm = "nb notes:bookmarks/";
