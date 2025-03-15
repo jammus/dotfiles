@@ -45,6 +45,7 @@
   box-shadow: none;
   font-weight: bold;
   margin-right: 5;
+  padding: 5 10;
 }
 
 #workspaces button.empty {
@@ -52,6 +53,7 @@
   color: @grey2;
 }
 
+#workspaces button.active,
 #workspaces button.visible {
   background: @blue;
   color: @bg0;

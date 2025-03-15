@@ -5,6 +5,7 @@
     ./rofi
     ./xmonad.nix
     ./hyprland.nix
+    ./waybar.nix
     ./linux.nix
   ];
 
