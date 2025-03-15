@@ -89,6 +89,10 @@
   i18n.defaultLocale = "en_SG.utf8";
 
   programs.hyprland.enable = true;
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+  };
 
   environment.sessionVariables = rec {
     WLR_NO_HARDWARE_CURSORS = "1";

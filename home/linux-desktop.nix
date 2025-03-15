@@ -6,6 +6,7 @@
     ./xmonad.nix
     ./hyprland.nix
     ./waybar.nix
+    ./niri.nix
     ./linux.nix
   ];
 
@@ -26,6 +27,7 @@
     discord
     feishin
     ollama-cuda
+    xwayland-satellite
   ];
 
   wayland.windowManager.sway = {
