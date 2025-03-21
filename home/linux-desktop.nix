@@ -38,4 +38,23 @@
       terminal = "kitty";
     };
   };
+
+  stylix = {
+    enable = true;
+    autoEnable = false;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    cursor = {
+      name = "vanilla-dmz";
+      size = 24;
+      package = pkgs.vanilla-dmz;
+    };
+    targets = {
+      wofi.enable = true;
+      fuzzel.enable = true;
+      zellij.enable = true;
+      lazygit.enable = true;
+      hyprlock.enable = true;
+      btop.enable = true;
+    };
+  };
 }

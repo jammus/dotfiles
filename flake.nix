@@ -22,11 +22,14 @@
     niri = {
       url = "github:sodiboo/niri-flake";
     };
+    stylix = {
+      url = "github:danth/stylix";
+    };
   };
   outputs = {
     home-manager, nixpkgs, darwin,
     hyprsome, agenix, nixos-cosmic,
-    niri,
+    niri, stylix,
     ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
@@ -79,6 +82,7 @@
       system = "x86_64-linux";
       modules = [
         agenix.nixosModules.default
+        stylix.nixosModules.stylix
         nixos-cosmic.nixosModules.default
         niri.nixosModules.niri
         ./hosts/giant-head/configuration.nix
