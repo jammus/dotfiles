@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   programs.niri.settings = {
     animations = {
@@ -77,14 +77,21 @@
       DISPLAY = ":0";
     };
 
+    hotkey-overlay.skip-at-startup = true;
+
     layout = {
       border = {
+        enable = true;
         width = 2;
-        active = "#7daea3";
       };
       default-column-width = {
         proportion = 0.5;
       };
+      focus-ring = {
+        enable = false;
+        width = 2;
+      };
+      gaps = 14;
       preset-column-widths = [
         { proportion = 1. / 2; }
         { proportion = 1. / 3.; }
@@ -108,6 +115,18 @@
       { command = ["xwayland-satellite"]; }
       { command = ["swaybg" "-o" "DP-1" "-i" "${../assets/wallpaper_r.jpg}"
       "-o" "DP-2" "-i" "${../assets/wallpaper_l.jpg}" "-m" "fill"]; }
+    ];
+
+    window-rules = [
+      {
+        clip-to-geometry = true;
+        geometry-corner-radius = {
+          top-left = 8.0;
+          top-right = 8.0;
+          bottom-left = 8.0;
+          bottom-right = 8.0;
+        };
+      }
     ];
   };
 }
