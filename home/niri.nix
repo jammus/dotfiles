@@ -64,6 +64,10 @@
       "Mod+Alt+3".action.set-column-width = "33.333333%";
       "Mod+Alt+4".action.set-column-width = "25%";
       "Mod+Alt+5".action.set-column-width = "20%";
+
+      "Mod+Alt+Shift+3".action.set-column-width = "66.666666%";
+      "Mod+Alt+Shift+4".action.set-column-width = "75%";
+      "Mod+Alt+Shift+5".action.set-column-width = "80%";
     };
 
     environment = {
