@@ -2,7 +2,8 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    defaultOptions = ["--height 10" "--border"];
+    enableFishIntegration = false;
+    defaultOptions = ["--height 20" "--border"];
     historyWidgetOptions = ["--exact"];
     colors = {
       fg = "#ebdbb2";
