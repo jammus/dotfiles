@@ -56,6 +56,7 @@
     devenv
     yt-dlp
     zellij
+    pastel
   ];
 
 
