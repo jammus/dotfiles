@@ -68,6 +68,9 @@
       "Mod+Alt+Shift+3".action.set-column-width = "66.666666%";
       "Mod+Alt+Shift+4".action.set-column-width = "75%";
       "Mod+Alt+Shift+5".action.set-column-width = "80%";
+
+      "Mod+Shift+Q".action.quit = {};
+      "Mod+Shift+Escape".action.power-off-monitors = {};
     };
 
     environment = {
