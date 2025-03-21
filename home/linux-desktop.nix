@@ -28,6 +28,7 @@
     feishin
     ollama-cuda
     xwayland-satellite
+    swaybg
   ];
 
   wayland.windowManager.sway = {

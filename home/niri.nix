@@ -95,6 +95,8 @@
     spawn-at-startup = [
       { command = ["waybar"]; }
       { command = ["xwayland-satellite"]; }
+      { command = ["swaybg" "-o" "DP-1" "-i" "${../assets/wallpaper_r.jpg}"
+      "-o" "DP-2" "-i" "${../assets/wallpaper_l.jpg}" "-m" "fill"]; }
     ];
   };
 }
