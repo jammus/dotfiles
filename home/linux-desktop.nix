@@ -27,6 +27,7 @@
     discord
     feishin
     ollama-cuda
+    librewolf
     xwayland-satellite
     swaybg
   ];
