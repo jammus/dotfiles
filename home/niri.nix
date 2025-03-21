@@ -66,6 +66,10 @@
       "Mod+Alt+5".action.set-column-width = "20%";
     };
 
+    environment = {
+      DISPLAY = ":0";
+    };
+
     layout = {
       border = {
         width = 2;
