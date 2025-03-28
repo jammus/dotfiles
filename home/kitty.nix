@@ -21,6 +21,8 @@
       inactive_tab_background #504945
 
       disable_ligatures always
+
+      shell /etc/profiles/per-user/jammus/bin/fish
     '';
   };
 }
