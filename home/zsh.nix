@@ -18,8 +18,6 @@
     '' else "");
     enableCompletion = true;
     shellAliases = {
-      ls = "lsd";
-      ll = "ls -l";
       cat = "bat";
       bl = "nb notes:backlog/";
       bm = "nb notes:bookmarks/";

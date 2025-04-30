@@ -3,7 +3,6 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ls = "lsd";
       cat = "bat";
       bl = "nb notes:backlog/";
       bm = "nb notes:bookmarks/";
