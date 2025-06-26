@@ -29,6 +29,13 @@
       nvim-parinfer
       lspkind-nvim
       {
+        plugin = avante-nvim; type = "lua";
+        config = ''
+          require("avante_lib").load()
+          require("avante").setup()
+        '';
+      }
+      {
         plugin = copilot-lua; type = "lua";
         config = ''
           require("copilot").setup({
@@ -121,6 +128,9 @@
               "denols",
               "sqls",
               "marksman",
+            },
+            preferred_servers = {
+              python = { "basedpyright"}
             },
             -- Default config passed to all servers to specify on_attach callback and other options.
             default_config = {
@@ -261,11 +271,11 @@
 
         wk.add({
           { "<leader>d", group = "Diagnostics..." },
-          { "<leader>dS", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Show all diagnostics" },
+          { "<leader>dS", "<cmd>Trouble diagnostics toggle<cr>", desc = "Show all diagnostics" },
           { "<leader>d[", vim.diagnostic.goto_prev, desc = "Previous" },
           { "<leader>d]", vim.diagnostic.goto_next, desc = "Next" },
           { "<leader>df", "<cmd>Telescope diagnostics<cr>", desc = "Find diagnostics" },
-          { "<leader>ds", "<cmd>Trouble document_diagnostics<cr>", desc = "Show diagnostics" },
+          { "<leader>ds", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Show diagnostics" },
         })
 
         wk.add({
@@ -281,15 +291,15 @@
           { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find in file" },
           { "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "Find recently opened file" },
           { "<leader>fo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Find Obsidian file" },
+          { "<leader>fr", "<cmd>Telescope lsp_references<cr>", desc = "Find references" },
           { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Find symbol" },
         })
 
         wk.add({
           { "<leader>T", group = "Trouble..." },
-          { "<leader>TP", "<cmd>Trouble workspace_diagnostics<cr>", desc = "Problems in workspace" },
+          { "<leader>TP", "<cmd>Trouble diagnostics toggle<cr>", desc = "Problems in workspace" },
           { "<leader>Td", "<cmd>Trouble lsp_definitions<cr>", desc = "Definitions" },
-          { "<leader>Tp", "<cmd>Trouble document_diagnostics<cr>", desc = "Problems" },
-          { "<leader>Tt", "<cmd>TroubleToggle<cr>", desc = "Toggle" },
+          { "<leader>Tp", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Problems" },
           { "<leader>Tu", "<cmd>Trouble lsp_references<cr>", desc = "Usages" },
         })
 
