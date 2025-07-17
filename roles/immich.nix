@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.immich;
+  cfg = config.services.immich-docker;
 in {
-  options.services.immich = {
+  options.services.immich-docker = {
     enable = mkEnableOption "immich monodocker service";
   };
 
@@ -19,14 +19,14 @@ in {
       ];
       script = ''
         ${pkgs.podman}/bin/podman pod exists immich-pod || \
-          ${pkgs.podman}/bin/podman pod create -n immich-pod -p '0.0.0.0:2283:8080'
+          ${pkgs.podman}/bin/podman pod create -n immich-pod -p '0.0.0.0:2283:2283'
       '';
     };
 
     virtualisation.oci-containers.containers = {
       immich = {
         autoStart = true;
-        image = "ghcr.io/imagegenius/immich:v1.111.0-ig314";
+        image = "ghcr.io/imagegenius/immich:v1.131.3-ig386";
         dependsOn = [ "redis" "postgres14" ];
         volumes = [
           "/nas/services/immich:/config"
@@ -42,6 +42,7 @@ in {
           DB_PASSWORD = "postgres";
           DB_DATABASE_NAME = "immich";
           REDIS_HOSTNAME = "redis";
+          SERVER_PORT = "2283";
         };
         extraOptions = [ "--pod=immich-pod" ];
       };

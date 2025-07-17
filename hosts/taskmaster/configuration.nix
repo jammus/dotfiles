@@ -45,7 +45,7 @@
     persistanceRoot = "/nas/services/pihole";
   };
 
-  services.immich.enable = true;
+  services.immich-docker.enable = true;
 
   services.ersatztv.enable = true;
 
