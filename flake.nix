@@ -25,11 +25,16 @@
     stylix = {
       url = "github:danth/stylix";
     };
+    secrets = {
+      url = "path:./secrets-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.agenix.follows = "agenix";
+    };
   };
   outputs = {
     home-manager, nixpkgs, darwin,
     hyprsome, agenix, nixos-cosmic,
-    niri, stylix,
+    niri, stylix, secrets,
     ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
@@ -82,6 +87,7 @@
       system = "x86_64-linux";
       modules = [
         agenix.nixosModules.default
+        secrets.nixosModules.secrets
         stylix.nixosModules.stylix
         nixos-cosmic.nixosModules.default
         niri.nixosModules.niri
@@ -105,6 +111,7 @@
       system = "x86_64-linux";
       modules = [
         agenix.nixosModules.default
+        secrets.nixosModules.secrets
         ./hosts/taskmaster/configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
