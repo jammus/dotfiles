@@ -26,7 +26,7 @@
       url = "github:danth/stylix";
     };
     secrets = {
-      url = "path:./secrets-flake";
+      url = "git+ssh://git@github.com/jammus/secrets.git";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.agenix.follows = "agenix";
     };

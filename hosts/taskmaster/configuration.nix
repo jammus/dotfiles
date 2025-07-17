@@ -85,10 +85,6 @@
     };
   };
 
-  age.secrets."zfs.key".file = ../../secrets/zfs.key.age;
-  age.secrets."zfs-junk.key".file = ../../secrets/zfs-junk.key.age;
-  age.secrets."backup_ed25519".file = ../../secrets/backup_ed25519.age;
-  age.secrets."backup.passphrase".file = ../../secrets/backup.passphrase.age;
 
   services.zfs.autoScrub = {
     enable = true;
