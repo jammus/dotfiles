@@ -235,8 +235,11 @@
         })
 
         wk.add({
-            { "<leader>p", group = "Projects..." },
-            { "<leader>po", "<cmd>lua require('telescope').load_extension('projects').projects{}<cr>", desc = "Open" },
+          {
+            mode = { "v" },
+            { "<leader>c", group = "Code..." },
+            { "<leader>ca", vim.lsp.buf.code_action, desc = "Action" },
+          },
         })
 
         wk.add({
@@ -393,15 +396,6 @@
           require("trouble").setup {
             auto_jump = {"lsp_definitions"}
           }
-        '';
-      }
-      {
-        plugin = project-nvim; type = "lua";
-        config = ''
-        require("project_nvim").setup {
-          detection_methods = { "lsp" },
-        }
-        require('telescope').load_extension('projects')
         '';
       }
       {
