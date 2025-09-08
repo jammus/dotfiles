@@ -29,36 +29,6 @@
       nvim-parinfer
       lspkind-nvim
       {
-        plugin = avante-nvim; type = "lua";
-        config = ''
-          require("avante_lib").load()
-          require("avante").setup()
-        '';
-      }
-      {
-        plugin = copilot-lua; type = "lua";
-        config = ''
-          require("copilot").setup({
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-            copilot_node_command = '${pkgs.nodejs}/bin/node',
-          })
-        '';
-      }
-      {
-        plugin = CopilotChat-nvim; type = "lua";
-        config = ''
-          require("CopilotChat").setup()
-        '';
-      }
-      {
-        plugin = copilot-cmp;
-        type = "lua";
-        config = ''
-          require("copilot_cmp").setup()
-        '';
-      }
-      {
         plugin = nvim-tree-lua; type = "lua";
         config = ''
           require("nvim-tree").setup {
@@ -182,7 +152,7 @@
               ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             }),
             sources = cmp.config.sources({
-              { name = "copilot", group_index = 2 },
+              -- { name = "copilot", group_index = 2 },
               { name = 'nvim_lsp' },
               { name = 'vsnip' },
             }, {
@@ -192,7 +162,7 @@
               format = lspkind.cmp_format({
                 mode = "symbol_text",
                 max_width = 50,
-                symbol_map = { Copilot = " " }
+                -- symbol_map = { Copilot = " " }
               })
             },
           })
@@ -261,7 +231,7 @@
         wk.add({
           { "<leader>c", group = "Code..." },
           { "<leader>ca", vim.lsp.buf.code_action, desc = "Action" },
-          { "<leader>cc", "<cmd>CopilotChatOpen<cr>", desc = "Copilot chat" },
+          -- { "<leader>cc", "<cmd>CopilotChatOpen<cr>", desc = "Copilot chat" },
         })
 
         wk.add({
