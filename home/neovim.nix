@@ -29,6 +29,21 @@
       nvim-parinfer
       lspkind-nvim
       {
+        plugin = render-markdown-nvim; type = "lua";
+        config = ''
+        require('render-markdown').setup({
+          code = {
+            language_name = false,
+          },
+          checkbox = {
+            custom = {
+              cancelled = { raw = '[o]', rendered = "󰜺", highlight = "ObsidianTodoCancel" },
+            }
+          }
+        })
+        '';
+      }
+      {
         plugin = nvim-tree-lua; type = "lua";
         config = ''
           require("nvim-tree").setup {
@@ -263,7 +278,7 @@
           { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find file" },
           { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find in file" },
           { "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "Find recently opened file" },
-          { "<leader>fo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Find Obsidian file" },
+          { "<leader>fo", "<cmd>Obsidian quick_switch<cr>", desc = "Find Obsidian file" },
           { "<leader>fr", "<cmd>Telescope lsp_references<cr>", desc = "Find references" },
           { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Find symbol" },
         })
@@ -350,27 +365,27 @@
           { "<leader>o", group = "Obsidian..." },
           { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
           { "<leader>od", group = "Daily..." },
-          { "<leader>od[", "<cmd>ObsidianToday -1<cr>", desc = "Previous" },
-          { "<leader>od]", "<cmd>ObsidianToday +1<cr>", desc = "Next" },
-          { "<leader>odt", "<cmd>ObsidianToday<cr>", desc = "Today" },
+          { "<leader>od[", "<cmd>Obsidian today -1<cr>", desc = "Previous" },
+          { "<leader>od]", "<cmd>Obsidian today +1<cr>", desc = "Next" },
+          { "<leader>odt", "<cmd>Obsidian today<cr>", desc = "Today" },
           { "<leader>odw", group = "Working day..." },
-          { "<leader>odw[", "<cmd>ObsidianYesterday<cr>", desc = "Previous" },
-          { "<leader>odw]", "<cmd>ObsidianTomorrow<cr>", desc = "Next" },
-          { "<leader>of", "<cmd>ObsidianFollowLink<cr>", desc = "Follow" },
-          { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New" },
-          { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Open" },
-          { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search" },
-          { "<leader>ow", "<cmd>ObsidianWorkspace<cr>", desc = "Workspace" },
+          { "<leader>odw[", "<cmd>Obsidian yesterday<cr>", desc = "Previous" },
+          { "<leader>odw]", "<cmd>Obsidian tomorrow<cr>", desc = "Next" },
+          { "<leader>of", "<cmd>Obsidian follow_link<cr>", desc = "Follow" },
+          { "<leader>on", "<cmd>Obsidian new<cr>", desc = "New" },
+          { "<leader>oo", "<cmd>Obsidian quick_switch<cr>", desc = "Open" },
+          { "<leader>os", "<cmd>Obsidian search<cr>", desc = "Search" },
+          { "<leader>ow", "<cmd>Obsidian workspace<cr>", desc = "Workspace" },
         })
 
         wk.add({
           {
             mode = { "v" },
             { "<leader>o", group = "Obsidian..." },
-            { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
-            { "<leader>ol", "<cmd>ObsidianLink<cr>", desc = "Link" },
-            { "<leader>on", "<cmd>ObsidianLinkNew<cr>", desc = "New" },
-            { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open" },
+            { "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
+            { "<leader>ol", "<cmd>Obsidian links<cr>", desc = "Link" },
+            { "<leader>on", "<cmd>Obsidian link_new<cr>", desc = "New" },
+            { "<leader>oo", "<cmd>Obsidian open<cr>", desc = "Open" },
           },
         })
         '';
@@ -510,6 +525,7 @@
         plugin = obsidian-nvim; type = "lua";
         config = ''
           require('obsidian').setup {
+            legacy_commands = false,
             workspaces = {
               {
                 name = "nb",
@@ -603,13 +619,6 @@
       -- vim.fn.jobstart({"xdg-open", url})  -- linux
     end,
 
-    -- Optional, set to true if you use the Obsidian Advanced URI plugin.
-    -- https://github.com/Vinzent03/obsidian-advanced-uri
-    use_advanced_uri = true,
-
-    -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
-    open_app_foreground = false,
-
     -- Optional, by default commands like `:ObsidianSearch` will attempt to use
     -- telescope.nvim, fzf-lua, and fzf.nvim (in that order), and use the
     -- first one they find. By setting this option to your preferred
@@ -618,16 +627,12 @@
     -- remaining finders will be attempted in the original order.
     finder = "telescope.nvim",
 
+    checkbox = {
+      order = { " ", "x", "-", ">", "o" },
+    },
+
     ui = {
       enable = true,
-      checkboxes = {
-        -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-        [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-        ["x"] = { char = "", hl_group = "ObsidianDone" },
-        ["-"] = { char = "󰡖", hl_group = "ObsidianTodoPartial" },
-        [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-        ["o"] = { char = "󰜺", hl_group = "ObsidianTodoCancel" },
-      },
       hl_groups = {
         -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
         ObsidianExtLinkIcon = { fg = "#d8a657" },
