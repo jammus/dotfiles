@@ -36,10 +36,20 @@
             language_name = false,
           },
           checkbox = {
+            unchecked = {
+              icon = '',
+            },
+            checked = {
+              icon = '',
+            },
             custom = {
               cancelled = { raw = '[o]', rendered = "󰜺", highlight = "ObsidianTodoCancel" },
-            }
-          }
+            },
+          },
+          heading = {
+            position = 'inline',
+            width = 'block',
+          },
         })
         '';
       }
