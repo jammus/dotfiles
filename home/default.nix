@@ -57,6 +57,7 @@
     yt-dlp
     zellij
     pastel
+    imagemagick
   ];
 
 

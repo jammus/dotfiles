@@ -29,6 +29,20 @@
       nvim-parinfer
       lspkind-nvim
       {
+        plugin = snacks-nvim; type = "lua";
+        config = ''
+        require("snacks").setup({
+           image = {
+              resolve = function(path, src)
+                 if require("obsidian.api").path_is_note(path) then
+                    return require("obsidian.api").resolve_image_path(src)
+                 end
+              end,
+           },
+        })
+        '';
+      }
+      {
         plugin = render-markdown-nvim; type = "lua";
         config = ''
         require('render-markdown').setup({
@@ -644,6 +658,10 @@
 
     checkbox = {
       order = { " ", "x", "-", ">", "o" },
+    },
+
+    attachments = {
+      img_folder = "./files",
     },
 
     ui = {
