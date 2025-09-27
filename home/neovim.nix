@@ -32,6 +32,7 @@
         plugin = render-markdown-nvim; type = "lua";
         config = ''
         require('render-markdown').setup({
+          render_modes = true,
           code = {
             language_name = false,
           },
@@ -322,9 +323,13 @@
         })
 
         wk.add({
-          { "<leader>m", group = "Minimap..." },
-          { "<leader>mo", "<cmd>Minimap<cr>", desc = "Open" },
-          { "<leader>mq", "<cmd>MinimapClose<cr>", desc = "Close" },
+          { "<leader>m", group = "Minimap/Markdown..." },
+          { "<leader>md", group = "Markdown..." },
+          { "<leader>mdr", group = "Rendering..." },
+          { "<leader>mdrt", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle" },
+          { "<leader>mm", group = "Minimap..." },
+          { "<leader>mmo", "<cmd>Minimap<cr>", desc = "Open" },
+          { "<leader>mmq", "<cmd>MinimapClose<cr>", desc = "Close" },
         })
 
 
@@ -642,7 +647,7 @@
     },
 
     ui = {
-      enable = true,
+      enable = false,
       hl_groups = {
         -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
         ObsidianExtLinkIcon = { fg = "#d8a657" },
