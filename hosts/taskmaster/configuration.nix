@@ -24,7 +24,8 @@
     ];
 
   systemd.tmpfiles.rules = [
-    "L /var/lib/prometheus2 - - - - /nas/services/prometheus2"
+    "D /nas/services/prometheus2/data 0751 prometheus prometheus - -"
+    "L+ /var/lib/${config.services.prometheus.stateDir}/data - - - - /nas/services/prometheus2/data"
   ];
 
   boot.kernelParams = [
