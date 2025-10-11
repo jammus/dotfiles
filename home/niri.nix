@@ -2,8 +2,8 @@
 {
   programs.niri.settings = {
     animations = {
-      workspace-switch = null;
-      window-movement = null;
+      workspace-switch.enable = false;
+      window-movement.enable = false;
     };
 
     binds = {
@@ -58,6 +58,7 @@
 
       "Mod+R".action.switch-preset-column-width = {};
       "Mod+F".action.maximize-column = {};
+      "Mod+Shift+F".action.fullscreen-window = {};
 
       "Mod+Alt+1".action.maximize-column = {};
       "Mod+Alt+2".action.set-column-width = "50%";
