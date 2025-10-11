@@ -577,7 +577,7 @@
       folder = "dailies/",
       -- Optional, if you want to change the date format for daily notes.
       date_format = "%Y-%m-%d",
-      alias_format = "%B %-d, %Y"
+      alias_format = "%A, %-d %B %Y"
     },
 
     new_notes_location = "notes_subdir",
