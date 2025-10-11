@@ -1,15 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
-  gitea-mcp-server = pkgs.gitea-mcp-server.overrideAttrs(attrs: rec {
-    version = "0.3.0";
-    src = pkgs.fetchFromGitea {
-      domain = "gitea.com";
-      owner = "gitea";
-      repo = "gitea-mcp";
-      tag = "v${version}";
-      hash = "sha256-ZUnpE25XIYzSwdEilzXnhqGR676iBQcR2yiT3jhJApc=";
-    };
-  });
   publicKeys = import ../common/public-keys.nix;
 in
 {
@@ -28,20 +18,32 @@ in
       "channels.nixos.org"
       "codeload.github.com"
       "files.pythonhosted.org"
+      "static.crates.io"
+      "huggingface.co"
+      "cas-server.xethub.hf.co"
+      "transfer.xethub.hf.co"
     ];
     allowedIps = [
       "192.168.88.0/24"
       "192.168.100.0/24"
     ];
     config = {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+      ];
+      home-manager.useUserPackages = true;
+      home-manager.users.agent = {
+        imports = [
+          ../home/default.nix
+        ];
+      };
       environment.systemPackages = [
-        gitea-mcp-server
         pkgs.claude-code
         pkgs.bind
         pkgs.git
         pkgs.direnv
         pkgs.devenv
-        pkgs.vi
+        pkgs.vim
       ];
       services = {
         openssh.enable = true;

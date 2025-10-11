@@ -21,6 +21,7 @@
       ../../roles/prometheus.nix
       ../../roles/immich.nix
       ../../roles/ersatztv.nix
+      ../../roles/agent.nix
     ];
 
   systemd.tmpfiles.rules = [
