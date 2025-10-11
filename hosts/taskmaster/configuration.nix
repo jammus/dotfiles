@@ -201,7 +201,7 @@
   virtualisation.oci-containers.containers = {
     gitea = {
       autoStart = true;
-      image = "gitea/gitea:latest";
+      image = "codeberg.org/forgejo/forgejo:10.0.3";
       environment = {
         USER_UID = "3001";
         USER_GID = "3001";
@@ -216,6 +216,7 @@
       ];
       environment = {
         SSH_LISTEN_PORT = "222";
+        GITEA_APP_INI = "/data/gitea/conf";
       };
       extraOptions = [
         "--network=host"
