@@ -31,6 +31,7 @@ let bg0 = "#1d2021";
       "book-of-stabbing" = purple;
       "nemesis" = green;
       "reptomancer" = orange;
+      "agent-host" = grey1;
     };
 
     accentColorSecondary = {
@@ -42,6 +43,7 @@ let bg0 = "#1d2021";
       "book-of-stabbing" = aqua;
       "nemesis" = fg0;
       "reptomancer" = orange;
+      "agent-host" = blue;
     };
 
     hostName = if builtins.isString osConfig.networking.hostName then osConfig.networking.hostName else "default";

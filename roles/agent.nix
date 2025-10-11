@@ -26,19 +26,12 @@ in
       "api.github.com"
       "nixos.org"
       "channels.nixos.org"
-      "taskmaster.hamlet-vibe.ts.net"
-      "ifconfig.me"
-      "login.tailscale.com"
-      "controlplane.tailscale.com"
-      "log.tailscale.com"
       "codeload.github.com"
       "files.pythonhosted.org"
     ];
     allowedIps = [
-      # Add backup IPs here if needed
       "192.168.88.0/24"
       "192.168.100.0/24"
-      "100.100.100.100"
     ];
     config = {
       environment.systemPackages = [
@@ -51,7 +44,6 @@ in
         pkgs.vi
       ];
       services = {
-        tailscale.enable = true;
         openssh.enable = true;
       };
       programs = {

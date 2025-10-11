@@ -69,12 +69,9 @@ let
       };
       networking.firewall = mkIf containerCfg.enableFirewallFiltering {
         enable = true;
-        allowedTCPPorts = [ 22 53 ];
+        allowedTCPPorts = [ 22 ];
         checkReversePath = "loose";
 
-        # Tailscale can always connect
-        trustedInterfaces = [ "tailscale0" ];
-        allowedUDPPorts = [ config.services.tailscale.port 53 ];
         extraCommands = ''
           # Allow static IPs (supports both individual IPs and CIDR ranges)
           ${lib.concatMapStringsSep "\n" (ip: 
