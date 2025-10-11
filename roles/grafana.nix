@@ -20,6 +20,12 @@
           targets = [ "taskmaster:${toString config.services.prometheus.exporters.node.port}" ];
         }];
       }
+      {
+        job_name = "time-eater";
+        static_configs = [{
+          targets = [ "100.94.214.41:${toString config.services.prometheus.exporters.node.port}" ];
+        }];
+      }
     ];
   };
 }
