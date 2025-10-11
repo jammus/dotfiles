@@ -14,11 +14,13 @@
           "giant-head" = { id = "SRSZLOH-7TBRX3J-BB6VSTX-FJHBNN3-VNJHJ3A-CM4MMNA-A77TAP6-XYRMZQG"; };
           "taskmaster" = { id = "2ECO2VV-2RWO6XR-6YNQTF5-4PDYNUV-L26NTQY-V7IJ5NR-UOAEUAV-VRYOSA7"; };
           "book-of-stabbing" = { id = "GOQ5RV6-IENWWXR-WCB3SNT-7HNT5MV-RWJISIE-FQ75IPO-ORNR3P3-VSCNQA4"; };
+          "potatoe" = { id = "RPBCO5X-YOZUKW4-FDARBES-CKMAXF5-LYAHN2J-WQRB2ER-HFU7AF7-XBVPVQO"; };
+          "ipod-phone" = { id = "IO44NIP-QHX7UQM-PV7EKM6-TVOOWCK-LNZDE6F-3ICOZQC-ECRPGBG-EG6CKA2"; };
         };
         folders = {
           "nb" = {
             path = "/home/jammus/nb";
-            devices = [ "giant-head" "taskmaster" "book-of-stabbing" ];
+            devices = [ "giant-head" "taskmaster" "book-of-stabbing" "ipod-phone" ];
           };
         };
       };
