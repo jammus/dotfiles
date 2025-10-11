@@ -73,10 +73,6 @@
       "Mod+Shift+Escape".action.power-off-monitors = {};
     };
 
-    environment = {
-      DISPLAY = ":0";
-    };
-
     hotkey-overlay.skip-at-startup = true;
 
     layout = {
@@ -112,7 +108,6 @@
 
     spawn-at-startup = [
       { command = ["waybar"]; }
-      { command = ["xwayland-satellite"]; }
       { command = ["swaybg" "-o" "DP-1" "-i" "${../assets/wallpaper_r.jpg}"
       "-o" "DP-2" "-i" "${../assets/wallpaper_l.jpg}" "-m" "fill"]; }
     ];
