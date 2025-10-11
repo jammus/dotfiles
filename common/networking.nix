@@ -27,12 +27,11 @@
 
   networking.nat.enable = true;
   networking.nat.internalInterfaces = [ "ve-agent-host" ];
-  networking.nat.externalInterface = "enp7s0";
 
   # networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
   programs.ssh = {
-    startAgent = true;
+    # startAgent = true;
   };
 
   services.avahi = {

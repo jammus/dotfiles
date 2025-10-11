@@ -291,6 +291,7 @@
   };
   networking.useDHCP = false;
   networking.interfaces.enp6s0.useDHCP = true;
+  networking.nat.externalInterface = "enp7s0";
 
   # Setup keyfile
   boot.initrd.secrets = {

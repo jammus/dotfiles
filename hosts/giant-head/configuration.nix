@@ -80,6 +80,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   networking.interfaces.enp38s0.wakeOnLan.enable = true;
+  networking.nat.externalInterface = "enp38s0";
 
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
