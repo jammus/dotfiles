@@ -11,6 +11,7 @@
       ../../common/base.nix
       ../../common/users.nix
       ../../common/networking.nix
+      ../../common/gpu/nvidia.nix
       ../../roles/jellyfin.nix
       ../../roles/syncthing.nix
       ../../roles/nas.nix
