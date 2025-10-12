@@ -27,10 +27,10 @@
       "Mod+Up".action.focus-window-or-workspace-up = {};
       "Mod+K".action.focus-window-or-workspace-up = {};
 
-      "Mod+Shift+Down".action.move-window-down-or-to-workspace-down = {};
-      "Mod+Shift+J".action.move-window-down-or-to-workspace-down = {};
-      "Mod+Shift+Up".action.move-window-up-or-to-workspace-up = {};
-      "Mod+Shift+K".action.move-window-up-or-to-workspace-up = {};
+      "Mod+Shift+Down".action.move-column-to-workspace-down = {};
+      "Mod+Shift+J".action.move-column-to-workspace-down = {};
+      "Mod+Shift+Up".action.move-column-to-workspace-up = {};
+      "Mod+Shift+K".action.move-column-to-workspace-up = {};
 
       "Mod+1".action.focus-workspace = 1;
       "Mod+2".action.focus-workspace = 2;
