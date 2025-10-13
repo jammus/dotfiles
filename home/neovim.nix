@@ -61,6 +61,7 @@
               cancelled = { raw = '[o]', rendered = "󰜺", highlight = "ObsidianTodoCancel" },
             },
           },
+          dash = { width = 80 },
           heading = {
             position = 'inline',
             width = 'block',
