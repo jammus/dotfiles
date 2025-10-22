@@ -582,7 +582,8 @@
 
     new_notes_location = "notes_subdir",
 
-    note_frontmatter_func = function(note)
+    frontmatter = {
+      func = function(note)
       -- Add the title of the note as an alias.
       if note.title then
         note:add_alias(note.title)
@@ -599,7 +600,8 @@
       end
 
       return out
-    end,
+      end
+    },
 
     -- Optional, completion.
     completion = {
@@ -610,6 +612,7 @@
       -- Where to put new notes created from completion. Valid options are
       --  * "current_dir" - put new notes in same directory as the current buffer.
       --  * "notes_subdir" - put new notes in the default notes subdirectory.
+      create_new = true,
     },
 
     -- Optional, customize how names/IDs for new notes are created.
