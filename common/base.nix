@@ -4,10 +4,10 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable nix flakes
-  nix.package = pkgs.nixVersions.stable;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nix.settings.substituters = [
     "https://nix-community.cachix.org"
@@ -27,4 +27,7 @@
   ];
 
   nix.optimise.automatic = true;
+
+  nixpkgs.config.permittedInsecurePackages = [
+  ];
 }
