@@ -1,15 +1,17 @@
 {
   programs.git = {
     enable = true;
-    userName = "jammus";
-    userEmail = "jammus@gmail.com";
     includes = [
       {
         path = "~/work/gitconfig";
         condition = "gitdir:~/work/";
       }
     ];
-    extraConfig = {
+    settings = {
+      user = {
+        name = "jammus";
+        email = "jammus@gmail.com";
+      };
       color = {
         branch = "auto";
         diff = "auto";
@@ -32,12 +34,13 @@
         autoStash = true;
       };
     };
-    delta = {
-      enable = true;
-      options = {
-        features = "line-numbers decorations gruvbox-dark";
-        line-numbers = true;
-      };
+  };
+  programs.delta = {
+    enable = true;
+    options = {
+      features = "line-numbers decorations gruvbox-dark";
+      line-numbers = true;
     };
+    enableGitIntegration = true;
   };
 }
