@@ -19,6 +19,9 @@
     nitrogen
     betterlockscreen
     pavucontrol
+    pamixer
+    bluez
+    bluez-tools
     spotify
     obsidian
     waypaper
