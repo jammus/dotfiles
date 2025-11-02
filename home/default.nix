@@ -59,6 +59,7 @@
     pastel
     jujutsu
     imagemagick
+    glow
   ];
 
 
