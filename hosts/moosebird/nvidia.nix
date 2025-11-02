@@ -27,6 +27,6 @@ in
   };
 
   hardware.opengl.extraPackages = with pkgs; [
-    vaapiVdpau
+    libva-vdpau-driver
   ];
 }

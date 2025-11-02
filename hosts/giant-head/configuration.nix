@@ -86,7 +86,7 @@
   time.timeZone = "Asia/Singapore";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_SG.utf8";
+  i18n.defaultLocale = "en_SG.UTF-8";
 
   programs.hyprland.enable = true;
   programs.niri = {

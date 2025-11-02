@@ -28,7 +28,7 @@
   home.packages = with pkgs; [
     btop
     ack
-    _1password
+    _1password-cli
     wget
     tree
     gopass
@@ -49,7 +49,7 @@
     unzip
     mosh
     duf
-    du-dust
+    dust
     yazi
     lazydocker
     fx
