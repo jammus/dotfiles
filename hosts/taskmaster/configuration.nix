@@ -23,6 +23,7 @@
       ../../roles/immich.nix
       ../../roles/ersatztv.nix
       ../../roles/agent.nix
+      ../../roles/forgejo.nix
     ];
 
   systemd.tmpfiles.rules = [
@@ -141,13 +142,6 @@
   };
 
   users.users = {
-    gitea = {
-      uid = 3001;
-      group = "gitea";
-      isNormalUser = true;
-      extraGroups = [
-      ];
-    };
     photos = {
       uid = 3002;  
       group = "photos";
@@ -169,9 +163,6 @@
   };
 
   users.groups = {
-    gitea = {
-      gid = 3001;
-    };
     photos = {
       gid = 3002;
     };
@@ -202,30 +193,6 @@
   };
 
   virtualisation.oci-containers.containers = {
-    gitea = {
-      autoStart = true;
-      image = "codeberg.org/forgejo/forgejo:12.0.4";
-      environment = {
-        USER_UID = "3001";
-        USER_GID = "3001";
-        DISABLE_REGISTRATION = "false";
-      };
-      volumes = [
-        "/nas/services/gitea:/data"
-      ];
-      ports = [
-        "3000:3000"
-        "222:222"
-      ];
-      environment = {
-        SSH_LISTEN_PORT = "222";
-        GITEA_APP_INI = "/data/gitea/conf";
-        FORGEJO_APP_INI = "/data/gitea/conf";
-      };
-      extraOptions = [
-        "--network=host"
-      ];
-    };
     podgrab = {
       autoStart = true;
       image = "akhilrex/podgrab";
