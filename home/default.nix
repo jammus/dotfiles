@@ -60,6 +60,7 @@
     jujutsu
     imagemagick
     glow
+    rainfrog
   ];
 
 
