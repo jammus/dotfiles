@@ -28,8 +28,9 @@
     settings = {
       server = {
         DOMAIN = "taskmaster";
-        SSH_PORT = 222;
+        SSH_PORT = 2222;
         HTTP_PORT = 3000;
+        START_SSH_SERVER = true;
       };
     };
   };
