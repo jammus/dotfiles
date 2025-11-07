@@ -32,6 +32,10 @@
       path = "/home/jammus/code/datasette-runner/data";
       devices = [ "taskmaster" ];
     };
+    music-download = {
+      path =  "/home/jammus/Downloads/music";
+      devices = [ "taskmaster" ];
+    };
   };
 
   services.openssh = {

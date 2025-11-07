@@ -66,6 +66,10 @@
       path = "/nas/junk/data/datasette/data";
       devices = [ "giant-head" ];
     };
+    music-download = {
+      path =  "/nas/media/temp/music";
+      devices = [ "giant-head" ];
+    };
   };
 
   systemd.timers."archive-video" = {
