@@ -12,6 +12,7 @@
         "fetchart"
         "lyrics"
         "mbsubmit"
+        "musicbrainz"
       ];
       autobpm = {
         auto = true;
