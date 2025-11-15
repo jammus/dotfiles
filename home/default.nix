@@ -61,6 +61,7 @@
     imagemagick
     glow
     rainfrog
+    git-filter-repo
   ];
 
 
