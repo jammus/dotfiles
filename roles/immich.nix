@@ -26,7 +26,7 @@ in {
     virtualisation.oci-containers.containers = {
       immich = {
         autoStart = true;
-        image = "ghcr.io/imagegenius/immich:v1.131.3-ig386";
+        image = "ghcr.io/imagegenius/immich:v2.0.1-ig427";
         dependsOn = [ "redis" "postgres14" ];
         volumes = [
           "/nas/services/immich:/config"
@@ -55,7 +55,7 @@ in {
 
       postgres14 = {
         autoStart = true;
-        image = "tensorchord/pgvecto-rs:pg14-v0.2.0";
+        image = "ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0";
         volumes = [
           "/nas/photos/db:/var/lib/postgresql/data"
         ];
@@ -63,8 +63,10 @@ in {
           POSTGRES_USER = "postgres";
           POSTGRES_PASSWORD = "postgres";
           POSTGRES_DB = "immich";
+          POSTGRES_INITDB_ARGS = "--data-checksums";
+          DB_STORAGE_TYPE = "HDD";
         };
-        extraOptions = [ "--pod=immich-pod" ];
+        extraOptions = [ "--pod=immich-pod" "--shm-size=128mb" ];
       };
     };
   };
