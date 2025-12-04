@@ -51,7 +51,7 @@
 
   services.immich-docker.enable = true;
 
-  services.ersatztv.enable = true;
+  services.ersatztv-docker.enable = true;
 
   services.syncthing.settings.folders = {
     finance-data = {

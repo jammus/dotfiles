@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = config.services.ersatztv;
+  cfg = config.services.ersatztv-docker;
 in {
-  options.services.ersatztv = {
+  options.services.ersatztv-docker = {
     enable = mkEnableOption "ersatztv docker service";
   };
 
