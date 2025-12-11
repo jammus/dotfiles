@@ -394,7 +394,7 @@
 
         wk.add({
           { "<leader>o", group = "Obsidian..." },
-          { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+          { "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
           { "<leader>od", group = "Daily..." },
           { "<leader>od[", "<cmd>Obsidian today -1<cr>", desc = "Previous" },
           { "<leader>od]", "<cmd>Obsidian today +1<cr>", desc = "Next" },
