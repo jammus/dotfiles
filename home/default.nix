@@ -38,7 +38,7 @@
     nb
     pandoc # For nb
     nmap # For nb
-    w3m # For nb
+    # w3m # For nb  # Removed because of https://github.com/xwmx/nb/issues/407
     readability-cli # For nb
     visidata
     magic-wormhole
