@@ -22,6 +22,10 @@
             path = "/home/jammus/nb";
             devices = [ "giant-head" "taskmaster" "book-of-stabbing" "ipod-phone" ];
           };
+          "offpunk" = {
+            path = "/home/jammus/.local/share/offpunk";
+            devices = [ "giant-head" "taskmaster" "book-of-stabbing" ];
+          };
         };
       };
     };
