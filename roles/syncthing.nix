@@ -26,6 +26,10 @@
             path = "/home/jammus/.local/share/offpunk";
             devices = [ "giant-head" "taskmaster" "book-of-stabbing" ];
           };
+          "offpunk-cache" = {
+            path = "/home/jammus/.cache/offpunk";
+            devices = [ "giant-head" "taskmaster" "book-of-stabbing" ];
+          };
         };
       };
     };
