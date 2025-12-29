@@ -63,6 +63,7 @@
     rainfrog
     git-filter-repo
     offpunk
+    chafa
   ];
 
 
