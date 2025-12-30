@@ -636,9 +636,6 @@
       return suffix
     end,
 
-    -- Optional, set to true if you don't want Obsidian to manage frontmatter.
-    disable_frontmatter = false,
-
     -- Optional, for templates (see below).
     templates = {
       subdir = "templates",
