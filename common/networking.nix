@@ -17,16 +17,16 @@
     checkReversePath = "loose";
 
     # Tailscale can always connect
-    trustedInterfaces = [ "tailscale0" "ve-agent-host" ];
+    trustedInterfaces = [ "tailscale0" "ve-agent-host" "ve-ci-runner" ];
     allowedUDPPorts = [ config.services.tailscale.port ];
 
     # Any device can connect via ssh (seems like openssh enables anyway, but no
     # harm being double sure)
-    allowedTCPPorts = [ 22 ];
+    allowedTCPPorts = [ 22 53 9080 ];
   };
 
   networking.nat.enable = true;
-  networking.nat.internalInterfaces = [ "ve-agent-host" ];
+  networking.nat.internalInterfaces = [ "ve-agent-host" "ve-ci-runner" ];
 
   # networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 

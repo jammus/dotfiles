@@ -24,6 +24,7 @@
       ../../roles/ersatztv.nix
       ../../roles/agent.nix
       ../../roles/forgejo.nix
+      ../../roles/ci-runner.nix
     ];
 
   systemd.tmpfiles.rules = [
@@ -42,6 +43,8 @@
       intel-compute-runtime
     ];
   };
+
+  services.logrotate.checkConfig = false;  # temp during rescue
 
   services.pihole = {
     enable = true;
@@ -133,6 +136,7 @@
 
       /run/wrappers/bin/umount /mnt/borgjobs/photos
       ${pkgs.zfs}/bin/zfs destroy taskpool/photos@borgbase
+
       /run/wrappers/bin/umount /mnt/borgjobs/junk
       ${pkgs.zfs}/bin/zfs destroy taskpool/junk@borgbase
     '';
@@ -153,6 +157,11 @@
     };
     audiobookshelf = {
       uid = 3003;
+      group = "media";
+      isSystemUser = true;
+    };
+    calibre = {
+      uid = 3005;
       group = "media";
       isSystemUser = true;
     };
@@ -218,6 +227,27 @@
   };
 
 
+  virtualisation.oci-containers.containers = {
+    calibre-web-automated = {
+      autoStart = true;
+      image = "crocodilestick/calibre-web-automated:latest";
+      volumes = [
+        "/nas/media/books:/calibre-library"
+        "/nas/services/calibre-web-automated:/config"
+        "/nas/media/temp/books:/cwa-book-ingest"
+      ];
+      ports = [
+        "5084:8083"
+      ];
+      environment = {
+        PUID = "${toString config.users.users.calibre.uid}";
+        PID = "${toString config.users.groups.media.gid}";
+        DOCKER_MODS = "lscr.io/linuxserver/mods:universal-calibre-v7.16.0";
+        TZ = "Asia/Singapore"; # Change this to your timezone
+      };
+    };
+  };
+
   virtualisation = {
     podman = {
       enable = true;
@@ -225,15 +255,11 @@
       # Create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
       dockerSocket.enable = true;
-
-      # Required for containers under podman-compose to be able to talk to each other.
-      # For Nixos version > 22.11
-      #defaultNetwork.settings = {
-      #  dns_enabled = true;
-      #};
-
-      enableNvidia = true;
     };
+  };
+
+  virtualisation.oci-containers = {
+    backend = "podman";
   };
 
   networking.hostId = "6d778fb4"; # Define your hostname.
@@ -261,7 +287,7 @@
     availableKernelModules = [ "r8169" ];
   };
   networking.useDHCP = false;
-  networking.interfaces.enp6s0.useDHCP = true;
+  networking.interfaces.enp7s0.useDHCP = true;
   networking.nat.externalInterface = "enp7s0";
 
   # Setup keyfile
