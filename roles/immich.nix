@@ -26,7 +26,7 @@ in {
     virtualisation.oci-containers.containers = {
       immich = {
         autoStart = true;
-        image = "ghcr.io/imagegenius/immich:v2.0.1-ig427";
+        image = "ghcr.io/imagegenius/immich:v2.3.1-ig438";
         dependsOn = [ "redis" "postgres14" ];
         volumes = [
           "/nas/services/immich:/config"
