@@ -26,13 +26,16 @@
     stylix = {
       url = "github:danth/stylix";
     };
+    backlog-md = {
+      url = "github:MrLesk/Backlog.md";
+    };
     secrets = {
       url = "git+ssh://git@github.com/jammus/secrets.git";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.agenix.follows = "agenix";
     };
   };
-  outputs = {
+  outputs = inputs@{
     home-manager, nixpkgs, darwin,
     hyprsome, agenix, nixos-cosmic,
     niri, stylix, secrets,
@@ -125,6 +128,9 @@
           };
         } 
       ];
+      specialArgs = {
+        inherit inputs;
+      };
     };
     nixosConfigurations.pistachio = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";

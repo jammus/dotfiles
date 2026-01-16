@@ -3,7 +3,7 @@ let
   publicKeys = import ../common/public-keys.nix;
 in
 {
-  imports = [ ../modules/agent-container.nix ];
+  imports = [ ../modules/dev-container.nix ];
   
   devContainers.agent-host = {
     hostAddress = "192.168.100.10";
@@ -14,6 +14,7 @@ in
       "console.anthropic.com"
       "github.com"
       "api.github.com"
+      "raw.githubusercontent.com"
       "nixos.org"
       "channels.nixos.org"
       "codeload.github.com"
@@ -22,6 +23,7 @@ in
       "huggingface.co"
       "cas-server.xethub.hf.co"
       "transfer.xethub.hf.co"
+      "pypi.org"
     ];
     allowedIps = [
       "192.168.88.0/24"
@@ -44,6 +46,7 @@ in
         pkgs.direnv
         pkgs.devenv
         pkgs.vim
+        inputs.backlog-md.packages.x86_64-linux.default
       ];
       services = {
         openssh.enable = true;
