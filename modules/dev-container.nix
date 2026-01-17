@@ -24,7 +24,7 @@ let
         default = [
           "nixos.org"
         ];
-        description = "List of domains to allow through firewall (resolved to IPs at build time)";
+        description = "List of domains to allow through firewall (resolved to IPs at boot time)";
       };
       
       autoStart = mkOption {
