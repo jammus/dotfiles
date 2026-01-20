@@ -60,13 +60,17 @@ let
     hostAddress = containerCfg.hostAddress;
     localAddress = containerCfg.localAddress;
     privateUsers = "pick";
-    config = { config, pkgs, lib, ... }:
-    lib.recursiveUpdate {
-      imports = [ ../common/base.nix ];
+    config = { config, pkgs, lib, ... }: {
+      imports = [
+        ../common/base.nix
+        containerCfg.config
+      ];
+
       users = {
-        mutableUsers = false;
-        allowNoPasswordLogin = true;
+        mutableUsers = lib.mkDefault false;
+        allowNoPasswordLogin = lib.mkDefault true;
       };
+
       networking.firewall = mkIf containerCfg.enableFirewallFiltering {
         enable = true;
         allowedTCPPorts = [ 22 ];
@@ -74,17 +78,17 @@ let
 
         extraCommands = ''
           # Allow static IPs (supports both individual IPs and CIDR ranges)
-          ${lib.concatMapStringsSep "\n" (ip: 
+          ${lib.concatMapStringsSep "\n" (ip:
             "iptables -A OUTPUT -d ${ip} -j ACCEPT"
           ) containerCfg.allowedIps}
           iptables -A OUTPUT -j REJECT
         '';
       };
-      
+
       systemd.timers.resolve-domains = mkIf containerCfg.enableFirewallFiltering {
         wantedBy = [ "timers.target" ];
         timerConfig = {
-          OnBootSec = "30s";  # Run 30 seconds after boot
+          OnBootSec = "30s";
           Unit = "resolve-domains.service";
         };
       };
@@ -96,11 +100,11 @@ let
         script = ''
           echo "Starting domain resolution..."
           echo "Nameservers: $(cat /etc/resolv.conf)"
-          
+
           # Test DNS resolution first
           echo "Testing DNS resolution..."
           ${pkgs.dnsutils}/bin/dig +short +time=5 +tries=2 google.com || echo "DNS test failed"
-          
+
           # Resolve domains and add iptables rules
           ${lib.concatMapStringsSep "\n" (domain: ''
             echo "Resolving ${domain}..."
@@ -112,14 +116,15 @@ let
               fi
             done
           '') containerCfg.allowedDomains}
-          
+
           echo "Domain resolution completed"
           echo "Final iptables OUTPUT rules:"
           ${pkgs.iptables}/bin/iptables -L OUTPUT -n
         '';
       };
+
       system.stateVersion = "25.11";
-    } containerCfg.config;
+    };
   };
 in
 
