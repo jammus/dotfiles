@@ -15,5 +15,6 @@ in
     # (llama-cpp.override { cudaSupport = true; })
     pkgs.emacs
     pkgs.grc
+    pkgs.ollama-cuda
   ];
 }

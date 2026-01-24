@@ -29,7 +29,6 @@
     nvtopPackages.full
     discord
     feishin
-    ollama-cuda
     oterm
     librewolf
     xwayland-satellite
