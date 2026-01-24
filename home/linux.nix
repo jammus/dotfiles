@@ -16,5 +16,6 @@ in
     pkgs.emacs
     pkgs.grc
     pkgs.ollama-cuda
+    pkgs.claude-code
   ];
 }
