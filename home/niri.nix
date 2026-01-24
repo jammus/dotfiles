@@ -59,6 +59,7 @@
       "Mod+R".action.switch-preset-column-width = {};
       "Mod+F".action.maximize-column = {};
       "Mod+Shift+F".action.fullscreen-window = {};
+      "Mod+Alt+Shift+F".action.toggle-windowed-fullscreen = {};
 
       "Mod+Alt+1".action.maximize-column = {};
       "Mod+Alt+2".action.set-column-width = "50%";
