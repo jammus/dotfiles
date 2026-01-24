@@ -30,13 +30,16 @@
     discord
     feishin
     ollama-cuda
+    oterm
     librewolf
     xwayland-satellite
+    fuzzel
     swaybg
+    claude-code
   ];
 
   wayland.windowManager.sway = {
-    enable = true;
+    enable = false;
     config = rec {
       modifier = "Mod4";
       terminal = "kitty";
@@ -47,6 +50,7 @@
     enable = true;
     autoEnable = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    image = ../assets/wallpaper_r.jpg;
     cursor = {
       name = "vanilla-dmz";
       size = 24;
