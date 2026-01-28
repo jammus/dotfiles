@@ -119,6 +119,7 @@
         ./hosts/taskmaster/configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
@@ -126,7 +127,7 @@
               ./home/taskmaster.nix
             ];
           };
-        } 
+        }
       ];
       specialArgs = {
         inherit inputs;

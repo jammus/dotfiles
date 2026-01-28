@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   llama-cpp = pkgs.llama-cpp.overrideAttrs(attrs: rec {
     version = "5869";
@@ -17,5 +17,6 @@ in
     pkgs.grc
     pkgs.ollama-cuda
     pkgs.claude-code
+    inputs.backlog-md.packages.x86_64-linux.default
   ];
 }
