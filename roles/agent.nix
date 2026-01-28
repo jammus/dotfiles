@@ -10,6 +10,9 @@ in
     localAddress = "192.168.100.11";
     enableFirewallFiltering = true;
     allowedDomains = [
+      "cache.nixos.org"
+      "nix-community.cachix.org"
+      "devenv.cachix.org"
       "api.anthropic.com"
       "console.anthropic.com"
       "github.com"
@@ -24,6 +27,9 @@ in
       "cas-server.xethub.hf.co"
       "transfer.xethub.hf.co"
       "pypi.org"
+      "registry.npmjs.org"
+      "repo1.maven.org"
+      "repo.clojars.org"
     ];
     allowedIps = [
       "192.168.88.0/24"
