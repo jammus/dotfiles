@@ -93,7 +93,7 @@
         format = " <span color=\"#89b482\">:mem</span> <span color=\"#a9b665\">\"{percentage}%\"</span>";
       };
       "clock" = {
-        format = " <span color=\"#89b482\">:now</span> [<span color=\"#d3869b\">{:%H %M}</span>]}}";
+        format = " <span color=\"#89b482\">:now</span> [[<span color=\"#d3869b\">{0:%Y %m %d}</span>] [<span color=\"#d3869b\">{0:%H %M}</span>]]}}";
       };
     }];
   };
