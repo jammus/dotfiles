@@ -54,6 +54,13 @@
       options = [ "nofail" ];
     };
 
+  fileSystems."/nas/local" =
+    {
+      device = "taskpool/encrypted/safe/local";
+      fsType = "zfs";
+      options = [ "nofail" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/f5fb7d30-593f-48e5-a0a4-3a7ed3607978"; }
     ];
