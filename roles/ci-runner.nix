@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, config, inputs, ... }:
 let
   publicKeys = import ../common/public-keys.nix;
 in
@@ -33,11 +33,17 @@ in
         openssh.enable = true;
       };
       networking.hosts = {
-        "192.168.100.10" = ["taskmaster"];
+        "192.168.100.10" = [ config.networking.hostName ];
       };
+      networking.nameservers = [ "192.168.100.10" ];
       networking.firewall = {
         enable = true;
         allowedTCPPorts = [ 22 ];
+      };
+      networking.useHostResolvConf = lib.mkForce false;
+      services.resolved = {
+        enable = true;
+        fallbackDns = ["192.168.100.10" ];
       };
       users.users.runner = {
         uid = 1048;
