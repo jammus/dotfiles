@@ -89,7 +89,7 @@
         enable = false;
         width = 2;
       };
-      gaps = 14;
+      gaps = 8;
       preset-column-widths = [
         { proportion = 1. / 2; }
         { proportion = 1. / 3.; }
