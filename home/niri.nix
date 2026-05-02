@@ -72,7 +72,7 @@
       "Mod+Alt+Shift+5".action.set-column-width = "80%";
 
       "Mod+Shift+Q".action.quit = {};
-      "Mod+Shift+Escape".action.power-off-monitors = {};
+      "Mod+Shift+Escape".action.spawn = ["sh" "-c" "hyprlock & sleep 0.5; niri msg action power-off-monitors"];
     };
 
     hotkey-overlay.skip-at-startup = true;
@@ -112,6 +112,7 @@
       { command = ["waybar"]; }
       { command = ["swaybg" "-o" "DP-1" "-i" "${../assets/wallpaper_r.jpg}"
       "-o" "DP-2" "-i" "${../assets/wallpaper_l.jpg}" "-m" "fill"]; }
+      { command = ["hypridle"]; }
     ];
 
     window-rules = [
