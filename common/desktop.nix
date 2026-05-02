@@ -17,7 +17,7 @@
   services.desktopManager.plasma6.enable = true;
 
   security.polkit.enable = true;
-  programs.sway.enable = true;
+  programs.sway.enable = false;
 
   services.desktopManager.cosmic.enable = false;
   services.displayManager.cosmic-greeter.enable = false;
