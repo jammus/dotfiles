@@ -21,4 +21,15 @@
 
   services.desktopManager.cosmic.enable = false;
   services.displayManager.cosmic-greeter.enable = false;
+
+  stylix = {
+    enable = true;
+    autoEnable = false;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    cursor = {
+      name = "vanilla-dmz";
+      size = 24;
+      package = pkgs.vanilla-dmz;
+    };
+  };
 }
