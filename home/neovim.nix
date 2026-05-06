@@ -532,7 +532,6 @@
         plugin = refactoring-nvim; type = "lua";
         config = ''
           require('refactoring').setup({})
-          require("telescope").load_extension("refactoring")
         '';
       }
       {
