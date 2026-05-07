@@ -100,8 +100,12 @@
               },
           }
           vim.api.nvim_create_autocmd('FileType', {
-            pattern = { 'markdown' },
-            callback = function() vim.treesitter.start() end,
+            callback = function(args)
+              local lang = vim.treesitter.language.get_lang(args.match)
+              if lang then
+                pcall(vim.treesitter.start, args.buf, lang)
+              end
+            end,
           })
         '';
       }
