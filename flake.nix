@@ -29,6 +29,9 @@
     backlog-md = {
       url = "github:MrLesk/Backlog.md";
     };
+    paved-paths = {
+      url = "git+http://taskmaster:3000/jammus/paved-paths";
+    };
     secrets = {
       url = "git+ssh://git@github.com/jammus/secrets.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +41,7 @@
   outputs = inputs@{
     home-manager, nixpkgs, darwin,
     hyprsome, agenix, nixos-cosmic,
-    niri, stylix, secrets,
+    niri, stylix, secrets, paved-paths,
     ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
@@ -106,6 +109,7 @@
             ];
             home.packages = [
               hyprsome.packages.x86_64-linux.default
+              paved-paths.packages.x86_64-linux.init-project
             ];
           };
         } 
