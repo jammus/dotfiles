@@ -1,7 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.beets = {
     enable = true;
+    package = pkgs.beets.overridePythonAttrs (old: {
+      outputs = [ "out" ];
+      nativeBuildInputs =
+        let
+          isSphinxDep = dep:
+            let name = dep.name or "";
+            in lib.hasInfix "sphinx" name || lib.hasInfix "pydata-sphinx" name;
+        in
+        builtins.filter (dep: !isSphinxDep dep) old.nativeBuildInputs;
+      postInstall = (old.postInstall or "") + ''
+        buildSphinxPhase() { true; }
+        installSphinxPhase() { true; }
+      '';
+    });
     settings = {
       directory = "/nas/media/music";
       library = "/nas/services/beet/beets.db";
