@@ -26,6 +26,10 @@
     stylix = {
       url = "github:danth/stylix";
     };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     backlog-md = {
       url = "github:MrLesk/Backlog.md";
     };
@@ -51,6 +55,7 @@
         ./common/desktop.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
@@ -81,6 +86,7 @@
         ./common/desktop.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix
@@ -102,6 +108,7 @@
         ./common/desktop.nix
         home-manager.nixosModules.home-manager {
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix

@@ -11,9 +11,12 @@ let
   });
 in
 {
+  imports = [
+    ./emacs.nix
+  ];
+
   home.packages = [
     # (llama-cpp.override { cudaSupport = true; })
-    pkgs.emacs
     pkgs.grc
     pkgs.ollama-cuda
     pkgs.claude-code
