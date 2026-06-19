@@ -23,6 +23,9 @@
 (setq use-package-always-ensure nil
       use-package-ensure-function 'ignore)
 
+;; Store paths injected by Nix (see home/emacs.nix).
+(load (expand-file-name "nix-paths.el" user-emacs-directory) t t)
+
 ;; Keep the Customize machinery out of this read-only, Nix-managed file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
@@ -413,7 +416,12 @@ If the new path's directories does not exist, create them."
          (typescript-ts-mode . eglot-ensure)
          (tsx-ts-mode        . eglot-ensure)
          (js-ts-mode         . eglot-ensure)
-         (lua-ts-mode        . eglot-ensure))
+         (lua-ts-mode        . eglot-ensure)
+         (clojure-mode       . eglot-ensure)
+         (clojurescript-mode . eglot-ensure)
+         (clojurec-mode      . eglot-ensure)
+         (fennel-mode        . eglot-ensure)
+         (janet-mode         . eglot-ensure))
 
   :custom
   (eglot-send-changes-idle-time 0.1)
@@ -424,6 +432,9 @@ If the new path's directories does not exist, create them."
 
   ;; Use nixd for Nix (eglot would otherwise default to nil).
   (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nixd")))
+  ;; Servers eglot doesn't know out of the box.
+  (add-to-list 'eglot-server-programs '(fennel-mode . ("fennel-ls")))
+  (add-to-list 'eglot-server-programs '(janet-mode . ("janet-lsp")))
 
   ;; Point nixd at this flake so it can complete nixpkgs attributes plus NixOS
   ;; and home-manager module options. Derived from ~/dots and the current
@@ -467,6 +478,40 @@ If the new path's directories does not exist, create them."
   ;; writing prose.
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Lisp languages & REPLs (Clojure/babashka, Fennel, Janet)
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package parinfer-rust-mode
+  :ensure t
+  :init
+  (setq parinfer-rust-auto-download nil)
+  :hook ((emacs-lisp-mode . parinfer-rust-mode)
+         (lisp-mode       . parinfer-rust-mode)
+         (lisp-data-mode  . parinfer-rust-mode)
+         (clojure-mode    . parinfer-rust-mode)
+         (fennel-mode     . parinfer-rust-mode)
+         (janet-mode      . parinfer-rust-mode)))
+
+(use-package clojure-mode
+  :ensure t
+  :mode ("\\.bb\\'" . clojure-mode))
+
+(use-package cider
+  :ensure t
+  :config
+  (setq cider-repl-display-help-banner nil))
+
+(use-package fennel-mode
+  :ensure t
+  :mode "\\.fnl\\'")
+
+(use-package janet-mode
+  :ensure t
+  :mode "\\.janet\\'")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;

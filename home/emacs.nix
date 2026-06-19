@@ -29,10 +29,17 @@
     pkgs.nixfmt                # Nix formatter, driven by nixd
     pkgs.bash-language-server  # Bash
     pkgs.lua-language-server   # Lua
+    pkgs.clojure-lsp           # Clojure / ClojureScript / babashka
+    pkgs.fennel-ls             # Fennel
   ];
 
   xdg.configFile = {
     "emacs/early-init.el".source = ./emacs/early-init.el;
     "emacs/init.el".source = ./emacs/init.el;
+
+    # Nix store paths consumed by init.el (avoids hardcoding them).
+    "emacs/nix-paths.el".text = ''
+      (setq parinfer-rust-library "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust.so")
+    '';
   };
 }
