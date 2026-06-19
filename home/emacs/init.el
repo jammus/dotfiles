@@ -425,6 +425,118 @@ If the new path's directories does not exist, create them."
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Vim emulation (extras/vim-like.el)
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Evil: vi emulation
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-respect-visual-line-mode t)
+  (setq evil-undo-system 'undo-redo)
+  (setq evil-want-C-u-scroll t)         ; C-u scrolls up, like pure Vim
+  ;; evil-collection wants this set before evil loads
+  (setq evil-want-keybinding nil)
+  :config
+  ;; CUA bindings (enabled by the Bedrock base) fight Vim's C-x/C-c/C-v; turn
+  ;; them off now that we're driving with Evil.
+  (cua-mode -1)
+  (evil-mode)
+
+  ;; If you use Magit, start editing commit messages in insert state
+  (add-hook 'git-commit-setup-hook 'evil-insert-state)
+
+  ;; Use Emacs state in terminal emulators
+  (evil-set-initial-state 'eat-mode 'emacs)
+  (evil-set-initial-state 'vterm-mode 'emacs))
+
+;; evil-collection: consistent Vim bindings across built-in and third-party
+;; modes (dired, magit, info, etc.)
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :config
+  (evil-collection-init))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Org-mode (extras/org.el)
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Where org looks for agenda/capture files. Adjust to taste -- non-absolute
+;; paths in templates below are resolved relative to this directory.
+(setq org-directory "~/Documents/org/")
+(setq org-agenda-files '("inbox.org" "work.org"))
+
+;; aspell is provided via Nix (see home/emacs.nix); makes flyspell work.
+(setq ispell-program-name "aspell")
+
+;; Default tags
+(setq org-tag-alist '((:startgroup)
+                      ("home" . ?h)
+                      ("work" . ?w)
+                      ("school" . ?s)
+                      (:endgroup)
+                      (:newline)
+                      (:startgroup)
+                      ("one-shot" . ?o)
+                      ("project" . ?j)
+                      ("tiny" . ?t)
+                      (:endgroup)
+                      ("meta")
+                      ("review")
+                      ("reading")))
+
+(use-package org
+  ;; org is built-in; no :ensure
+  :hook ((org-mode . visual-line-mode)  ; wrap lines at word breaks
+         (org-mode . flyspell-mode))    ; spell checking
+  :bind (:map global-map
+              ("C-c A" . org-agenda)                ; C-c a is embark-act (base.el)
+              ("C-c c" . org-capture)
+              ("C-c l s" . org-store-link)          ; Mnemonic: link -> store
+              ("C-c l i" . org-insert-link-global)) ; Mnemonic: link -> insert
+  :config
+  (require 'oc-csl)                     ; citation support
+  (add-to-list 'org-export-backends 'md)
+
+  ;; Follow file links in the same window
+  (setf (cdr (assoc 'file org-link-frame-setup)) 'find-file)
+  (setq org-export-with-smart-quotes t)
+
+  ;; Task states
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!)" "OBSOLETE(o@)")))
+
+  ;; Refile within agenda files, up to 3 levels deep
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-use-outline-path 'file)
+  (setq org-refile-targets '((nil :maxlevel . 3)
+                             (org-agenda-files :maxlevel . 3)))
+
+  (setq org-capture-templates
+        '(("c" "Default Capture" entry (file "inbox.org")
+           "* TODO %?\n%U\n%i")
+          ;; Capture and keep an org-link to the thing we're currently working with
+          ("r" "Capture with Reference" entry (file "inbox.org")
+           "* TODO %?\n%U\n%i\n%a")
+          ("w" "Work")
+          ("wm" "Work meeting" entry (file+headline "work.org" "Meetings")
+           "** TODO %?\n%U\n%i\n%a")
+          ("wr" "Work report" entry (file+headline "work.org" "Reports")
+           "** TODO %?\n%U\n%i\n%a")))
+
+  (setq org-agenda-custom-commands
+        '(("n" "Agenda and All Todos"
+           ((agenda)
+            (todo)))
+          ("w" "Work" agenda ""
+           ((org-agenda-files '("work.org")))))))
+
 ;; Restore the GC threshold lowered for fast startup (set in early-init.el)
 (setq gc-cons-threshold (or bedrock--initial-gc-threshold 800000))
 

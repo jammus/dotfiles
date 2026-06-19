@@ -15,6 +15,11 @@
     };
   };
 
+  # External tools the config expects on PATH (org flyspell needs a speller).
+  home.packages = [
+    (pkgs.aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+  ];
+
   xdg.configFile = {
     "emacs/early-init.el".source = ./emacs/early-init.el;
     "emacs/init.el".source = ./emacs/init.el;
