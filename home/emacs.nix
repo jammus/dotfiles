@@ -12,12 +12,23 @@
       defaultInitFile = false;
       package = pkgs.emacs-pgtk;
       alwaysEnsure = false;
+      extraEmacsPackages = epkgs: [
+        epkgs.treesit-grammars.with-all-grammars
+      ];
     };
   };
 
-  # External tools the config expects on PATH (org flyspell needs a speller).
+  # External tools the config expects on PATH.
   home.packages = [
+    # org flyspell needs a speller
     (pkgs.aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+
+    # Language servers always available (outside any project devenv). Everything
+    # else is expected to come from a project's devenv via envrc.
+    pkgs.nixd                  # Nix LSP (evaluation-powered)
+    pkgs.nixfmt                # Nix formatter, driven by nixd
+    pkgs.bash-language-server  # Bash
+    pkgs.lua-language-server   # Lua
   ];
 
   xdg.configFile = {

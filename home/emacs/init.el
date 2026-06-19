@@ -347,17 +347,19 @@ If the new path's directories does not exist, create them."
 
 (use-package emacs
   :config
-  ;; Treesitter remaps are deferred until we provision grammars through Nix --
-  ;; without the grammars these modes error on file open. Re-enable alongside
-  ;; the Nix tree-sitter grammars in the next iteration.
-  ;; (setq major-mode-remap-alist
-  ;;       '((yaml-mode . yaml-ts-mode)
-  ;;         (bash-mode . bash-ts-mode)
-  ;;         (js2-mode . js-ts-mode)
-  ;;         (typescript-mode . typescript-ts-mode)
-  ;;         (json-mode . json-ts-mode)
-  ;;         (css-mode . css-ts-mode)
-  ;;         (python-mode . python-ts-mode)))
+  ;; Prefer the tree-sitter modes; grammars are provided by Nix
+  ;; (treesit-grammars.with-all-grammars in home/emacs.nix).
+  (setq major-mode-remap-alist
+        '((yaml-mode   . yaml-ts-mode)
+          (sh-mode     . bash-ts-mode)
+          (js-mode     . js-ts-mode)
+          (json-mode   . json-ts-mode)
+          (css-mode    . css-ts-mode)
+          (python-mode . python-ts-mode)))
+  ;; Languages with no built-in base mode to remap from
+  (add-to-list 'auto-mode-alist '("\\.ts\\'"  . typescript-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-ts-mode))
   :hook
   ;; Auto parenthesis matching
   ((prog-mode . electric-pair-mode)))
@@ -386,22 +388,63 @@ If the new path's directories does not exist, create them."
 (use-package json-mode
   :ensure t)
 
+(use-package nix-mode
+  :ensure t
+  :mode "\\.nix\\'")
+
 ;;; Eglot, the built-in LSP client for Emacs
+
+;; envrc: give each buffer the direnv environment of its directory, so eglot
+;; launches language servers from a project's devenv rather than needing them
+;; installed globally. Buffer-local, so multiple projects coexist correctly.
+(use-package envrc
+  :ensure t
+  :hook (after-init . envrc-global-mode))
 
 (use-package eglot
   ;; no :ensure t here because it's built-in
 
-  ;; Configure hooks to automatically turn-on eglot for selected modes once you
-  ;; have the language servers available (we'll wire those via Nix next).
-  ; :hook
-  ; (((python-mode ruby-mode elixir-mode) . eglot-ensure))
+  ;; Auto-start eglot for these modes. Safe even when the server isn't on PATH:
+  ;; eglot just reports it couldn't start and leaves the buffer alone. Servers
+  ;; come either from the global set (home/emacs.nix) or a project's devenv.
+  :hook ((nix-mode           . eglot-ensure)
+         (bash-ts-mode       . eglot-ensure)
+         (python-ts-mode     . eglot-ensure)
+         (typescript-ts-mode . eglot-ensure)
+         (tsx-ts-mode        . eglot-ensure)
+         (js-ts-mode         . eglot-ensure)
+         (lua-ts-mode        . eglot-ensure))
 
   :custom
   (eglot-send-changes-idle-time 0.1)
   (eglot-extend-to-xref t)              ; activate Eglot in referenced non-project files
 
   :config
-  (fset #'jsonrpc--log-event #'ignore)) ; massive perf boost---don't log every event
+  (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
+
+  ;; Use nixd for Nix (eglot would otherwise default to nil).
+  (add-to-list 'eglot-server-programs '((nix-mode nix-ts-mode) . ("nixd")))
+
+  ;; Point nixd at this flake so it can complete nixpkgs attributes plus NixOS
+  ;; and home-manager module options. Derived from ~/dots and the current
+  ;; hostname, so it targets this machine's nixosConfigurations entry.
+  (let ((flake (expand-file-name "~/dots"))
+        (host (car (split-string (system-name) "\\."))))
+    (setq-default eglot-workspace-configuration
+                  `(:nixd
+                    (:nixpkgs
+                     (:expr ,(format "import (builtins.getFlake \"%s\").inputs.nixpkgs {}" flake))
+                     :formatting (:command ["nixfmt"])
+                     :options
+                     (:nixos
+                      (:expr ,(format "(builtins.getFlake \"%s\").nixosConfigurations.%s.options" flake host))
+                      :home-manager
+                      (:expr ,(format "(builtins.getFlake \"%s\").nixosConfigurations.%s.options.home-manager.users.type.getSubOptions []" flake host)))))))
+
+  ;; Let orderless drive eglot's completion candidates
+  (setq completion-category-overrides
+        '((eglot (styles orderless))
+          (eglot-capf (styles orderless)))))
 
 ;;; Templating
 
