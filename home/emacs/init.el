@@ -495,6 +495,7 @@ If the new path's directories does not exist, create them."
   (setq parinfer-rust-auto-download nil)
   (setq parinfer-rust-dim-parens nil)
   (setq parinfer-rust-preferred-mode "smart")
+  (setq parinfer-rust-disable-troublesome-modes t)
   :hook ((emacs-lisp-mode . parinfer-rust-mode)
          (lisp-mode       . parinfer-rust-mode)
          (lisp-data-mode  . parinfer-rust-mode)
