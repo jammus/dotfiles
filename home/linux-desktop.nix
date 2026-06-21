@@ -25,7 +25,7 @@
     spotify
     obsidian
     waypaper
-    swww
+    awww
     nvtopPackages.full
     discord
     feishin

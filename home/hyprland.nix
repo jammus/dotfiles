@@ -122,7 +122,7 @@
 
       exec-once = [
         "waybar"
-        "waypaper --restore --backend swww"
+        "waypaper --restore --backend awww"
         "hypridle"
       ];
 
