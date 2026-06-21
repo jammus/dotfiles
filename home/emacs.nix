@@ -36,6 +36,8 @@
   xdg.configFile = {
     "emacs/early-init.el".source = ./emacs/early-init.el;
     "emacs/init.el".source = ./emacs/init.el;
+    "emacs/themes/doom-gruvbox-material-theme.el".source =
+      ./emacs/themes/doom-gruvbox-material-theme.el;
 
     # Nix store paths consumed by init.el (avoids hardcoding them).
     "emacs/nix-paths.el".text = ''
