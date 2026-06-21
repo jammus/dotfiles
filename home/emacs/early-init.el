@@ -3,11 +3,16 @@
 ;;; Bedrock early-init, adapted for a Nix-provisioned package set.
 
 ;; Startup speed, annoyance suppression
-(setq bedrock--initial-gc-threshold gc-cons-threshold)
 (setq gc-cons-threshold 10000000)
 (setq byte-compile-warnings '(not obsolete))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 (setq native-comp-async-report-warnings-errors 'silent)
+
+;; Redisplay performance: skip bidirectional-text reordering for LTR content,
+;; and defer fontification while input is pending.
+(setq-default bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+(setq redisplay-skip-fontification-on-input t)
 
 ;; Silence stupid startup message
 (setq inhibit-startup-echo-area-message (user-login-name))

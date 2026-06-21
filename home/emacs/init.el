@@ -642,7 +642,8 @@ If the new path's directories does not exist, create them."
           ("w" "Work" agenda ""
            ((org-agenda-files '("work.org")))))))
 
-;; Restore the GC threshold lowered for fast startup (set in early-init.el)
-(setq gc-cons-threshold (or bedrock--initial-gc-threshold 800000))
+;; Lower the GC threshold from its startup value to a comfortable interactive
+;; size (100 MiB) -- fewer GC pauses while editing.
+(setq gc-cons-threshold (* 100 1024 1024))
 
 ;;; init.el ends here
