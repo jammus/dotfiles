@@ -683,6 +683,12 @@ If the new path's directories does not exist, create them."
                       ("review")
                       ("reading")))
 
+;; Babel backend for d2 diagrams. Not built-in; org's do-load-languages will
+;; (require 'ob-d2) for the (d2 . t) entry below, so it must be on load-path.
+(use-package ob-d2
+  :ensure t
+  :after org)
+
 (use-package org
   ;; org is built-in; no :ensure
   :hook ((org-mode . visual-line-mode)  ; wrap lines at word breaks
@@ -695,6 +701,17 @@ If the new path's directories does not exist, create them."
   :config
   (require 'oc-csl)                     ; citation support
   (add-to-list 'org-export-backends 'md)
+
+  ;; Babel: which languages source blocks may evaluate. Interpreters are
+  ;; expected from the org folder's devenv (envrc gives the buffer its PATH),
+  ;; not from home.packages.
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell      . t)
+     (python     . t)
+     (clojure    . t)
+     (d2         . t)))
 
   ;; Follow file links in the same window
   (setf (cdr (assoc 'file org-link-frame-setup)) 'find-file)

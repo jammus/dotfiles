@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, config, inputs, ... }:
 let
   # emacs-pgtk is GTK/Wayland (Linux); macOS needs the native macport build.
   emacsPackage = if pkgs.stdenv.isDarwin then pkgs.emacs-macport else pkgs.emacs-pgtk;
@@ -8,9 +8,8 @@ in
 
   programs.emacs = {
     enable = true;
-    # emacs-pgtk: native Wayland on giant-head, runs `-nw` in the terminal on
-    # taskmaster. Packages referenced by `:ensure t' in init.el are built by Nix
-    # and put on the load-path; nothing is installed over the network at runtime.
+    # Packages referenced by `:ensure t' in init.el are built by Nix and put on
+    # the load-path; nothing is installed over the network at runtime.
     package = pkgs.emacsWithPackagesFromUsePackage {
       config = ./emacs/init.el;
       defaultInitFile = false;
@@ -24,8 +23,13 @@ in
 
   # External tools the config expects on PATH.
   home.packages = [
+    pkgs.claude-agent-acp
+
     # org flyspell needs a speller
     (pkgs.aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+
+    # ob-d2 shells out to the d2 CLI to render diagram blocks
+    pkgs.d2
 
     # Language servers always available (outside any project devenv). Everything
     # else is expected to come from a project's devenv via envrc.
