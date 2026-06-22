@@ -2,6 +2,7 @@
 {
   imports = [
     ./kitty.nix
+    ./emacs.nix
   ];
 
   home.packages = with pkgs; [

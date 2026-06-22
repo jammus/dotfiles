@@ -164,6 +164,7 @@
         ./hosts/chuckd/configuration.nix
         home-manager.darwinModules.home-manager {
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users."james.scott" = {
             imports = [
               ./home/default.nix
@@ -179,6 +180,7 @@
         ./hosts/book-of-stabbing/configuration.nix
         home-manager.darwinModules.home-manager {
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.jammus = {
             imports = [
               ./home/default.nix

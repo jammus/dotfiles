@@ -1,4 +1,8 @@
 { pkgs, inputs, ... }:
+let
+  # emacs-pgtk is GTK/Wayland (Linux); macOS needs the native macport build.
+  emacsPackage = if pkgs.stdenv.isDarwin then pkgs.emacs-macport else pkgs.emacs-pgtk;
+in
 {
   nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
@@ -10,7 +14,7 @@
     package = pkgs.emacsWithPackagesFromUsePackage {
       config = ./emacs/init.el;
       defaultInitFile = false;
-      package = pkgs.emacs-pgtk;
+      package = emacsPackage;
       alwaysEnsure = false;
       extraEmacsPackages = epkgs: [
         epkgs.treesit-grammars.with-all-grammars
@@ -41,7 +45,7 @@
 
     # Nix store paths consumed by init.el (avoids hardcoding them).
     "emacs/nix-paths.el".text = ''
-      (setq parinfer-rust-library "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust.so")
+      (setq parinfer-rust-library "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}")
     '';
   };
 }
