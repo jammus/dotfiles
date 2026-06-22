@@ -114,6 +114,19 @@ If the new path's directories does not exist, create them."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   Fonts
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun bedrock--set-gui-font (&optional frame)
+  (when (display-graphic-p frame)
+    (set-face-attribute 'default frame :family "Hack Nerd Font" :height 120)))
+
+(bedrock--set-gui-font)
+(add-hook 'after-make-frame-functions #'bedrock--set-gui-font)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Interface enhancements/defaults
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -152,6 +165,15 @@ If the new path's directories does not exist, create them."
 ;; Modes to highlight the current line with
 (let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
   (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
+
+;; nerd-icons supplies the glyphs doom-modeline renders using the
+;; "Symbols Nerd Font Mono" family
+(use-package nerd-icons
+  :ensure t)
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -217,8 +239,8 @@ If the new path's directories does not exist, create them."
          ("M-e" . consult-isearch-history)   ; orig. isearch-edit-string
          ("M-s e" . consult-isearch-history) ; orig. isearch-edit-string
          ("M-s l" . consult-line)            ; needed by consult-line to detect isearch
-         ("M-s L" . consult-line-multi)      ; needed by consult-line to detect isearch
-         )
+         ("M-s L" . consult-line-multi))      ; needed by consult-line to detect isearch
+         
   :config
   ;; Narrowing lets you restrict results to certain groups of candidates
   (setq consult-narrow-key "<"))
