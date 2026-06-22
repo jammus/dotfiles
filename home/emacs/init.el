@@ -577,6 +577,10 @@ If the new path's directories does not exist, create them."
   ;; If you use Magit, start editing commit messages in insert state
   (add-hook 'git-commit-setup-hook 'evil-insert-state)
 
+  ;; Use visual line motions
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
   ;; Use Emacs state in terminal emulators
   (evil-set-initial-state 'eat-mode 'emacs)
   (evil-set-initial-state 'vterm-mode 'emacs))
