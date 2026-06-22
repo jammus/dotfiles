@@ -23,6 +23,9 @@
 (when (boundp 'tool-bar-mode) ; When in a GUI, disable tool bar;
   (tool-bar-mode -1))         ; all these tools are in the menu-bar anyway
 
+(when (boundp 'menu-bar-mode)
+  (menu-bar-mode -1))
+
 (setq default-frame-alist '((fullscreen . maximized)
 
                             ;; Setting the face in here prevents flashes of
