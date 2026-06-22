@@ -70,8 +70,8 @@
   "Return a new file path of a given file path.
 If the new path's directories does not exist, create them."
   (let* ((backupRootDir (concat user-emacs-directory "emacs-backup/"))
-         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
-         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") )))
+         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath)) ; remove Windows driver letter in path
+         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~"))))
     (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
     backupFilePath))
 (setopt make-backup-file-name-function 'bedrock--backup-file-name)
@@ -212,6 +212,7 @@ If the new path's directories does not exist, create them."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Motion aids
+
 
 (use-package avy
   :ensure t
@@ -709,8 +710,7 @@ If the new path's directories does not exist, create them."
                       ("review")
                       ("reading")))
 
-;; Babel backend for d2 diagrams. Not built-in; org's do-load-languages will
-;; (require 'ob-d2) for the (d2 . t) entry below, so it must be on load-path.
+;; Babel backend for d2 diagrams
 (use-package ob-d2
   :ensure t
   :after org)
