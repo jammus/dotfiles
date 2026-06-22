@@ -41,6 +41,22 @@ in
     pkgs.fennel-ls             # Fennel
   ];
 
+  # macOS only registers GUI apps with LaunchServices when they live under
+  # ~/Applications (or /Applications). The macport build ships an Emacs.app, but
+  # it sits unreferenced in the Nix store, so `open -a Emacs`, Spotlight, and the
+  # Dock can't find it — and launching the bare binary from a shell never gets
+  # foreground focus. Alias the bundle in on every activation (a Finder alias,
+  # not a symlink, since LaunchServices ignores symlinked .app bundles).
+  home.activation = lib.mkIf pkgs.stdenv.isDarwin {
+    linkEmacsApp = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      run mkdir -p "$HOME/Applications"
+      run rm -rf "$HOME/Applications/Emacs.app"
+      run ${pkgs.mkalias}/bin/mkalias \
+        ${config.programs.emacs.finalPackage}/Applications/Emacs.app \
+        "$HOME/Applications/Emacs.app"
+    '';
+  };
+
   xdg.configFile = {
     "emacs/early-init.el".source = ./emacs/early-init.el;
     "emacs/init.el".source = ./emacs/init.el;
