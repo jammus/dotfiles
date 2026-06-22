@@ -87,6 +87,7 @@ If the new path's directories does not exist, create them."
 (use-package which-key
   :ensure t
   :config
+  (setq which-key-idle-delay 0.3)
   (which-key-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -565,6 +566,92 @@ If the new path's directories does not exist, create them."
   :after evil
   :config
   (evil-collection-init))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Leader key (general.el) -- SPC, Doom/Spacemacs style
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package general
+  :ensure t
+  :after evil
+  :config
+  (general-create-definer leader-def
+    :states '(normal visual motion)
+    :keymaps 'override
+    :prefix "SPC"
+    :global-prefix "M-SPC")
+
+  (leader-def
+    "SPC" '(execute-extended-command :which-key "M-x")
+    "."   '(find-file :which-key "find file")
+    ":"   '(execute-extended-command :which-key "M-x")
+
+    "f"  '(:ignore t :which-key "find")
+    "ff" '(find-file :which-key "file")
+    "fr" '(consult-recent-file :which-key "recent file")
+    "fg" '(consult-ripgrep :which-key "grep")
+    "fb" '(consult-buffer :which-key "buffer")
+    "fs" '(consult-imenu :which-key "symbol")
+    "fS" '(consult-imenu-multi :which-key "symbol (project)")
+    "fd" '(consult-flymake :which-key "diagnostics")
+
+    "b"  '(:ignore t :which-key "buffer")
+    "bb" '(consult-buffer :which-key "switch")
+    "bd" '(kill-current-buffer :which-key "kill")
+    "b[" '(previous-buffer :which-key "previous")
+    "b]" '(next-buffer :which-key "next")
+
+    "c"  '(:ignore t :which-key "code")
+    "ca" '(eglot-code-actions :which-key "action")
+
+    "r"  '(:ignore t :which-key "refactor")
+    "rn" '(eglot-rename :which-key "rename")
+    "rf" '(eglot-format :which-key "format")
+
+    "d"  '(:ignore t :which-key "diagnostics")
+    "dl" '(consult-flymake :which-key "list")
+    "d]" '(flymake-goto-next-error :which-key "next")
+    "d[" '(flymake-goto-prev-error :which-key "previous")
+
+    "e"  '(:ignore t :which-key "explorer")
+    "ee" '(dired-jump :which-key "here")
+
+    "g"  '(:ignore t :which-key "git")
+    "gg" '(magit-status :which-key "status")
+    "gb" '(magit-blame :which-key "blame")
+
+    "p"  '(:ignore t :which-key "project")
+    "pp" '(project-switch-project :which-key "switch")
+    "pf" '(project-find-file :which-key "find file")
+    "pb" '(project-switch-to-buffer :which-key "buffer")
+
+    "s"  '(:ignore t :which-key "search")
+    "ss" '(consult-line :which-key "line")
+    "sp" '(consult-ripgrep :which-key "project grep")
+
+    "w"  '(:ignore t :which-key "window")
+    "ww" '(other-window :which-key "other")
+    "wd" '(delete-window :which-key "delete")
+    "wo" '(delete-other-windows :which-key "only")
+    "ws" '(split-window-below :which-key "split below")
+    "wv" '(split-window-right :which-key "split right")
+
+    "t"  '(:ignore t :which-key "tab")
+    "tn" '(tab-new :which-key "new")
+    "tq" '(tab-close :which-key "close")
+    "t[" '(tab-previous :which-key "previous")
+    "t]" '(tab-next :which-key "next")
+
+    "h"  '(:ignore t :which-key "help")
+    "hk" '(describe-key :which-key "key")
+    "hf" '(describe-function :which-key "function")
+    "hv" '(describe-variable :which-key "variable")
+    "hm" '(describe-mode :which-key "mode")
+
+    "q"  '(:ignore t :which-key "quit")
+    "qq" '(save-buffers-kill-terminal :which-key "quit emacs")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
