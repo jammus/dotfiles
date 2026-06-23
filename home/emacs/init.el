@@ -158,6 +158,7 @@ If the new path's directories does not exist, create them."
 ;; Display line numbers in programming mode
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (setopt display-line-numbers-width 3)           ; Set a minimum width
+(setopt display-line-numbers-type 'relative)    ; Relative numbering, Vim-style
 
 ;; Nice line wrapping when working with text
 (add-hook 'text-mode-hook 'visual-line-mode)
@@ -419,9 +420,13 @@ If the new path's directories does not exist, create them."
 (use-package json-mode
   :ensure t)
 
-(use-package nix-mode
+(use-package nix-ts-mode
   :ensure t
   :mode "\\.nix\\'")
+
+;; Kept as a fallback and for the nixd/eglot server-program entry below.
+(use-package nix-mode
+  :ensure t)
 
 ;;; Eglot, the built-in LSP client for Emacs
 
@@ -439,6 +444,7 @@ If the new path's directories does not exist, create them."
   ;; eglot just reports it couldn't start and leaves the buffer alone. Servers
   ;; come either from the global set (home/emacs.nix) or a project's devenv.
   :hook ((nix-mode           . eglot-ensure)
+         (nix-ts-mode        . eglot-ensure)
          (bash-ts-mode       . eglot-ensure)
          (python-ts-mode     . eglot-ensure)
          (typescript-ts-mode . eglot-ensure)
