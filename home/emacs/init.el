@@ -794,6 +794,57 @@ If the new path's directories does not exist, create them."
           ("w" "Work" agenda ""
            ((org-agenda-files '("work.org")))))))
 
+;; org-modern: clean, modern styling for org buffers and agenda. Settings mirror
+;; the package's README example, minus the parts already handled elsewhere
+;; (menu/tool bars are disabled in early-init.el; theme is doom-gruvbox).
+(use-package org-modern
+  :ensure t
+  :after org
+  :init
+  ;; Org behaviour the example tunes so the modern styling sits right.
+  (setq org-auto-align-tags nil
+        org-tags-column 0
+        org-catch-invisible-edits 'show-and-error
+        org-special-ctrl-a/e t
+        org-insert-heading-respect-content t
+        ;; Hide markup / prettify entities / collapsed-heading ellipsis.
+        org-hide-emphasis-markers t
+        org-pretty-entities t
+        org-agenda-tags-column 0
+        org-ellipsis "…")
+  :config
+  ;; A little vertical breathing room, as the README recommends.
+  (setq-default line-spacing 0.1)
+
+  ;; Frame borders + window dividers coloured like the background, giving the
+  ;; padded look from the example screenshots. Read after the theme has loaded.
+  (modify-all-frames-parameters
+   '((right-divider-width . 40)
+     (internal-border-width . 40)))
+  (dolist (face '(window-divider
+                  window-divider-first-pixel
+                  window-divider-last-pixel))
+    (face-spec-reset-face face)
+    (set-face-foreground face (face-attribute 'default :background)))
+  (set-face-background 'fringe (face-attribute 'default :background))
+
+  (global-org-modern-mode))
+
+;; org-appear: reveal the raw markup (emphasis markers, links, entities,
+;; sub/superscripts) of whatever element point is inside, re-hiding it when you
+;; move away. This is the Emacs analogue of Vim's conceallevel/concealcursor --
+;; it only works while the hiding options above (org-hide-emphasis-markers,
+;; org-pretty-entities, org-link-descriptive) are on.
+(use-package org-appear
+  :ensure t
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-trigger 'always
+        org-appear-autoemphasis t      ; *bold* /italic/ =code= etc.
+        org-appear-autolinks t          ; [[link][desc]]
+        org-appear-autosubmarkers t     ; a_{sub} a^{super}
+        org-appear-autoentities t))     ; \alpha and friends
+
 ;; Lower the GC threshold from its startup value to a comfortable interactive
 ;; size (100 MiB) -- fewer GC pauses while editing.
 (setq gc-cons-threshold (* 100 1024 1024))
