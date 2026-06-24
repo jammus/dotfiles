@@ -437,6 +437,14 @@ If the new path's directories does not exist, create them."
   :ensure t
   :hook (after-init . envrc-global-mode))
 
+;; envrc's environment is buffer-local. Commands that spawn a subprocess in a
+;; fresh buffer (not a file in the project) lose it, falling back to the global
+;; env Emacs was launched with. inheritenv propagates the calling buffer's env
+;; across such spawns---see the org-babel advice in the org block below.
+(use-package inheritenv
+  :ensure t
+  :after envrc)
+
 (use-package eglot
   ;; no :ensure t here because it's built-in
 
@@ -743,7 +751,15 @@ If the new path's directories does not exist, create them."
      (shell      . t)
      (python     . t)
      (clojure    . t)
+     (fennel     . t)        ; ob-fennel ships inside the fennel-mode package
      (d2         . t)))
+
+  ;; Several babel backends evaluate by spawning an interpreter/REPL in a fresh
+  ;; buffer, which doesn't carry the org buffer's buffer-local envrc env---so the
+  ;; interpreter is missing from PATH unless Emacs was launched from a shell that
+  ;; already had it. Wrapping the single execution entry point makes every
+  ;; backend inherit the env of the buffer that triggered evaluation.
+  (inheritenv-add-advice 'org-babel-execute-src-block)
 
   ;; Follow file links in the same window
   (setf (cdr (assoc 'file org-link-frame-setup)) 'find-file)
