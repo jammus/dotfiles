@@ -830,31 +830,32 @@ If the new path's directories does not exist, create them."
 
   (global-org-modern-mode))
 
-;; org-appear: reveals the raw markup (emphasis markers, links, entities,
-;; sub/superscripts) that org-hide-emphasis-markers / org-pretty-entities /
-;; org-link-descriptive otherwise hide. We install and configure it but do NOT
-;; enable `org-appear-mode' (which reveals one element at a time); the
-;; org-appear-line module below reuses org-appear's internals to reveal the
-;; cursor's whole line at once -- the analogue of Vim's conceallevel +
-;; concealcursor.
-(use-package org-appear
-  :ensure t
-  :defer t
-  :init
-  ;; These flags feed `org-appear--set-elements', which decides which fragment
-  ;; types are toggleable. Set in :init so they're in place before any Org
-  ;; buffer activates the whole-line mode.
-  (setq org-appear-autoemphasis t      ; *bold* /italic/ =code= etc.
-        org-appear-autolinks t          ; [[link][desc]]
-        org-appear-autosubmarkers t     ; a_{sub} a^{super}
-        org-appear-autoentities t))     ; \alpha and friends
+;; Evil-driven presentation toggle. In normal/visual/etc. states the buffer
+;; shows org-modern's pretty styling with markup hidden. On entering Evil insert
+;; ("edit") state, the *whole document* drops to a raw view -- org-modern off,
+;; emphasis markers / entities / link syntax revealed, and emphasis (bold,
+;; italic, ...) faces not applied -- so you edit plain markup; the pretty view
+;; is restored on leaving insert. Heading font sizes are left untouched; only
+;; the decorative styling toggles.
+(defun bedrock/org-set-pretty (pretty)
+  "Switch the current Org buffer to PRETTY styling, or a raw view when nil.
+No-op outside Org buffers, so it is safe on the global Evil state hooks."
+  (when (derived-mode-p 'org-mode)
+    (setq-local org-hide-emphasis-markers pretty
+                org-pretty-entities pretty
+                org-link-descriptive pretty
+                org-fontify-emphasized-text pretty)
+    (org-modern-mode (if pretty 1 -1))
+    ;; Re-fontify the whole buffer so the variable changes take effect
+    ;; everywhere, not just around point.
+    (font-lock-flush)))
 
-;; Local module (home/emacs/org-appear-line.el): reveal every bit of markup on
-;; the cursor's line at once, re-hiding it when the cursor leaves. Loaded once
-;; Org is available so we don't pull Org (and org-appear) in at startup.
-(with-eval-after-load 'org
-  (load (expand-file-name "org-appear-line.el" user-emacs-directory) nil t)
-  (add-hook 'org-mode-hook #'org-appear-line-mode))
+(defun bedrock/org-edit-enter () (bedrock/org-set-pretty nil))
+(defun bedrock/org-edit-exit ()  (bedrock/org-set-pretty t))
+
+(with-eval-after-load 'evil
+  (add-hook 'evil-insert-state-entry-hook #'bedrock/org-edit-enter)
+  (add-hook 'evil-insert-state-exit-hook  #'bedrock/org-edit-exit))
 
 ;; Lower the GC threshold from its startup value to a comfortable interactive
 ;; size (100 MiB) -- fewer GC pauses while editing.
