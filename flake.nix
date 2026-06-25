@@ -209,5 +209,21 @@
         }
       ];
     };
+    nixosConfigurations.byrd = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./hosts/byrd/configuration.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.jammus = {
+            imports = [
+              ./home/default.nix
+              ./home/linux.nix
+            ];
+          };
+        }
+      ];
+    };
   };
 }

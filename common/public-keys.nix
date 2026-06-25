@@ -6,6 +6,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBrMN78xfUybhtW0IqtFu41ZqoILsGS+39cMVDkNYx+S # jammus@taskmaster"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHKI/Fa2TPriXo9wFuIekjy0ZeY6/r5O52MEbVI+nKWx" # op
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOIdnD23MLA/0op5ZNuMzC6WE3FzCAwwKGtCaOvwhme" # op
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpYLPSAuMfXVZitp5D65lgkHb8+A/sMgzsLLvgeQtFj jammus@byrd"
   ];
   devices = [
       "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCDfNnlBIBcuvxnEW7s+92l2D9KDEltEIHeK15cg+OsNC/IEddl9YDQsxknKSfAe9BwM6vB1cacskuxIg3xHrzQ= ShellFish@iPhone-28022024"
