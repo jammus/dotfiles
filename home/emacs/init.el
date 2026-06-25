@@ -830,20 +830,31 @@ If the new path's directories does not exist, create them."
 
   (global-org-modern-mode))
 
-;; org-appear: reveal the raw markup (emphasis markers, links, entities,
-;; sub/superscripts) of whatever element point is inside, re-hiding it when you
-;; move away. This is the Emacs analogue of Vim's conceallevel/concealcursor --
-;; it only works while the hiding options above (org-hide-emphasis-markers,
-;; org-pretty-entities, org-link-descriptive) are on.
+;; org-appear: reveals the raw markup (emphasis markers, links, entities,
+;; sub/superscripts) that org-hide-emphasis-markers / org-pretty-entities /
+;; org-link-descriptive otherwise hide. We install and configure it but do NOT
+;; enable `org-appear-mode' (which reveals one element at a time); the
+;; org-appear-line module below reuses org-appear's internals to reveal the
+;; cursor's whole line at once -- the analogue of Vim's conceallevel +
+;; concealcursor.
 (use-package org-appear
   :ensure t
-  :hook (org-mode . org-appear-mode)
-  :config
-  (setq org-appear-trigger 'always
-        org-appear-autoemphasis t      ; *bold* /italic/ =code= etc.
+  :defer t
+  :init
+  ;; These flags feed `org-appear--set-elements', which decides which fragment
+  ;; types are toggleable. Set in :init so they're in place before any Org
+  ;; buffer activates the whole-line mode.
+  (setq org-appear-autoemphasis t      ; *bold* /italic/ =code= etc.
         org-appear-autolinks t          ; [[link][desc]]
         org-appear-autosubmarkers t     ; a_{sub} a^{super}
         org-appear-autoentities t))     ; \alpha and friends
+
+;; Local module (home/emacs/org-appear-line.el): reveal every bit of markup on
+;; the cursor's line at once, re-hiding it when the cursor leaves. Loaded once
+;; Org is available so we don't pull Org (and org-appear) in at startup.
+(with-eval-after-load 'org
+  (load (expand-file-name "org-appear-line.el" user-emacs-directory) nil t)
+  (add-hook 'org-mode-hook #'org-appear-line-mode))
 
 ;; Lower the GC threshold from its startup value to a comfortable interactive
 ;; size (100 MiB) -- fewer GC pauses while editing.

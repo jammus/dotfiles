@@ -60,6 +60,7 @@ in
   xdg.configFile = {
     "emacs/early-init.el".source = ./emacs/early-init.el;
     "emacs/init.el".source = ./emacs/init.el;
+    "emacs/org-appear-line.el".source = ./emacs/org-appear-line.el;
     "emacs/themes/doom-gruvbox-material-theme.el".source =
       ./emacs/themes/doom-gruvbox-material-theme.el;
 
