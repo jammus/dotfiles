@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 let
   publicKeys = import ../common/public-keys.nix;
 in
@@ -52,7 +52,7 @@ in
         pkgs.direnv
         pkgs.devenv
         pkgs.vim
-        inputs.backlog-md.packages.x86_64-linux.default
+        inputs.backlog-md.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
       services = {
         openssh.enable = true;
@@ -70,7 +70,7 @@ in
         };
       };
       networking.hosts = {
-        "192.168.100.10" = ["taskmaster"];
+        "192.168.100.10" = [ config.networking.hostName ];
       };
       users.users.agent = {
         uid = 1047;
@@ -85,4 +85,61 @@ in
       };
     };
   };
+  devContainers.research = {
+    hostAddress = "192.168.100.10";
+    localAddress = "192.168.100.13";
+    enableFirewallFiltering = false;
+    config = {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+      ];
+      home-manager.useUserPackages = true;
+      home-manager.users.agent = {
+        imports = [
+          ../home/default.nix
+        ];
+      };
+      environment.systemPackages = [
+        pkgs.claude-code
+        pkgs.bind
+        pkgs.git
+        pkgs.direnv
+        pkgs.devenv
+        pkgs.vim
+        inputs.backlog-md.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
+      services = {
+        openssh.enable = true;
+      };
+      programs = {
+        fish.enable = true;
+        bash = {
+          interactiveShellInit = ''
+            if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+            then
+              shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+              exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+            fi
+          '';
+        };
+      };
+      networking.hosts = {
+        "192.168.100.10" = [ config.networking.hostName ];
+      };
+			networking.resolvconf.enable = false;
+			environment.etc."resolv.conf".text = "nameserver 1.1.1.1";
+      users.users.agent = {
+        uid = 1047;
+        initialHashedPassword = "*";
+        isNormalUser = true;
+        description = "Agent";
+        extraGroups = [
+          "agents"
+        ];
+        shell = pkgs.bash;
+        openssh.authorizedKeys.keys = publicKeys.authorizedKeys;
+      };
+    };
+  };
+
 }
