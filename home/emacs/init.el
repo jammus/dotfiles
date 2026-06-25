@@ -691,6 +691,19 @@ If the new path's directories does not exist, create them."
     "hv" '(describe-variable :which-key "variable")
     "hm" '(describe-mode :which-key "mode")
 
+    "o"   '(:ignore t :which-key "org")
+    "oa"  '(org-agenda :which-key "agenda")
+    "oc"  '(org-capture :which-key "capture")
+    "ol"  '(org-store-link :which-key "store link")
+    "or"  '(:ignore t :which-key "roam")
+    "orf" '(org-roam-node-find :which-key "find node")
+    "ori" '(org-roam-node-insert :which-key "insert link")
+    "orb" '(org-roam-buffer-toggle :which-key "backlinks")
+    "orc" '(org-roam-capture :which-key "capture")
+    "ort" '(org-roam-dailies-goto-today :which-key "today")
+    "or[" '(org-roam-dailies-goto-previous-note :which-key "prev daily")
+    "or]" '(org-roam-dailies-goto-next-note :which-key "next daily")
+
     "q"  '(:ignore t :which-key "quit")
     "qq" '(save-buffers-kill-terminal :which-key "quit emacs")))
 
@@ -856,6 +869,24 @@ No-op outside Org buffers, so it is safe on the global Evil state hooks."
 (with-eval-after-load 'evil
   (add-hook 'evil-insert-state-entry-hook #'bedrock/org-edit-enter)
   (add-hook 'evil-insert-state-exit-hook  #'bedrock/org-edit-exit))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Org-roam
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package org-roam
+  :ensure t
+  :after org
+  :init
+  (setq org-roam-directory (file-name-as-directory
+                            (expand-file-name "roam" org-directory)))
+  (setq org-roam-database-connector 'sqlite-builtin)
+  :config
+  (unless (file-directory-p org-roam-directory)
+    (make-directory org-roam-directory t))
+  (org-roam-db-autosync-mode))
 
 ;; Lower the GC threshold from its startup value to a comfortable interactive
 ;; size (100 MiB) -- fewer GC pauses while editing.
