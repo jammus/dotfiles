@@ -120,7 +120,7 @@ If the new path's directories does not exist, create them."
 
 (defun bedrock--set-gui-font (&optional frame)
   (when (display-graphic-p frame)
-    (set-face-attribute 'default frame :family "Hack Nerd Font" :height 120)))
+    (set-face-attribute 'default frame :family "Hack Nerd Font" :height 150)))
 
 (bedrock--set-gui-font)
 (add-hook 'after-make-frame-functions #'bedrock--set-gui-font)
