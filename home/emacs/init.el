@@ -716,7 +716,7 @@ If the new path's directories does not exist, create them."
 ;; Where org looks for agenda/capture files. Adjust to taste -- non-absolute
 ;; paths in templates below are resolved relative to this directory.
 (setq org-directory "~/nb/org/")
-(setq org-agenda-files '("inbox.org" "work.org"))
+(setq org-agenda-files '("inbox.org"))
 
 ;; aspell is provided via Nix (see home/emacs.nix); makes flyspell work.
 (setq ispell-program-name "aspell")
