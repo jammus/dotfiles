@@ -767,6 +767,9 @@ If the new path's directories does not exist, create them."
      (fennel     . t)        ; ob-fennel ships inside the fennel-mode package
      (d2         . t)))
 
+  ;; Don't prompt for confirmation before evaluating a source block.
+  (setq org-confirm-babel-evaluate nil)
+
   ;; Several babel backends evaluate by spawning an interpreter/REPL in a fresh
   ;; buffer, which doesn't carry the org buffer's buffer-local envrc env---so the
   ;; interpreter is missing from PATH unless Emacs was launched from a shell that
