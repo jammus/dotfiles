@@ -826,6 +826,7 @@ If the new path's directories does not exist, create them."
         ;; Hide markup / prettify entities / collapsed-heading ellipsis.
         org-hide-emphasis-markers t
         org-pretty-entities t
+        org-modern-star 'replace
         org-agenda-tags-column 0
         org-ellipsis "…")
 
