@@ -828,6 +828,11 @@ If the new path's directories does not exist, create them."
         org-pretty-entities t
         org-agenda-tags-column 0
         org-ellipsis "…")
+
+  (setq org-modern-checkbox
+        `((?\s . ,(char-to-string #xF0131))    ; unchecked
+          (?-  . ,(char-to-string #xF06F2))    ; partial
+          (?X  . ,(char-to-string #xF0132))))  ; checked
   :config
   ;; A little vertical breathing room, as the README recommends.
   (setq-default line-spacing 0.1)
