@@ -836,20 +836,8 @@ If the new path's directories does not exist, create them."
           (?-  . ,(char-to-string #xF06F2))    ; partial
           (?X  . ,(char-to-string #xF0132))))  ; checked
   :config
-  ;; A little vertical breathing room, as the README recommends.
-  (setq-default line-spacing 0.1)
 
-  ;; Frame borders + window dividers coloured like the background, giving the
-  ;; padded look from the example screenshots. Read after the theme has loaded.
-  (modify-all-frames-parameters
-   '((right-divider-width . 40)
-     (internal-border-width . 40)))
-  (dolist (face '(window-divider
-                  window-divider-first-pixel
-                  window-divider-last-pixel))
-    (face-spec-reset-face face)
-    (set-face-foreground face (face-attribute 'default :background)))
-  (set-face-background 'fringe (face-attribute 'default :background))
+  (setq-default line-spacing 0.1)
 
   (global-org-modern-mode))
 
