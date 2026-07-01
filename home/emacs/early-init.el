@@ -28,6 +28,12 @@
 
 (setq default-frame-alist '((fullscreen . maximized)
 
+                            ;; A little breathing room between the frame edge and
+                            ;; the buffer, everywhere. Set here (not after a
+                            ;; package loads) so it is present on the initial
+                            ;; frame from startup, with no post-theme reflow.
+                            (internal-border-width . 10)
+
                             ;; Setting the face in here prevents flashes of
                             ;; color as the theme gets activated
                             (background-color . "#292828")
