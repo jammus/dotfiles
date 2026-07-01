@@ -608,6 +608,19 @@ If the new path's directories does not exist, create them."
   :config
   (evil-collection-init))
 
+;; evil-org: Include 'evil-org-return' (non-default) so that RET inside a list
+;; creates a new list item
+(use-package evil-org
+  :ensure t
+  :after (evil org)
+  :hook (org-mode . evil-org-mode)
+  :init
+  (setq evil-org-key-theme
+        '(navigation insert textobjects additional calendar return))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   Leader key (general.el) -- SPC, Doom/Spacemacs style
