@@ -744,8 +744,9 @@ If the new path's directories does not exist, create them."
 
 (use-package org
   ;; org is built-in; no :ensure
-  :hook ((org-mode . visual-line-mode)  ; wrap lines at word breaks
-         (org-mode . flyspell-mode))    ; spell checking
+  :hook ((org-mode . visual-line-mode)         ; wrap lines at word breaks
+         (org-mode . flyspell-mode)            ; spell checking
+         (org-mode . display-line-numbers-mode)) ; relative line numbers (see display-line-numbers-type)
   :bind (:map global-map
               ("C-c A" . org-agenda)                ; C-c a is embark-act (base.el)
               ("C-c c" . org-capture)
