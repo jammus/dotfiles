@@ -17,6 +17,19 @@ in
       alwaysEnsure = false;
       extraEmacsPackages = epkgs: [
         epkgs.treesit-grammars.with-all-grammars
+
+        # kitty-graphics.el is not in MELPA/nixpkgs, so build it from source.
+        # Single file, no Emacs-package dependencies (Emacs >= 27.1 only).
+        (epkgs.trivialBuild {
+          pname = "kitty-graphics";
+          version = "0-unstable-2025-05-04";
+          src = pkgs.fetchFromGitHub {
+            owner = "cashmeredev";
+            repo = "kitty-graphics.el";
+            rev = "586ff4b36f2ae44b12d35b0d4f256da23bc71f08";
+            hash = "sha256-YqZ82zg303Ss2qlDTMM3xy8lG0BO8+/vdXMO6FxVX5E=";
+          };
+        })
       ];
     };
   };
@@ -30,6 +43,13 @@ in
 
     # ob-d2 shells out to the d2 CLI to render diagram blocks
     pkgs.d2
+
+    # dirvish previews/thumbnails shell out to these CLIs.
+    pkgs.vips                # vipsthumbnail — image thumbnails
+    pkgs.ffmpegthumbnailer   # video thumbnails
+    pkgs.mediainfo           # audio/video metadata
+    pkgs.poppler-utils       # pdftoppm — PDF previews
+    pkgs.imagemagick         # image conversions
 
     # Language servers always available (outside any project devenv). Everything
     # else is expected to come from a project's devenv via envrc.

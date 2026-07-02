@@ -408,6 +408,19 @@ If the new path's directories does not exist, create them."
   :ensure t
   :bind (("C-x g" . magit-status)))
 
+;;; File management
+
+(use-package dirvish
+  :ensure t
+  :init
+  (dirvish-override-dired-mode))
+
+(use-package kitty-graphics
+  :ensure nil
+  :unless (display-graphic-p)
+  :config
+  (kitty-graphics-setup))
+
 ;;; Common file types
 
 (use-package markdown-mode
