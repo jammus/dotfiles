@@ -29,6 +29,8 @@
 
   nix.optimise.automatic = true;
 
+  environment.systemPackages = [ pkgs.ghostty.terminfo ];
+
   nixpkgs.config.permittedInsecurePackages = [
   ];
 }
