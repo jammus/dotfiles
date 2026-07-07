@@ -355,6 +355,14 @@ If the new path's directories does not exist, create them."
   (eat-eshell-mode)                     ; use Eat to handle term codes in program output
   (eat-eshell-visual-command-mode))     ; commands like less will be handled by Eat
 
+;; ghostel: libghostty-powered terminal emulator (vterm-like), with inline
+;; graphics/images. Nix builds the Zig native module and bundles it into the
+;; package (nixpkgs' emacsPackages.ghostel), so nothing is downloaded at
+;; runtime. `:commands' defers the large module until `M-x ghostel'.
+(use-package ghostel
+  :ensure t
+  :commands (ghostel))
+
 ;; Orderless: powerful completion style
 (use-package orderless
   :ensure t
