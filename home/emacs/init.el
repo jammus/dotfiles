@@ -167,14 +167,17 @@ If the new path's directories does not exist, create them."
 (let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
   (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
 
-;; nerd-icons supplies the glyphs doom-modeline renders using the
-;; "Symbols Nerd Font Mono" family
+;; nerd-icons supplies Nerd Font glyphs (from the "Symbols Nerd Font Mono"
+;; family) used elsewhere in the UI.
 (use-package nerd-icons
   :ensure t)
 
-(use-package doom-modeline
+;; spaceline: Spacemacs-style powerline mode line.
+(use-package spaceline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :config
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
