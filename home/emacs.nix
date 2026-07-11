@@ -2,8 +2,23 @@
 let
   # emacs-pgtk is GTK/Wayland (Linux); macOS needs the native macport build.
   emacsPackage = if pkgs.stdenv.isDarwin then pkgs.emacs-macport else pkgs.emacs-pgtk;
+
+  # Native/Nix-coupled packages the Doom config expects on the load-path.
+  # kitty-graphics.el is not in MELPA/nixpkgs, so build it from source.
+  kitty-graphics = epkgs: epkgs.trivialBuild {
+    pname = "kitty-graphics";
+    version = "0-unstable-2025-05-04";
+    src = pkgs.fetchFromGitHub {
+      owner = "cashmeredev";
+      repo = "kitty-graphics.el";
+      rev = "586ff4b36f2ae44b12d35b0d4f256da23bc71f08";
+      hash = "sha256-YqZ82zg303Ss2qlDTMM3xy8lG0BO8+/vdXMO6FxVX5E=";
+    };
+  };
 in
 {
+  imports = [ inputs.nix-doom-emacs-unstraightened.homeModule ];
+
   nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
   programs.emacs = {
@@ -17,22 +32,31 @@ in
       alwaysEnsure = false;
       extraEmacsPackages = epkgs: [
         epkgs.treesit-grammars.with-all-grammars
-
-        # kitty-graphics.el is not in MELPA/nixpkgs, so build it from source.
-        # Single file, no Emacs-package dependencies (Emacs >= 27.1 only).
-        (epkgs.trivialBuild {
-          pname = "kitty-graphics";
-          version = "0-unstable-2025-05-04";
-          src = pkgs.fetchFromGitHub {
-            owner = "cashmeredev";
-            repo = "kitty-graphics.el";
-            rev = "586ff4b36f2ae44b12d35b0d4f256da23bc71f08";
-            hash = "sha256-YqZ82zg303Ss2qlDTMM3xy8lG0BO8+/vdXMO6FxVX5E=";
-          };
-        })
+        (kitty-graphics epkgs)
       ];
     };
   };
+
+  # Doom Emacs alongside the vanilla build above, for side-by-side comparison.
+  # provideEmacs = false keeps this off the `emacs'/`emacsclient' names (those
+  # stay bound to programs.emacs); this one installs a `doom-emacs' binary.
+  programs.doom-emacs = {
+    enable = true;
+    provideEmacs = false;
+    doomDir = ./emacs/doom.d;
+    emacs = emacsPackage;
+    # Packages Doom can't fetch from MELPA because Nix has to build native code.
+    extraPackages = epkgs: [
+      epkgs.treesit-grammars.with-all-grammars
+      epkgs.ghostel                 # libghostty terminal, native Zig module
+      (kitty-graphics epkgs)
+    ];
+  };
+
+  # parinfer-rust-mode loads its Rust core from this path rather than
+  # downloading it; config.el reads the variable.
+  home.sessionVariables.PARINFER_RUST_LIBRARY =
+    "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
 
   # External tools the config expects on PATH.
   home.packages = [
