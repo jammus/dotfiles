@@ -16,38 +16,40 @@
        :ui
        doom               ; doom-themes
        doom-dashboard
-       hl-line
-       (modeline +light)  ; replaces spaceline; swap for a `package! spaceline' if you miss it
+       hl-todo
+       modeline
+       nav-flash
        ophints
        (popup +defaults)
-       vc-gutter
-       window-select      ; SPC w w candidate picker
-       workspaces         ; persp-based; Bedrock used tab-bar (see leader "t" map in config.el)
+       smooth-scroll
+       tabs
+       window-select
+       workspaces
 
        :editor
        (evil +everywhere) ; evil + evil-collection across built-in and third-party modes
+       file-templates
        fold
-       word-wrap
 
        :emacs
        (dired +dirvish +icons)   ; dirvish-override-dired-mode
-       electric                  ; electric-pair-mode
+       electric
        undo
        vc
 
        :term
        eshell
-
-       :checkers
-       (syntax +flymake)  ; Bedrock drove flymake; not flycheck
-       (spell +aspell)    ; flyspell via aspell (provided by Nix)
+       term
+       vterm
+       ;;ghostel
 
        :tools
-       direnv             ; envrc
+       direnv
        (eval +overlay)
        lookup
-       (lsp +eglot)       ; eglot, not lsp-mode -- matches the Bedrock setup
+       (lsp +eglot)
        magit
+       tree-sitter
 
        :os
        (:if (featurep :system 'macos) macos)
@@ -56,13 +58,16 @@
        clojure            ; clojure-mode + cider
        data               ; yaml, json, csv majors
        emacs-lisp
+       janet
        (javascript +lsp)  ; js/ts/tsx
+       latex
        (lua +lsp)
        markdown
        (nix +lsp)
-       (org +roam2 +dragndrop +pretty)
+       (org +roam +dragndrop +pretty)
        (python +lsp)
        (sh +lsp)
 
        :config
+       literate
        (default +bindings +smartparens))
