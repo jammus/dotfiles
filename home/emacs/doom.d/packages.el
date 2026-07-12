@@ -35,3 +35,6 @@
 (package! shell-maker)
 (package! acp)
 (package! agent-shell)
+
+;; -- Terminal evil integration ---------------------------------------------
+(package! evil-ghostel)

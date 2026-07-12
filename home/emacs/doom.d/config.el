@@ -54,6 +54,10 @@
 (use-package! ghostel
   :commands ghostel)
 
+(use-package! evil-ghostel
+  :after (ghostel evil)
+  :hook (ghostel-mode . evil-ghostel-mode))
+
 (use-package! kitty-graphics
   :unless (display-graphic-p)
   :config (kitty-graphics-setup))
