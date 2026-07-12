@@ -69,3 +69,17 @@
 
 (use-package! agent-shell
   :commands agent-shell)
+
+(defun my/cider-eval-enclosing-sexp ()
+  "Evaluate the innermost list surrounding point."
+  (interactive)
+  (save-excursion
+    (unless (looking-at-p "\\s(")
+      (backward-up-list))
+    (forward-sexp)
+    (cider-eval-last-sexp)))
+
+(map! :after cider
+      :localleader
+      :map clojure-mode-map
+      "e e" #'my/cider-eval-enclosing-sexp)
