@@ -45,7 +45,8 @@
           clojure-mode fennel-mode janet-mode) . parinfer-rust-mode))
 
 (after! cider
-  (setq cider-repl-display-help-banner nil))
+  (setq cider-repl-display-help-banner nil)
+  (require 'cider-eval-sexp-fu))
 
 ;;; Terminals with inline graphics -----------------------------------------
 

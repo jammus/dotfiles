@@ -13,6 +13,9 @@
 ;; --- Lisp editing ---------------------------------------------------------
 ;; Bedrock used parinfer for all lisps rather than Doom's default smartparens.
 (package! parinfer-rust-mode)
+;; Flashes the sexp/region as it's evaluated in CIDER. Not in Doom's :lang
+;; clojure module; pulls in eval-sexp-fu as a dep.
+(package! cider-eval-sexp-fu)
 
 ;; --- Extra language majors Doom has no module for -------------------------
 (package! fennel-mode)                                  ; also provides ob-fennel
