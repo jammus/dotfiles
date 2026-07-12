@@ -76,7 +76,7 @@
   (save-excursion
     (unless (looking-at-p "\\s(")
       (backward-up-list))
-    (forward-sexp)
+    (evil-jump-item)
     (cider-eval-last-sexp)))
 
 (map! :after cider
