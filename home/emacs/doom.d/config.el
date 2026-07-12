@@ -81,5 +81,6 @@
 
 (map! :after cider
       :localleader
-      :map clojure-mode-map
+      :map cider-mode-map
+      :desc "Evaluate current form"
       "e e" #'my/cider-eval-enclosing-sexp)
