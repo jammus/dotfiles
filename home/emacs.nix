@@ -53,10 +53,14 @@ in
     ];
   };
 
-  # parinfer-rust-mode loads its Rust core from this path rather than
-  # downloading it; config.el reads the variable.
-  home.sessionVariables.PARINFER_RUST_LIBRARY =
-    "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
+  # parinfer-rust-mode loads its Rust core from an absolute path rather than
+  # downloading it. A GUI-launched Emacs doesn't inherit home.sessionVariables
+  # (those only reach login shells), so bake the store path into a file the Doom
+  # config loads directly -- mirrors the vanilla emacs nix-paths.el.
+  xdg.configFile."doom-nix-paths.el".text = ''
+    (setq parinfer-rust-library
+          "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}")
+  '';
 
   # External tools the config expects on PATH.
   home.packages = [

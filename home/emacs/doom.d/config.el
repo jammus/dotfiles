@@ -9,6 +9,13 @@
 ;; load-time error in this file can't leave it at Doom's ~/org default.
 (setq org-directory "~/nb/org/")
 
+;; Store paths injected by Nix (see home/emacs.nix). Currently just sets
+;; `parinfer-rust-library'. Loaded from ~/.config rather than this read-only
+;; store DOOMDIR, and env-independent so a GUI Emacs picks it up.
+(load (expand-file-name "doom-nix-paths.el"
+                        (or (getenv "XDG_CONFIG_HOME") "~/.config"))
+      t t)
+
 ;;; Fonts & theme -----------------------------------------------------------
 
 ;; Bedrock set :height 150 (i.e. 15pt) in Hack Nerd Font. font-spec :size is
@@ -26,16 +33,14 @@
 
 ;;; Lisp editing (parinfer) -------------------------------------------------
 
-;; The Rust core is built by Nix; PARINFER_RUST_LIBRARY is exported from
-;; home/emacs.nix so we never auto-download it.
+;; The Rust core is built by Nix; parinfer-rust-library is set by the
+;; doom-nix-paths.el loaded above, so we never auto-download it.
 (use-package! parinfer-rust-mode
   :init
   (setq parinfer-rust-auto-download nil
         parinfer-rust-dim-parens nil
         parinfer-rust-preferred-mode "smart"
         parinfer-rust-disable-troublesome-modes t)
-  (when-let ((lib (getenv "PARINFER_RUST_LIBRARY")))
-    (setq parinfer-rust-library lib))
   :hook ((emacs-lisp-mode lisp-mode lisp-data-mode
           clojure-mode fennel-mode janet-mode) . parinfer-rust-mode))
 
