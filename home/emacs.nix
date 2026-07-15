@@ -22,7 +22,7 @@ in
   nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
   programs.emacs = {
-    enable = true;
+    enable = false;
     # Packages referenced by `:ensure t' in init.el are built by Nix and put on
     # the load-path; nothing is installed over the network at runtime.
     package = pkgs.emacsWithPackagesFromUsePackage {
@@ -42,7 +42,7 @@ in
   # stay bound to programs.emacs); this one installs a `doom-emacs' binary.
   programs.doom-emacs = {
     enable = true;
-    provideEmacs = false;
+    provideEmacs = true;
     doomDir = ./emacs/doom.d;
     emacs = emacsPackage;
     # Packages Doom can't fetch from MELPA because Nix has to build native code.
