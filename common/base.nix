@@ -14,6 +14,7 @@
     "https://cuda-maintainers.cachix.org"
     "https://cosmic.cachix.org/"
     "https://devenv.cachix.org"
+    "https://doom-emacs-unstraightened.cachix.org"
   ];
 
   nix.settings.extra-trusted-public-keys = [
@@ -21,6 +22,7 @@
     "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
     "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw"
+    "doom-emacs-unstraightened.cachix.org-1:O5oOlRPnmQEvVaFyuMTmthCEooHbrg54WgSLR07tmg4="
   ];
 
   nix.settings.trusted-users = [
