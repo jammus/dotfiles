@@ -1,4 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
+let
+  ghostty-package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+in
 {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -31,6 +34,7 @@
 
   nix.optimise.automatic = true;
 
+  environment.systemPackages = [ ghostty-package.terminfo ];
   environment.systemPackages = [ pkgs.ghostty.terminfo ];
 
   nixpkgs.config.permittedInsecurePackages = [
