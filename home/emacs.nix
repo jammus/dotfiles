@@ -53,6 +53,8 @@ in
     ];
   };
 
+  services.emacs.enable = true;
+
   # parinfer-rust-mode loads its Rust core from an absolute path rather than
   # downloading it. A GUI-launched Emacs doesn't inherit home.sessionVariables
   # (those only reach login shells), so bake the store path into a file the Doom
