@@ -84,3 +84,8 @@
       :map cider-mode-map
       :desc "Evaluate current form"
       "e e" #'my/cider-eval-enclosing-sexp)
+
+;;; Workspaces --------------------------------------------------------------
+
+(after! persp-mode
+  (setq persp-emacsclient-init-frame-behaviour-override +workspaces-main))
