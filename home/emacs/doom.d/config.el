@@ -88,4 +88,5 @@
 ;;; Workspaces --------------------------------------------------------------
 
 (after! persp-mode
-  (setq persp-emacsclient-init-frame-behaviour-override +workspaces-main))
+  (setq persp-emacsclient-init-frame-behaviour-override +workspaces-main)
+  (setq +workspaces-on-switch-project-behavior t))
