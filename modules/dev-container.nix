@@ -139,5 +139,8 @@ in
 
   config = {
     containers = mapAttrs mkDevContainer cfg;
+
+    networking.firewall.trustedInterfaces = mapAttrsToList (name: _: "ve-${name}") cfg;
+    networking.nat.internalInterfaces = mapAttrsToList (name: _: "ve-${name}") cfg;
   };
 }
