@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  services.internalProxy.routes.navidrome = "localhost:4533";
+
   services.navidrome = {
     enable = true;
     settings = {

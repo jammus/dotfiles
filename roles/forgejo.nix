@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  services.internalProxy.routes.forge = "localhost:3000";
+
   users = {
     users = {
       gitea = {
@@ -27,7 +29,8 @@
     stateDir = "/nas/services/forgejo";
     settings = {
       server = {
-        DOMAIN = "taskmaster";
+        DOMAIN = "forge.int.r12.sh";
+        ROOT_URL = "https://forge.int.r12.sh/";
         SSH_PORT = 2222;
         HTTP_PORT = 3000;
         START_SSH_SERVER = true;

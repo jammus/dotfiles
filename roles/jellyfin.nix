@@ -15,6 +15,8 @@
     ];
   };
 
+  services.internalProxy.routes.jellyfin = "localhost:8096";
+
   services.jellyfin.enable = true;
 
   systemd.services.jellyfin = {

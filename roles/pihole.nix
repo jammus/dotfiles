@@ -17,6 +17,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    services.internalProxy.routes."pihole-${config.networking.hostName}" = "localhost:9080";
+
     users.users = {
       pihole = {
         uid = 3004;
@@ -42,7 +44,7 @@ in {
         ports = [
           "0.0.0.0:53:53/tcp"
           "0.0.0.0:53:53/udp"
-          "${cfg.serverIp}:9080:80/tcp"
+          "0.0.0.0:9080:80/tcp"
         ];
         environment = {
           PIHOLE_GID = "${toString config.users.groups.pihole.gid}";
