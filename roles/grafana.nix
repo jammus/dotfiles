@@ -1,5 +1,7 @@
 { pkgs, config, ... }:
 {
+  services.internalProxy.routes.grafana = "localhost:2342";
+
   services.grafana = {
     enable = true;
     settings = {

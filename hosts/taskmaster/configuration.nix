@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
@@ -11,6 +11,7 @@
       ../../common/base.nix
       ../../common/users.nix
       ../../common/networking.nix
+      ../../common/internal-proxy.nix
       ../../common/gpu/nvidia.nix
       ../../roles/jellyfin.nix
       ../../roles/syncthing.nix
@@ -25,6 +26,9 @@
       ../../roles/agent.nix
       ../../roles/forgejo.nix
       ../../roles/ci-runner.nix
+      ../../roles/matrix.nix
+      ../../roles/element-web.nix
+      ../../roles/caddy.nix
     ];
 
   systemd.tmpfiles.rules = [
