@@ -13,6 +13,10 @@
       ../../common/networking.nix
     ];
 
+  services.avahi.enable = false;
+  networking.firewall.allowedTCPPorts = [ 22 ];
+  services.openssh.settings.PasswordAuthentication = false;
+
   boot.loader.grub.enable = true;
   boot.loader.grub.devices = ["nodev"];
   boot.tmp.cleanOnBoot = true;
