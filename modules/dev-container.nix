@@ -71,6 +71,8 @@ let
         allowNoPasswordLogin = lib.mkDefault true;
       };
 
+      networking.enableIPv6 = false;
+
       networking.firewall = mkIf containerCfg.enableFirewallFiltering {
         enable = true;
         allowedTCPPorts = [ 22 ];
