@@ -22,6 +22,8 @@ let
     "registry.npmjs.org"
     "repo1.maven.org"
     "repo.clojars.org"
+    "openrouter.ai"
+    "pi.dev"
   ];
   allowedIps = [
     "192.168.88.0/24"
@@ -39,6 +41,7 @@ let
   imports = [
     ../home/default.nix
     ../home/emacs.nix
+    ../home/llms.nix
   ];
   interactiveShellInit = ''
     if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]

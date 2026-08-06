@@ -46,6 +46,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.agenix.follows = "agenix";
     };
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+    };
   };
   outputs = inputs@{
     home-manager, nixpkgs, darwin,
@@ -141,6 +144,9 @@
               ./home/default.nix
               ./home/linux.nix
               ./home/taskmaster.nix
+            ];
+            home.packages = [
+              paved-paths.packages.x86_64-linux.init-project
             ];
           };
         }
