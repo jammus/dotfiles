@@ -79,6 +79,9 @@ let
         checkReversePath = "loose";
 
         extraCommands = ''
+          # Allow local loopback traffic
+          iptables -A OUTPUT -o lo -j ACCEPT
+
           # Allow static IPs (supports both individual IPs and CIDR ranges)
           ${lib.concatMapStringsSep "\n" (ip:
             "iptables -A OUTPUT -d ${ip} -j ACCEPT"
