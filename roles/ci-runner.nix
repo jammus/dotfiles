@@ -33,17 +33,13 @@ in
         openssh.enable = true;
       };
       networking.hosts = {
-        "192.168.100.10" = [ config.networking.hostName ];
+        "192.168.100.10" = [ "taskmaster" "forge.int.r12.sh" ];
       };
       networking.nameservers = [ "192.168.100.10" ];
+      networking.useHostResolvConf = lib.mkForce false;
       networking.firewall = {
         enable = true;
         allowedTCPPorts = [ 22 ];
-      };
-      networking.useHostResolvConf = lib.mkForce false;
-      services.resolved = {
-        enable = true;
-        fallbackDns = ["192.168.100.10" ];
       };
       users.users.runner = {
         uid = 1048;
@@ -60,7 +56,7 @@ in
         instances.default = {
           enable = true;
           name = "nix-runner";
-          url = "http://taskmaster:3000";
+          url = "https://forge.int.r12.sh";
           tokenFile = "/run/agenix/forgejo-runner-token";
           labels = [
             "nixos:host"
