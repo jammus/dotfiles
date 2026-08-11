@@ -4,7 +4,7 @@
     enableZshIntegration = true;
     enableFishIntegration = false;
     defaultOptions = ["--height 20" "--border"];
-    historyWidgetOptions = ["--exact"];
+    historyWidget.options = ["--exact"];
     colors = {
       fg = "#ebdbb2";
       bg = "#282828";
