@@ -34,7 +34,7 @@
     xwayland-satellite
     fuzzel
     swaybg
-    claude-code
+    nautilus
   ];
 
   wayland.windowManager.sway = {
