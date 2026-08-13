@@ -11,7 +11,7 @@
     syntaxHighlighting = {
       enable = true;
     };
-    initExtra = ''
+    initContent = ''
       setopt interactivecomments
     '' + (if pkgs.stdenv.hostPlatform.isDarwin then ''
       eval "$(/opt/homebrew/bin/brew shellenv)"
