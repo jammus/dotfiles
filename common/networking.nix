@@ -23,9 +23,7 @@
     ];
     allowedUDPPorts = [ config.services.tailscale.port ];
 
-    # Any device can connect via ssh (seems like openssh enables anyway, but no
-    # harm being double sure)
-    allowedTCPPorts = [ 22 53 9080 ];
+    allowedTCPPorts = lib.mkDefault [ 22 53 9080 ];
   };
 
   networking.nat.enable = true;

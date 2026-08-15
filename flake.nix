@@ -223,6 +223,9 @@
           };
         }
       ];
+      specialArgs = {
+        inherit inputs;
+      };
     };
   };
 }

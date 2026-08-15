@@ -11,6 +11,7 @@
       ../../common/base.nix
       ../../common/users.nix
       ../../common/networking.nix
+      ../../roles/agent.nix
     ];
 
   services.avahi.enable = false;
