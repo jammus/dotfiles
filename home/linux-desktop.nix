@@ -1,13 +1,14 @@
 { pkgs, ... }:
 {
   imports = [
-    ./alacritty.nix
-    ./rofi
+    ./linux.nix
+    ./niri.nix
     ./xmonad.nix
     ./hyprland.nix
+    ./alacritty.nix
+    ./rofi
     ./waybar.nix
-    ./niri.nix
-    ./linux.nix
+    ./ghostty.nix
   ];
 
   home.packages = with pkgs; [
