@@ -10,6 +10,9 @@
         http_port = 2342;
         http_addr = "0.0.0.0";
       };
+      security = {
+        secret_key = "$__file{/run/agenix/grafana-secret-key}";
+      };
     };
     dataDir = "/nas/services/grafana";
   };
