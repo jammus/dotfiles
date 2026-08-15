@@ -9,7 +9,6 @@
     ./tmux.nix
     ./neovim.nix
     ./git.nix
-    ./taskwarrior.nix
     ./zoxide.nix
     ./fzf.nix
     ./bat.nix
@@ -23,7 +22,6 @@
     _1password-cli
     wget
     tree
-    gopass
     age
     p7zip
     ripgrep
@@ -33,7 +31,6 @@
     # w3m # For nb  # Removed because of https://github.com/xwmx/nb/issues/407
     readability-cli # For nb
     visidata
-    magic-wormhole
     wakeonlan
     jq
     fd
@@ -51,7 +48,6 @@
     jujutsu
     imagemagick
     glow
-    git-filter-repo
     offpunk
     chafa
   ];
