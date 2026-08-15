@@ -6,6 +6,7 @@
     packages = with pkgs; [
       nerd-fonts.fira-code
       nerd-fonts.hack
+      nerd-fonts.dejavu-sans-mono  # wide proportions + broad Unicode coverage (default UI font)
       nerd-fonts.symbols-only  # "Symbols Nerd Font Mono" — nerd-icons / doom-modeline glyphs
       unifont
       noto-fonts

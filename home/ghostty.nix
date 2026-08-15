@@ -1,4 +1,6 @@
 { pkgs, ... }:
+let font = import ./terminal-font.nix;
+in
 {
   programs.ghostty = {
     enable = true;
@@ -7,7 +9,8 @@
     settings = {
       theme = "Gruvbox Material Dark";
       window-decoration = "none";
-      font-size = 15;
+      font-family = font.family;
+      font-size = font.size;
     };
   };
 }

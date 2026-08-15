@@ -1,10 +1,11 @@
-{
+let font = import ./terminal-font.nix;
+in {
   programs.kitty = {
     enable = true;
     themeFile = "GruvboxMaterialDarkMedium";
     font = {
-      name = "FiraCode";
-      size = 15;
+      name = font.family;
+      inherit (font) size;
     };
     extraConfig = ''
       draw_minimal_borders no
