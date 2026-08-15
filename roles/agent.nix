@@ -24,6 +24,7 @@ let
     "repo.clojars.org"
     "openrouter.ai"
     "pi.dev"
+    "api.deepseek.com"
   ];
   allowedIps = [
     "192.168.88.0/24"
