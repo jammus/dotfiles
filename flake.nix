@@ -41,6 +41,9 @@
     paved-paths = {
       url = "git+http://taskmaster:3000/jammus/paved-paths";
     };
+    media-extensions = {
+      url = "git+ssh://gitea@forge.int.r12.sh:2222/jammus/media-extensions.nix.git";
+    };
     secrets = {
       url = "git+ssh://git@github.com/jammus/secrets.git";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -14,6 +14,7 @@
       ../../common/internal-proxy.nix
       ../../common/gpu/nvidia.nix
       ../../roles/jellyfin.nix
+      inputs.media-extensions.nixosModules.media-extensions
       ../../roles/syncthing.nix
       ../../roles/nas.nix
       ../../roles/home-assistant.nix
