@@ -96,6 +96,7 @@ in
         shell = pkgs.bash;
         openssh.authorizedKeys.keys = publicKeys.authorizedKeys;
       };
+      users.users.agent.linger = true;
     };
   };
   devContainers.research = {
