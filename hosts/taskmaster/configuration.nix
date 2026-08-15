@@ -31,6 +31,11 @@
       ../../roles/caddy.nix
     ];
 
+  nix.settings = {
+    max-jobs = 2;
+    cores = 2;
+  };
+
   systemd.tmpfiles.rules = [
     "D /nas/services/prometheus2/data 0751 prometheus prometheus - -"
     "L+ /var/lib/${config.services.prometheus.stateDir}/data - - - - /nas/services/prometheus2/data"
