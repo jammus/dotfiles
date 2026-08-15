@@ -15,7 +15,6 @@
     firefox
     _1password-gui
     krita
-    (ranger.override { imagePreviewSupport = true; })
     viu
     nitrogen
     betterlockscreen
@@ -23,17 +22,13 @@
     pamixer
     bluez
     bluez-tools
-    spotify
     obsidian
-    waypaper
     awww
     nvtopPackages.full
     discord
     feishin
-    oterm
     librewolf
     xwayland-satellite
-    fuzzel
     swaybg
     nautilus
   ];
@@ -42,7 +37,7 @@
     enable = false;
     config = rec {
       modifier = "Mod4";
-      terminal = "kitty";
+      terminal = "ghostty";
     };
   };
 
