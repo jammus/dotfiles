@@ -13,6 +13,6 @@
   hardware.nvidia = {
     modesetting.enable = true;
     nvidiaSettings = true;
-    open = true;
+    open = lib.mkDefault true;
   };
 }

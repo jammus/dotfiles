@@ -37,6 +37,8 @@
     cores = 2;
   };
 
+  hardware.nvidia.open = false;
+
   systemd.tmpfiles.rules = [
     "D /nas/services/prometheus2/data 0751 prometheus prometheus - -"
     "L+ /var/lib/${config.services.prometheus.stateDir}/data - - - - /nas/services/prometheus2/data"
