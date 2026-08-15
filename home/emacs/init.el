@@ -118,9 +118,12 @@ If the new path's directories does not exist, create them."
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Family/size come from home/terminal-font.nix via nix-paths.el (loaded above).
 (defun bedrock--set-gui-font (&optional frame)
   (when (display-graphic-p frame)
-    (set-face-attribute 'default frame :family "Hack Nerd Font" :height 150)))
+    (set-face-attribute 'default frame
+                        :family my/terminal-font-family
+                        :height (* my/terminal-font-size 10))))
 
 (bedrock--set-gui-font)
 (add-hook 'after-make-frame-functions #'bedrock--set-gui-font)
@@ -364,7 +367,12 @@ If the new path's directories does not exist, create them."
 ;; runtime. `:commands' defers the large module until `M-x ghostel'.
 (use-package ghostel
   :ensure t
-  :commands (ghostel))
+  :commands (ghostel)
+  ;; Draw glyphs at natural width instead of shrinking those that overflow the
+  ;; cell (default `ghostel-glyph-scale-floor' 0.0), which otherwise gaps/offsets
+  ;; starship's powerline separators versus standalone Ghostty.
+  :config
+  (setq-default ghostel-glyph-scale-floor 1.0))
 
 ;; Orderless: powerful completion style
 (use-package orderless
@@ -617,8 +625,8 @@ If the new path's directories does not exist, create them."
   (add-hook 'git-commit-setup-hook 'evil-insert-state)
 
   ;; Use visual line motions
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+  ;; (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  ;; (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
   ;; Use Emacs state in terminal emulators
   (evil-set-initial-state 'eat-mode 'emacs)

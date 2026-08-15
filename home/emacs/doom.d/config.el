@@ -18,9 +18,11 @@
 
 ;;; Fonts & theme -----------------------------------------------------------
 
-;; Bedrock set :height 150 (i.e. 15pt) in Hack Nerd Font. font-spec :size is
-;; pixels when integer, points when float -- so 15.0 (not 15) matches :height 150.
-(setq doom-font (font-spec :family "Hack Nerd Font" :size 15.0))
+;; Family/size come from home/terminal-font.nix via doom-nix-paths.el (loaded
+;; above). font-spec :size is pixels when integer, points when float -- so
+;; `float' keeps 15 -> 15.0, matching a :height of size*10.
+(setq doom-font (font-spec :family my/terminal-font-family
+                           :size (float my/terminal-font-size)))
 
 ;; The gruvbox-material variant isn't in doom-themes; it's the local theme file
 ;; bundled under this DOOMDIR. Doom loads `doom-theme' for us after config runs.
@@ -53,7 +55,14 @@
 ;; ghostel (libghostty terminal) and kitty-graphics are built by Nix and put on
 ;; the load-path via extraPackages, so they're `require'-able without a package!.
 (use-package! ghostel
-  :commands ghostel)
+  :commands ghostel
+  ;; Ghostel renders cells through Emacs's font engine rather than libghostty's
+  ;; renderer, and by default shrinks any glyph whose metrics overflow the cell
+  ;; (`ghostel-glyph-scale-floor' 0.0). That shrinks starship's powerline
+  ;; separators, leaving gaps/offsets standalone Ghostty doesn't show. 1.0 draws
+  ;; them at natural width instead, matching Ghostty.
+  :config
+  (setq-default ghostel-glyph-scale-floor 1.0))
 
 (use-package! evil-ghostel
   :after (ghostel evil)
