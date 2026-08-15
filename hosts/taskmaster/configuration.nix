@@ -268,6 +268,7 @@
       dockerCompat = true;
       dockerSocket.enable = true;
     };
+    libvirtd.enable = true;
   };
 
   virtualisation.oci-containers = {
