@@ -39,6 +39,7 @@ let
     pkgs.vim
     inputs.backlog-md.packages.x86_64-linux.default
   ];
+  llmPackages = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   imports = [
     ../home/default.nix
     ../home/emacs.nix
@@ -52,7 +53,7 @@ let
     fi
   '';
   hosts = {
-    "192.168.100.10" = ["taskmaster"];
+    "192.168.100.10" = ["taskmaster" "forge.int.r12.sh"];
   };
 in
 {
@@ -74,6 +75,7 @@ in
       home-manager.users.agent = {
         imports = imports;
       };
+      home-manager.extraSpecialArgs = { inherit inputs; };
       environment.systemPackages = systemPackages;
       services = {
         openssh.enable = true;
@@ -107,6 +109,7 @@ in
       imports = [
         inputs.home-manager.nixosModules.home-manager
       ];
+      home-manager.extraSpecialArgs = { inherit inputs; };
       home-manager.useUserPackages = true;
       home-manager.users.agent = {
         imports = imports;
@@ -118,13 +121,7 @@ in
       programs = {
         fish.enable = true;
         bash = {
-          interactiveShellInit = ''
-            if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-            then
-              shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-              exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-            fi
-          '';
+          interactiveShellInit = interactiveShellInit;
         };
       };
       networking.hosts = hosts;
