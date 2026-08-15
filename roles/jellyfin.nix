@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
@@ -19,10 +19,6 @@
 
   services.jellyfin.enable = true;
 
-  systemd.services.jellyfin = {
-    path = [ pkgs.yt-dlp ];
-  };
-
   users.users = {
     jellyfin = {
       extraGroups = [
@@ -30,5 +26,9 @@
         "media"
       ];
     };
+  };
+
+  systemd.services.jellyfin = {
+    path = [ pkgs.yt-dlp pkgs.jellyfin-ffmpeg ];
   };
 }
