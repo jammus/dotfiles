@@ -18,6 +18,7 @@
       ../../roles/syncthing.nix
     ];
 
+  hardware.graphics.enable32Bit = true;
 
   services.syncthing.settings.folders = {
     finance-data = {
