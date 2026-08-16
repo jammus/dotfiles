@@ -30,6 +30,7 @@
       ../../roles/matrix.nix
       ../../roles/element-web.nix
       ../../roles/caddy.nix
+      ../../roles/searxng.nix
     ];
 
   nix.settings = {
