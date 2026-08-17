@@ -14,10 +14,12 @@
     home = "/Users/james.scott";
   };
 
+  system.primaryUser = "james.scott";
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-    [ pkgs.vim
+    [ pkgs.vim pkgs.colima pkgs.docker pkgs.docker-compose
     ];
 
   # Use a custom configuration.nix location.
@@ -25,7 +27,7 @@
   # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
