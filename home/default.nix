@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  # home-manager evaluates its own nixpkgs instance (useGlobalPkgs is unset),
+  # so allowUnfree must be set here rather than in the NixOS nixpkgs.config.
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     ./direnv.nix
     ./kitty.nix
