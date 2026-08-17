@@ -1,5 +1,8 @@
 { pkgs, lib, config, inputs, ... }:
 let
+  # Single source of truth for the terminal/editor font (see terminal-font.nix).
+  font = import ./terminal-font.nix;
+
   # emacs-pgtk is GTK/Wayland (Linux); macOS needs the native macport build.
   emacsPackage = if pkgs.stdenv.isDarwin then pkgs.emacs-macport else pkgs.emacs-pgtk;
 
@@ -62,6 +65,8 @@ in
   xdg.configFile."doom-nix-paths.el".text = ''
     (setq parinfer-rust-library
           "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}")
+    (setq my/terminal-font-family "${font.family}")
+    (setq my/terminal-font-size ${toString font.size})
   '';
 
   # External tools the config expects on PATH.
@@ -116,6 +121,8 @@ in
     # Nix store paths consumed by init.el (avoids hardcoding them).
     "emacs/nix-paths.el".text = ''
       (setq parinfer-rust-library "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}")
+      (setq my/terminal-font-family "${font.family}")
+      (setq my/terminal-font-size ${toString font.size})
     '';
   };
 }
