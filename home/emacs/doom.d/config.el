@@ -7,7 +7,7 @@
 ;; Set before anything else: org lazy-loads, and several org/notes commands read
 ;; `org-directory' the moment they run. Setting it first also means a later
 ;; load-time error in this file can't leave it at Doom's ~/org default.
-(setq org-directory "~/nb/org/")
+(setq org-directory "~/nb/notes/")
 
 ;; Store paths injected by Nix (see home/emacs.nix). Currently just sets
 ;; `parinfer-rust-library'. Loaded from ~/.config rather than this read-only
@@ -72,8 +72,7 @@
   :unless (display-graphic-p)
   :config (kitty-graphics-setup))
 
-(setq org-roam-directory (file-name-as-directory
-                          (expand-file-name "roam" org-directory))
+(setq org-roam-directory (file-truename org-directory)
       org-roam-database-connector 'sqlite-builtin)
 
 (use-package! agent-shell
