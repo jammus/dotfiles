@@ -64,7 +64,7 @@
        (lua +lsp)
        markdown
        (nix +lsp)
-       (org +roam +dragndrop +pretty)
+       (org +roam2 +dragndrop +pretty)
        (python +lsp)
        (sh +lsp)
 
