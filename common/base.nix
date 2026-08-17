@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  ghostty-package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+  ghostty-package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
 in
 {
   # Allow unfree packages

@@ -4,7 +4,7 @@ let
   font = import ./terminal-font.nix;
 
   # emacs-pgtk is GTK/Wayland (Linux); macOS needs the native macport build.
-  emacsPackage = if pkgs.stdenv.isDarwin then pkgs.emacs-macport else pkgs.emacs-pgtk;
+  emacsPackage = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.emacs-macport else pkgs.emacs-pgtk;
 
   # Native/Nix-coupled packages the Doom config expects on the load-path.
   # kitty-graphics.el is not in MELPA/nixpkgs, so build it from source.
@@ -102,7 +102,7 @@ in
   # Dock can't find it — and launching the bare binary from a shell never gets
   # foreground focus. Alias the bundle in on every activation (a Finder alias,
   # not a symlink, since LaunchServices ignores symlinked .app bundles).
-  home.activation = lib.mkIf pkgs.stdenv.isDarwin {
+  home.activation = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     linkEmacsApp = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/Applications"
       run rm -rf "$HOME/Applications/Emacs.app"
