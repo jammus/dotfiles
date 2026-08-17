@@ -10,7 +10,7 @@
 ;; there is no `doom sync'. After changing this file, rebuild home-manager.
 
 (doom! :completion
-       vertico            ; vertico + consult + embark + marginalia + orderless + wgrep
+       (vertico +icons)   ; vertico + consult + embark + marginalia + orderless + wgrep
        corfu              ; corfu + cape + corfu-popupinfo + kind-icon (+ terminal popup)
 
        :ui
