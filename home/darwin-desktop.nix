@@ -5,6 +5,7 @@
     ./emacs.nix
     ./ghostty.nix
     ./llms.nix
+    ./aerospace.nix
   ];
 
   home.packages = with pkgs; [

@@ -3,7 +3,7 @@
   homebrew = {
     enable = true;
     casks = [
-      "amethyst"
+      # "amethyst"
       "scroll-reverser"
     ];
   };
