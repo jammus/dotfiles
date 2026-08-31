@@ -20,6 +20,7 @@ in
       "wheel"
       "docker"
       "media"
+      "lp"
     ];
     shell = pkgs.bash;
     openssh.authorizedKeys.keys = publicKeys.authorizedKeys;

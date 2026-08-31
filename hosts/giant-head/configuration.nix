@@ -60,7 +60,6 @@
 
   hardware.xone.enable = true;
 
-  virtualisation.docker.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot = {
