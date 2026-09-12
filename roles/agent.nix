@@ -101,6 +101,7 @@ in
       users.users.agent.linger = true;
     };
   };
+
   devContainers.research = {
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.13";
@@ -127,6 +128,84 @@ in
       networking.hosts = hosts;
 			networking.resolvconf.enable = false;
 			environment.etc."resolv.conf".text = "nameserver 1.1.1.1";
+      users.users.agent = {
+        uid = 1047;
+        initialHashedPassword = "*";
+        isNormalUser = true;
+        description = "Agent";
+        extraGroups = [
+          "agents"
+        ];
+        shell = pkgs.bash;
+        openssh.authorizedKeys.keys = publicKeys.authorizedKeys;
+      };
+    };
+  };
+
+  devContainers.claws = {
+    hostAddress = "192.168.100.10";
+    localAddress = "192.168.100.16";
+    enableFirewallFiltering = false;
+    config = {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+      ];
+      home-manager.extraSpecialArgs = { inherit inputs; };
+      home-manager.useUserPackages = true;
+      home-manager.users.agent = {
+        imports = imports ++ [ ../home/claws.nix ];
+      };
+      environment.systemPackages = systemPackages;
+      services = {
+        openssh.enable = true;
+      };
+      programs = {
+        fish.enable = true;
+        bash = {
+          interactiveShellInit = interactiveShellInit;
+        };
+      };
+      networking.hosts = hosts;
+			networking.resolvconf.enable = false;
+      users.users.agent = {
+        uid = 1049;
+        initialHashedPassword = "*";
+        isNormalUser = true;
+        description = "Agent";
+        extraGroups = [
+          "agents"
+        ];
+        shell = pkgs.bash;
+        openssh.authorizedKeys.keys = publicKeys.authorizedKeys;
+      };
+    };
+  };
+
+  devContainers.pi = {
+    hostAddress = "192.168.100.10";
+    localAddress = "192.168.100.15";
+    enableFirewallFiltering = false;
+    config = {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+      ];
+      home-manager.extraSpecialArgs = { inherit inputs; };
+      home-manager.useUserPackages = true;
+      home-manager.users.agent = {
+        imports = imports;
+      };
+      environment.systemPackages = systemPackages;
+      services = {
+        openssh.enable = true;
+      };
+      programs = {
+        fish.enable = true;
+        bash = {
+          interactiveShellInit = interactiveShellInit;
+        };
+      };
+      networking.hosts = hosts;
+			networking.resolvconf.enable = false;
       users.users.agent = {
         uid = 1047;
         initialHashedPassword = "*";
