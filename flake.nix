@@ -2,7 +2,6 @@
   description = "NixOS configuration and home-manager configurations";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.follows = "nixos-cosmic/nixpkgs";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,14 +10,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprsome = {
-      url = "github:sopa0/hyprsome";
-    };
     agenix = {
       url = "github:ryantm/agenix";
-    };
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
     };
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -54,8 +47,7 @@
     };
   };
   outputs = inputs@{
-    home-manager, nixpkgs, darwin,
-    hyprsome, agenix, nixos-cosmic,
+    home-manager, nixpkgs, darwin, agenix,
     niri, stylix, secrets, paved-paths,
     ...}:
   {
@@ -113,7 +105,6 @@
         agenix.nixosModules.default
         secrets.nixosModules.secrets
         stylix.nixosModules.stylix
-        nixos-cosmic.nixosModules.default
         niri.nixosModules.niri
         ./hosts/giant-head/configuration.nix
         ./common/desktop.nix
@@ -126,7 +117,6 @@
               ./home/linux-desktop.nix
             ];
             home.packages = [
-              hyprsome.packages.x86_64-linux.default
               paved-paths.packages.x86_64-linux.init-project
             ];
           };

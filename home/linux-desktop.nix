@@ -3,10 +3,7 @@
   imports = [
     ./linux.nix
     ./niri.nix
-    ./xmonad.nix
-    ./hyprland.nix
     ./alacritty.nix
-    ./rofi
     ./waybar.nix
     ./ghostty.nix
   ];
@@ -16,8 +13,6 @@
     _1password-gui
     krita
     viu
-    nitrogen
-    betterlockscreen
     pavucontrol
     pamixer
     bluez
@@ -32,14 +27,6 @@
     swaybg
     nautilus
   ];
-
-  wayland.windowManager.sway = {
-    enable = false;
-    config = rec {
-      modifier = "Mod4";
-      terminal = "ghostty";
-    };
-  };
 
   stylix = {
     enable = true;
