@@ -7,7 +7,7 @@
     };
 
     binds = {
-      "Mod+Return".action.spawn = "kitty";
+      "Mod+Return".action.spawn = "ghostty";
       "Mod+Space".action.spawn = ["wofi" "--show" "drun" "-o" "DP-3"];
 
       "Mod+Shift+C".action.close-window = {};
