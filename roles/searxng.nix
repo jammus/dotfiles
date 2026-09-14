@@ -9,6 +9,9 @@
         bind_address = "127.0.0.1";
         port = 7327;
       };
+      search = {
+        formats = ["html" "json"];
+      };
     };
     # uncomment for rate limiting / bot protection:
     # redisCreateLocally = true;
