@@ -6,6 +6,7 @@
     ./alacritty.nix
     ./waybar.nix
     ./ghostty.nix
+    ./wayland.nix
   ];
 
   home.packages = with pkgs; [
@@ -18,13 +19,10 @@
     bluez
     bluez-tools
     obsidian
-    awww
     nvtopPackages.full
     discord
     feishin
     librewolf
-    xwayland-satellite
-    swaybg
     nautilus
   ];
 
