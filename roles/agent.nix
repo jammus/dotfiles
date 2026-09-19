@@ -40,6 +40,7 @@ let
     inputs.backlog-md.packages.x86_64-linux.default
   ];
   llmPackages = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+  lightpanda = pkgs.callPackage ../packages/lightpanda/package.nix { };
   imports = [
     ../home/default.nix
     ../home/emacs.nix
@@ -143,6 +144,7 @@ in
   };
 
   devContainers.claws = {
+    autoStart = true;
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.16";
     enableFirewallFiltering = false;
@@ -155,7 +157,7 @@ in
       home-manager.users.agent = {
         imports = imports ++ [ ../home/claws.nix ];
       };
-      environment.systemPackages = systemPackages;
+      environment.systemPackages = systemPackages ++ [ lightpanda pkgs.uv ];
       services = {
         openssh.enable = true;
       };
