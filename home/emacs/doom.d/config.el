@@ -102,3 +102,8 @@
 ;;; Minor customisations ----------------------------------------------------
 
 (setq doom-localleader-key ",")
+
+
+;;; Org setup ---------------------------------------------------------------
+(after! org
+  (setq org-log-done 'time))
