@@ -50,6 +50,7 @@
        (lsp +eglot)
        magit
        tree-sitter
+       terraform
 
        :os
        (:if (featurep :system 'macos) macos)
