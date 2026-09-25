@@ -228,6 +228,11 @@ let bg0 = "#1d2021";
         style = langStyle;
         format = "[$symbol ]($style fg:${green})";
       };
+      terraform = {
+        symbol = "󱁢";
+        style = langStyle;
+        format = "[$symbol $workspace]($style fg:${purple})";
+      };
       cmd_duration = {
         format = "[ took ](${statusStyle})[$duration](${durationStyle})";
       };
