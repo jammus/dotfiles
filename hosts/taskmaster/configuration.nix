@@ -66,6 +66,7 @@
   };
 
   services.immich-docker.enable = true;
+  services.internalProxy.routes.immich = "localhost:2283";
 
   services.ersatztv-docker.enable = true;
 
