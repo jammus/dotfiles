@@ -255,7 +255,7 @@
       ];
       environment = {
         PUID = "${toString config.users.users.calibre.uid}";
-        PID = "${toString config.users.groups.media.gid}";
+        PGID = "${toString config.users.groups.media.gid}";
         DOCKER_MODS = "lscr.io/linuxserver/mods:universal-calibre-v7.16.0";
         TZ = "Asia/Singapore"; # Change this to your timezone
       };
