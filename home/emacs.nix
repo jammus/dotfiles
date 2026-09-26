@@ -24,25 +24,6 @@ in
 
   nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
-  programs.emacs = {
-    enable = false;
-    # Packages referenced by `:ensure t' in init.el are built by Nix and put on
-    # the load-path; nothing is installed over the network at runtime.
-    package = pkgs.emacsWithPackagesFromUsePackage {
-      config = ./emacs/init.el;
-      defaultInitFile = false;
-      package = emacsPackage;
-      alwaysEnsure = false;
-      extraEmacsPackages = epkgs: [
-        epkgs.treesit-grammars.with-all-grammars
-        (kitty-graphics epkgs)
-      ];
-    };
-  };
-
-  # Doom Emacs alongside the vanilla build above, for side-by-side comparison.
-  # provideEmacs = false keeps this off the `emacs'/`emacsclient' names (those
-  # stay bound to programs.emacs); this one installs a `doom-emacs' binary.
   programs.doom-emacs = {
     enable = true;
     provideEmacs = true;
@@ -95,18 +76,4 @@ in
     pkgs.clojure-lsp           # Clojure / ClojureScript / babashka
     pkgs.fennel-ls             # Fennel
   ];
-
-  xdg.configFile = {
-    "emacs/early-init.el".source = ./emacs/early-init.el;
-    "emacs/init.el".source = ./emacs/init.el;
-    "emacs/themes/doom-gruvbox-material-theme.el".source =
-      ./emacs/themes/doom-gruvbox-material-theme.el;
-
-    # Nix store paths consumed by init.el (avoids hardcoding them).
-    "emacs/nix-paths.el".text = ''
-      (setq parinfer-rust-library "${pkgs.parinfer-rust-emacs}/lib/libparinfer_rust${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}")
-      (setq my/terminal-font-family "${font.family}")
-      (setq my/terminal-font-size ${toString font.size})
-    '';
-  };
 }
