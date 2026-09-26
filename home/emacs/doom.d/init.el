@@ -40,8 +40,8 @@
        :term
        eshell
        term
-       vterm
-       ;;ghostel
+       ;;vterm
+       ghostel
 
        :tools
        direnv

@@ -39,5 +39,5 @@
 (package! acp)
 (package! agent-shell)
 
-;; -- Terminal evil integration ---------------------------------------------
-(package! evil-ghostel)
+;; The ghostel / evil-ghostel packages are declared by Doom's own :term ghostel
+;; module (enabled in init.el), so they must not be repeated here.

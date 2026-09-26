@@ -52,21 +52,13 @@
 
 ;;; Terminals with inline graphics -----------------------------------------
 
-;; ghostel (libghostty terminal) and kitty-graphics are built by Nix and put on
-;; the load-path via extraPackages, so they're `require'-able without a package!.
-(use-package! ghostel
-  :commands ghostel
+(after! ghostel
   ;; Ghostel renders cells through Emacs's font engine rather than libghostty's
   ;; renderer, and by default shrinks any glyph whose metrics overflow the cell
   ;; (`ghostel-glyph-scale-floor' 0.0). That shrinks starship's powerline
   ;; separators, leaving gaps/offsets standalone Ghostty doesn't show. 1.0 draws
   ;; them at natural width instead, matching Ghostty.
-  :config
   (setq-default ghostel-glyph-scale-floor 1.0))
-
-(use-package! evil-ghostel
-  :after (ghostel evil)
-  :hook (ghostel-mode . evil-ghostel-mode))
 
 (use-package! kitty-graphics
   :unless (display-graphic-p)
