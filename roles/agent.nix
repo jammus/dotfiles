@@ -171,6 +171,7 @@ in
 			networking.resolvconf.enable = false;
       users.users.agent = {
         uid = 1049;
+        linger = true;
         initialHashedPassword = "*";
         isNormalUser = true;
         description = "Agent";
