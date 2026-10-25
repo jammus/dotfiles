@@ -2,6 +2,10 @@
   description = "NixOS configuration and home-manager configurations";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +53,7 @@
   outputs = inputs@{
     home-manager, nixpkgs, darwin, agenix,
     niri, stylix, secrets, paved-paths,
+    nixos-hardware,
     ...}:
   {
     nixosConfigurations.playground = nixpkgs.lib.nixosSystem {
@@ -121,6 +126,29 @@
             ];
           };
         } 
+      ];
+    };
+    nixosConfigurations.lagavulin = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        nixos-hardware.nixosModules.apple-t2
+        stylix.nixosModules.stylix
+        niri.nixosModules.niri
+        ./hosts/lagavulin/configuration.nix
+        ./common/desktop.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.users.jammus = {
+            imports = [
+              ./home/default.nix
+              ./home/linux-desktop.nix
+            ];
+            home.packages = [
+              paved-paths.packages.x86_64-linux.init-project
+            ];
+          };
+        }
       ];
     };
     nixosConfigurations.taskmaster = nixpkgs.lib.nixosSystem {
