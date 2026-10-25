@@ -51,18 +51,22 @@ in
         ];
         openssh.authorizedKeys.keys = publicKeys.authorizedKeys;
       };
-      services.gitea-actions-runner = {
+      services.forgejo-runner = {
         package = pkgs.forgejo-runner;
         instances.default = {
           enable = true;
-          name = "nix-runner";
-          url = "https://forge.int.r12.sh";
-          tokenFile = "/run/agenix/forgejo-runner-token";
-          labels = [
-            "nixos:host"
-          ];
+          secrets.server.connections.default = {
+            token_url = "/run/agenix/forgejo-runner-token";
+          };
           settings = {
+            server.connections.default = {
+              url = "https://forge.int.r12.sh";
+              uuid = "e5db7236-bc68-49c3-891d-d9d12e23ea9c";
+            };
             runner = {
+              labels = [
+                "nixos:host"
+              ];
               envs = {
                 PATH = "/run/current-system/sw/bin:/usr/bin:/bin";
               };
