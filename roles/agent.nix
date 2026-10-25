@@ -196,6 +196,7 @@ in
       home-manager.useUserPackages = true;
       home-manager.users.agent = {
         imports = imports;
+        programs.direnv.config.whitelist.prefix = [ "/home/agent/code" ];
       };
       environment.systemPackages = systemPackages;
       services = {
