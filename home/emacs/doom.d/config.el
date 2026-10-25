@@ -64,9 +64,6 @@
   :unless (display-graphic-p)
   :config (kitty-graphics-setup))
 
-(setq org-roam-directory (file-truename org-directory)
-      org-roam-database-connector 'sqlite-builtin)
-
 (use-package! agent-shell
   :commands agent-shell)
 
@@ -97,5 +94,9 @@
 
 
 ;;; Org setup ---------------------------------------------------------------
+
 (after! org
-  (setq org-log-done 'time))
+  (setq org-roam-directory (file-truename org-directory)
+        org-roam-database-connector 'sqlite-builtin
+        org-modern-star '("◉" "○" "◈" "◇" "*")
+        org-log-done 'time))

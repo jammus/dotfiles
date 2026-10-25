@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports =
@@ -19,6 +19,8 @@
     ];
 
   hardware.graphics.enable32Bit = true;
+  services.printing.enable = true;
+  services.printing.drivers = with pkgs; [ epson-escpr gutenprint ];
 
   services.syncthing.settings.folders = {
     finance-data = {
@@ -60,6 +62,7 @@
 
   hardware.xone.enable = true;
 
+  virtualisation.libvirtd.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot = {
