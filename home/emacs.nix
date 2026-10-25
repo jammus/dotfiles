@@ -55,7 +55,7 @@ in
     pkgs.claude-agent-acp
 
     # org flyspell needs a speller
-    (pkgs.aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+    (pkgs.aspellWithDicts (ds: with ds; [ en ]))
 
     # ob-d2 shells out to the d2 CLI to render diagram blocks
     pkgs.d2
