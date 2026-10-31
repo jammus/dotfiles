@@ -727,11 +727,11 @@
         "rev": "5c094eb86aa61e49c231e3e6f4a293ea406d7922",
         "revCount": 145,
         "type": "git",
-        "url": "http://taskmaster:3000/jammus/paved-paths"
+        "url": "https://forge.int.r12.sh/jammus/paved-paths"
       },
       "original": {
         "type": "git",
-        "url": "http://taskmaster:3000/jammus/paved-paths"
+        "url": "https://forge.int.r12.sh/jammus/paved-paths"
       }
     },
     "root": {
@@ -761,11 +761,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792827555,
-        "narHash": "sha256-LL2r1VPKSD+VisEUgy0F9vGXrXU2NEoZWCoEwTAbAzA=",
+        "lastModified": 1793439707,
+        "narHash": "sha256-KTkiKAv2M+MXMRDzUXQrmE/T2uo2e+nqVIBGYhUsvdE=",
         "ref": "refs/heads/main",
-        "rev": "294cc075d404b65fd7ac665e03ff4d0fa5c43140",
-        "revCount": 15,
+        "rev": "79318dc5d8e08709f5ad45303cf3f0aebbccb2b4",
+        "revCount": 16,
         "type": "git",
         "url": "ssh://git@github.com/jammus/secrets.git"
       },

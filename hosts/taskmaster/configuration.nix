@@ -22,6 +22,7 @@
       ../../roles/navidrome.nix
       ../../roles/grafana.nix
       ../../roles/prometheus.nix
+      ../../roles/prometheus-node.nix
       ../../roles/immich.nix
       ../../roles/ersatztv.nix
       ../../roles/agent.nix
@@ -40,10 +41,7 @@
 
   hardware.nvidia.open = false;
 
-  systemd.tmpfiles.rules = [
-    "D /nas/services/prometheus2/data 0751 prometheus prometheus - -"
-    "L+ /var/lib/${config.services.prometheus.stateDir}/data - - - - /nas/services/prometheus2/data"
-  ];
+  services.prometheus.exporters.smartctl.enable = true;
 
   boot.kernelParams = [
     "i915.enable_guc=2"

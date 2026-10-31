@@ -5,7 +5,7 @@
     ../../common/users.nix
     ../../common/networking.nix
     ../../roles/mastodon.nix
-    ../../roles/prometheus.nix
+    ../../roles/prometheus-node.nix
   ];
 
   boot.tmp.cleanOnBoot  = true;
