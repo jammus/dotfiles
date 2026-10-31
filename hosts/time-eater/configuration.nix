@@ -10,6 +10,7 @@
 
   boot.tmp.cleanOnBoot  = true;
   zramSwap.enable = true;
+  services.avahi.enable = false;
   networking.hostName = "time-eater";
   networking.domain = "";
   users.users.root.openssh.authorizedKeys.keys = [
