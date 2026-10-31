@@ -32,7 +32,7 @@
       url = "github:MrLesk/Backlog.md";
     };
     paved-paths = {
-      url = "git+http://taskmaster:3000/jammus/paved-paths";
+      url = "git+https://forge.int.r12.sh/jammus/paved-paths";
     };
     media-extensions = {
       url = "git+ssh://gitea@forge.int.r12.sh:2222/jammus/media-extensions.nix.git";
