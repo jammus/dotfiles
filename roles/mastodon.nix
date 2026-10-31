@@ -10,6 +10,7 @@
     extraConfig = {
       WEB_DOMAIN = "mastodon.return12.net";
       SINGLE_USER_MODE = "true";
+      OTP_SECRET = "fake";
     };
   };
 
