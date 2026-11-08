@@ -96,6 +96,8 @@
     };
   };
 
+  services.castsponsorskip.enable = true;
+
   systemd.services."archive-video" = {
     path = [ pkgs.yt-dlp ];
     script = ''
