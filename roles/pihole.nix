@@ -36,7 +36,7 @@ in {
     virtualisation.oci-containers.containers = {
       pihole = {
         autoStart = true;
-        image = "pihole/pihole:2025.11.1";
+        image = "ghcr.io/pi-hole/pihole:2026.10.1";
         volumes = [
           "${cfg.persistanceRoot}/etc/pihole:/etc/pihole"
           "${cfg.persistanceRoot}/etc/dnsmasq.d:/etc/dnsmasq.d"
