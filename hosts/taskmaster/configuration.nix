@@ -127,6 +127,8 @@
       "/nas/media/podcasts"
       "/nas/media/music"
       "/nas/media/books"
+      "/nas/local/photos/peishan/documents"
+      "/nas/local/photos/peishan/cd-roms"
     ];
     exclude = [
     ];
@@ -199,27 +201,6 @@
   };
 
   virtualisation.oci-containers.containers = {
-    audiobookshelf = {
-      autoStart = true;
-      image = "ghcr.io/advplyr/audiobookshelf:latest";
-      volumes = [
-        "/nas/media/audiobooks:/audiobooks"
-        "/nas/media/podcasts:/podcasts"
-        "/nas/services/audiobookshelf/config:/config"
-        "/nas/services/audiobookshelf/metadata:/metadata"
-      ];
-      ports = [
-        "13378:80"
-      ];
-      environment = {
-        AUDIOBOOKSHELF_UID = "${toString config.users.users.audiobookshelf.uid}";
-        AUDIOBOOKSHELF_GID = "${toString config.users.groups.media.gid}";
-        TZ = "Asia/Singapore"; # Change this to your timezone
-      };
-    };
-  };
-
-  virtualisation.oci-containers.containers = {
     podgrab = {
       autoStart = true;
       image = "akhilrex/podgrab";
@@ -244,11 +225,11 @@
   virtualisation.oci-containers.containers = {
     calibre-web-automated = {
       autoStart = true;
-      image = "crocodilestick/calibre-web-automated:latest";
+      image = "ghcr.io/crocodilestick/calibre-web-automated:latest";
       volumes = [
         "/nas/media/books:/calibre-library"
         "/nas/services/calibre-web-automated:/config"
-        "/nas/media/temp/books:/cwa-book-ingest"
+        "/nas/media/temp/shelfmark:/cwa-book-ingest"
       ];
       ports = [
         "5084:8083"
@@ -256,11 +237,12 @@
       environment = {
         PUID = "${toString config.users.users.calibre.uid}";
         PGID = "${toString config.users.groups.media.gid}";
-        DOCKER_MODS = "lscr.io/linuxserver/mods:universal-calibre-v7.16.0";
-        TZ = "Asia/Singapore"; # Change this to your timezone
+        TZ = "Asia/Singapore";
       };
     };
   };
+
+  services.internalProxy.routes.calibre-web = "localhost:5084";
 
   virtualisation = {
     podman = {
